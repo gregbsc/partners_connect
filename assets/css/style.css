@@ -1,0 +1,7 @@
+body, html, .container { min-width:800px; }
+.login-screen { background:none; }
+#required-message { text-align:center; color:#C80000; padding-top:15px; }
+.wfont { color:#fff; }
+.fright { float:right; }
+.mtop50 { margin-top: 50px; }
+.mtop10 { margin-top:10px; }
