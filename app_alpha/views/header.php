@@ -15,6 +15,7 @@
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
     <!-- <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/knockout-3.1.0.js'></script> -->
 
 
@@ -28,3 +29,11 @@
 
 	</head>
 	<body>
+
+    <div class="row">
+
+        <div class="container">
+
+        </div>
+
+    </div>

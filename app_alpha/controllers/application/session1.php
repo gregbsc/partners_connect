@@ -28,7 +28,6 @@ class Admin extends CI_Controller {
         $this->load->model('admin_Nav');
         $this->menuData = $this->admin_Nav->getNavigation();
        	//end of navigation
-		      
 
        	if( $this->ion_auth->is_admin() ) {
 
@@ -39,7 +38,8 @@ class Admin extends CI_Controller {
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
 
-			
+			$this->load->view('fiveTimeOut');
+
         } else {
 
         	$data['noinfo'] = true;
@@ -220,8 +220,6 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/header', $data);
 			$this->load->view('admin/admin', $data);
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
 
 		} else { 
 			redirect("admin/login", 'redirect');
@@ -270,9 +268,7 @@ class Admin extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 			$this->load->view('admin/admin', $data);
-			
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
+
 
 		} else { 
 			redirect("admin/login", 'redirect');
