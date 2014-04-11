@@ -8,9 +8,7 @@
 
 			<p>  The purpose of these questions is to understand how you are currently doing and what your relationship is like. Your answers to this survey will be kept private. That means we will not share your responses with anyone outside the research team.</p>
 			
-			<h4 class="h4">This first section asks you some general health questions about yourself.</h4>
-
-			
+			<h4 class="h4">This first section asks you some general health questions about yourself.</h4>		
 
 				<p>Thank you for your interest in Partners Connect, an online program designed to help partners and spouses take care of their own needs and communicate to their loved ones in a positive manner. This project focuses on providing support to concerned military partners and spouses who are experiencing difficulty as a result of their service member’s alcohol use. </p>
 

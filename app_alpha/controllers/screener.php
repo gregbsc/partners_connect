@@ -50,7 +50,7 @@ class screener extends CI_Controller {
 			//process  post first
 			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time );
 
-			/* 
+			/*
 			Important questions to check in screener :
 
 				If “No” to any of the following screener questions: 1, 3, 4-7 OR a “Yes” to question 2,  (CP does not qualify for Stage 2 screening):
@@ -64,12 +64,12 @@ class screener extends CI_Controller {
 				
 				//pass along "boolean" as string... its php... why not
 				$data['qualified'] = 'true';
-				$this->load->view('');
+				$this->load->view('signup/qualified');
 
 			} else {
 
 				$data['qualified'] = 'false';
-				$this->load->view('not_qualified');
+				$this->load->view('signup/not_qualified');
 
 			}
 
