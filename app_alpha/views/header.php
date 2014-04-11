@@ -30,10 +30,14 @@
 	</head>
 	<body>
 
-    <div class="row">
+    <div class="row red-header">
 
         <div class="container">
 
+        <div class="custom-tab-header">
+            <div class="custom-tab"> Text options here </div>
+        </div>
+            <p> <img id="logo" src="/assets/img/logo.png" />
         </div>
 
     </div>

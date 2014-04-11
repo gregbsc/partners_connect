@@ -1,4 +1,7 @@
 body, html, .container { min-width:800px; }
+
+#logo { margin-top:40px; }
+
 p { font-size:14px; }
 .h4 { font-size:18px; }
 .login-screen { background:none; }
@@ -19,3 +22,18 @@ p { font-size:14px; }
 .mtop20 {margin-top:20px !important;}
 
 .mright10 { margin-right:10px !important; }
+
+
+.custom-tab-header { width:100%; }
+
+.custom-tab { 
+	background: url('/assets/img/header-tab.png') no-repeat right center; 
+	width:191px; 
+	height:26px; 
+	color:#fff;
+	font-size:14px;
+	float:right;
+	text-align:center;
+}
+
+.red-header { background: url('/assets/img/header.png') repeat-x; height:104px;}

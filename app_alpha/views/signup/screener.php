@@ -57,8 +57,6 @@
 					<p class="hidden" id="">SCREENS POSITIVE: If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening):
 					Based on your answers, it looks like you may qualify for this project. If you are interested, you can list your contact information below and someone from RAND will contact you within 5 business days to share more about the project, ask a few follow-up questions, and discuss next steps with you.  After talking with RAND study staff, you can decide whether or not you would like to be involved in the project. Participation is entirely voluntary and confidential and there will be no consequences if you decide not to participate.</p>
 
-					<p class="hidden" id=""> Continue to find out more information    	or	No thank you, I am not interested at this time.</p>
-
 					<input type="submit" value="submit" class="mtop40 mbot20" />
 					
 			</form>
