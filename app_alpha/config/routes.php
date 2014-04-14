@@ -38,15 +38,18 @@
 |
 */
 
-$route['default_controller'] = "admin/admin";
+$route['default_controller'] = "screener";
 
 //$route['admin/(:any)'] = "admin/admin/$1";
 
+//admin routes
+$route['admin'] = "admin/admin";
 $route['admin/login'] = "admin/admin/login";
 $route['admin/users'] = "admin/admin/users";
 $route['admin/create'] = "admin/admin/create";
 $route['admin/remove'] = "admin/admin/remove";
 $route['admin/deactivated'] = "admin/admin/deactivated";
+$route['admin/user'] = "admin/user";
 
 $route['screen'] = "screener";
 
@@ -54,12 +57,12 @@ $route['resources'] = 'resources';
 
 $route['baseline'] = 'baseline';
 
-// $route['admin/(:any)'] = "admin/admin/$1";
-
-$route['admin/user'] = "admin/user";
-
 $route['404_override'] = '';
 
+
+//  USER STUFF
+$route['user'] = "user/user";
+$route['user/login'] = "user/user/login";
 
 
 /* End of file routes.php */

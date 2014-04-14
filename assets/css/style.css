@@ -37,3 +37,5 @@ p { font-size:14px; }
 }
 
 .red-header { background: url('/assets/img/header.png') repeat-x; height:104px;}
+
+.register-fields p { margin-top:20px; margin-bottom:0;}

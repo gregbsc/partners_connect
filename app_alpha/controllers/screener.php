@@ -47,6 +47,8 @@ class screener extends CI_Controller {
 
 		if( $_POST && $previousIP < 1 ) {
 
+			$data['register_link'] = $submission_id;
+
 			//process  post first
 			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time );
 
@@ -58,13 +60,17 @@ class screener extends CI_Controller {
 				If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening):
 
 			*/
+
+			//prefix for screener questions 	
 			$_prefix = 'screen_';
 
-			if( ( $this->input->post($_prefix.'1') || $this->input->post($_prefix .'3') || $this->input->post($_prefix .'4') || $this->input->post($_prefix .'5') || $this->input->post($_prefix .'6') || $this->input->post($_prefix .'7') ) == 'yes' || $this->input->post($_prefix .'2') == 'yes') {
+			if( ( $this->input->post($_prefix.'1') || $this->input->post($_prefix .'3') || $this->input->post($_prefix .'4') || $this->input->post($_prefix .'5') || $this->input->post($_prefix .'6') || $this->input->post($_prefix .'7') ) == 'yes' && $this->input->post($_prefix .'2') == 'no') {
 				
+				$this->screener_model->register_user( $userIP, $submission_id );
+
 				//pass along "boolean" as string... its php... why not
 				$data['qualified'] = 'true';
-				$this->load->view('signup/qualified');
+				$this->load->view('signup/qualified', $data);
 
 			} else {
 

@@ -8,7 +8,9 @@
 
 				<div>
 
-					<p> <a href="">Continue to find out more information</a> | <a href="">No thank you, I am not interested at this time</a>.</p>
+					<p>Based on your answers, it looks like you may qualify for this project.</p>
+
+					<p> <a href="<?php echo site_url("register"); ?>?subid=<?php echo $register_link; ?>">Continue to find out more information</a> | <a href="<?php echo site_url("resources"); ?>">No thank you, I am not interested at this time</a>.</p>
 
 				</div>
 			

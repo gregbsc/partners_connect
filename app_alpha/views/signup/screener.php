@@ -27,7 +27,7 @@
 
 				<?php echo form_open('screen'); ?>
 					
-					<h4 class="h4 mtop30">1. Is your partner currently serving in the military, including the National Guard or the Reserve? 1</h4>
+					<h4 class="h4 mtop30">1. Is your partner currently serving in the military, including the National Guard or the Reserve?</h4>
 					<input type="radio" name="screen_1" value="yes" class="mright10"> Yes <br>  <input type="radio" name="screen_1" value="no" class="mright10"> No <br>
 
 					<h4 class="h4 mtop30">2. Are you currently serving in the military, including the National Guard or the Reserve?</h4>
@@ -52,8 +52,8 @@
 					We are sorry, but based on your responses this research study does not appear to be a good fit for you at this time.  Thanks for completing the questions.  If you would like some information about other places you can go to for help, please click on the link below.  If you’d like, you may also talk with our project coordinator, Stefanie.  Her phone number is 1-800-447-2631 x8224.</p>
 
 					
-					<p class="hidden" id="">SCREENS POSITIVE: If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening):
-					Based on your answers, it looks like you may qualify for this project. If you are interested, you can list your contact information below and someone from RAND will contact you within 5 business days to share more about the project, ask a few follow-up questions, and discuss next steps with you.  After talking with RAND study staff, you can decide whether or not you would like to be involved in the project. Participation is entirely voluntary and confidential and there will be no consequences if you decide not to participate.</p>
+					<p class="hidden" id="">SCREENS POSITIVE: If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening): </p>
+					
 
 					<input type="submit" value="submit" class="mtop40 mbot20" />
 					

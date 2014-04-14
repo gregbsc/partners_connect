@@ -24,7 +24,6 @@ class screener_model extends CI_Model
 			   'question_response' => $screen_1,  
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
-			   'status' => 'new', 
 			   'submission_time' => $submission_time
 			);
 
@@ -34,18 +33,53 @@ class screener_model extends CI_Model
 
 	}
 
-	// function screen_results( $userIP ) {
 
-	// 	$sql = "SELECT entry_id, question_name, question_response, submission_id, user_ip, status, submission_time 
-	// 	FROM  screener_survey 
-	// 	WHERE user_ip = 1 
-	// 	ORDER BY orderByVal ASC";
+	function register_user( $userIP, $submission_id ) {
 
-	// 	$sqlResult = $this->db->query($sql);
+		$data = array(
+		   'submission_id' => $submission_id, 
+		   'user_ip' => $userIP, 
+		   'qualified' => 1,
+		   'status' => 'new'
+		);
 
-	// 	return $sqlResult->result();
+		$this->db->insert('registration', $data);
 
+	}
 
-	// }
+	function user_info( $subid ) {
+
+		$sql = "SELECT submission_id, qualified, user_ip, status
+		FROM registration  
+		WHERE submission_id = '$subid' 
+		/* AND qualified = 1 
+		AND status = 'new' */
+		LIMIT 1";
+
+		$sqlResult = $this->db->query($sql);
+
+		if( $sqlResult->num_rows ) {
+
+		 	$sqlClear = $sqlResult->result();
+		 	$sqlClear = $sqlClear[0];
+		 	return $sqlClear;
+
+		} else {
+
+			return 'null';
+
+		}
+		
+
+	}
+
+	function user_registration_success( $sub_id ) {
+
+		$data = array( 'status' => 'registered', 'qualified' => 0 );
+		$this->db->where('submission_id', $sub_id);
+		$this->db->update('registration', $data); 
+
+	}
+
 
 }
