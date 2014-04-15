@@ -30,10 +30,20 @@
 
 	</head>
 	<body>
+   
 
-    <div class="row">
+
+ 
+
+    <div class="row red-header">
 
         <div class="container">
+
+            <div class="custom-tab-header">
+                <div class="custom-tab"> Text options here </div>
+            </div>
+            
+            <p> <img id="logo" src="/assets/img/logo.png" /> </p>
 
             <nav class="navbar navbar-inverse navbar-embossed mtop50" role="navigation">
 
@@ -41,11 +51,26 @@
 
                     <ul class="nav navbar-nav navbar-left">  
 
-                        <?php if(!empty( $navigation ) && is_array( $navigation )) : ?>
-                        <?php foreach($navigation as $navItem) : ?>
-                            <li><a href="<?php echo $navItem->link_url; ?>"><?php echo $navItem->link_name; ?></a></li>
-                        <?php endforeach; endif; ?>
-
+                        <?php //if(!empty( $navigation ) && is_array( $navigation )) : ?>
+                        <?php //foreach($navigation as $navItem) : ?>
+                            <!-- <li><a href="<?php //echo $navItem->link_url; ?>"><?php //echo $navItem->link_name; ?></a></li> -->
+                        <?php //endforeach; endif; ?>
+                                                    
+                        <li><a href="/admin">main</a></li>                            
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                          <span class="dropdown-arrow"></span>
+                          <ul class="dropdown-menu">
+                            
+                            <li><a href="/admin/users">users</a></li>
+                            <li><a href="/admin/submissions">Submissions</a></li>
+                            <li><a href="/admin/create">create user</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/admin/remove">remove user</a></li>
+                            <li><a href="/admin/deactivated/">Deactivated</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="/admin/logout">logout</a></li>
                     </ul>
 
                     <p class='wfont fright mtop10'>Logged in as : <?php echo (isset($userName) ? $userName : ''); ?></p>

@@ -25,8 +25,8 @@ class Admin extends CI_Controller {
         parent::__construct();
 
         //admin nav
-        $this->load->model('admin_Nav');
-        $this->menuData = $this->admin_Nav->getNavigation();
+        //$this->load->model('admin_Nav');
+        //$this->menuData = $this->admin_Nav->getNavigation();
        	//end of navigation
 		      
 
@@ -128,16 +128,17 @@ class Admin extends CI_Controller {
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 
 			$data['userName'] = $this->currentUser->email;
-			$data['navigation']  = $this->menuData;
+			//$data['navigation']  = $this->menuData;
 			$data['activeUsers']  = $this->activeUsersList;
+
+			//$data['userDetails'] = $this
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 			
 			//VIEW BEING CALLED HERE
 			//users view is called within the admin/admin view
-			$this->load->view('admin/admin');
-			
+			$this->load->view('admin/admin', $data);
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('footer');

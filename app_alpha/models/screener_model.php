@@ -5,8 +5,6 @@ class screener_model extends CI_Model
 	
 	function process_screen( $POST, $userIP, $submission_id, $submission_time ) {
 
-		print_r($POST);
-
 		$screener_count = 7;
 
 		$screen_1 = $POST['screen_1'];
@@ -73,9 +71,9 @@ class screener_model extends CI_Model
 
 	}
 
-	function user_registration_success( $sub_id ) {
+	function user_registration_success( $sub_id, $userid ) {
 
-		$data = array( 'status' => 'registered', 'qualified' => 0 );
+		$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => $userid );
 		$this->db->where('submission_id', $sub_id);
 		$this->db->update('registration', $data); 
 

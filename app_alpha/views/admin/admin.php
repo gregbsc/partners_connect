@@ -6,6 +6,7 @@
 
 			<h3>Admin</h3>
 
+			<?php // template of sorts // ?>
 
 			<?php if(isset($createUsers) &&  $createUsers == TRUE ) : ?>
 				<?php $this->load->view('admin/createUsers', $createUsers); ?>

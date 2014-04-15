@@ -17,6 +17,7 @@ class register extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	
 	public function index()
 	{	
 
@@ -46,7 +47,6 @@ class register extends CI_Controller {
 			//if user info reflects new user ... 
 			if( $user_status != "null" && ( $user_status->status == 'new' && $user_status->qualified == 1 ) ) {
 				
-				//print_r($user_status);
 				if( $this->input->post('first_name') && $this->input->post('last_name') && $this->input->post('password') && $this->input->post('username') ) {
 				
 					if ( !$this->ion_auth->username_check( $this->input->post('username') ) ) {
@@ -62,18 +62,20 @@ class register extends CI_Controller {
 
 						if( $createUser ) {
 
+							//print_r($createUser);
+
 							//update user via model to registered
-							$this->screener_model->user_registration_success( $sub_id );
+							$this->screener_model->user_registration_success( $sub_id, $createUser );
 
 							//redirect
-							redirect('user/login/', 'refresh');
+							$this->load->view('success');
+							//redirect('user/login/', 'refresh');
 
 						}
 					
 					} else { 
 
-						// post did not pass... 
-
+						// post did not pass...
 
 					}
 
@@ -93,6 +95,7 @@ class register extends CI_Controller {
 					
 					// Already Registered -- redirect to login
 					redirect('user/login/', 'refresh');
+
 				}
 
 			}

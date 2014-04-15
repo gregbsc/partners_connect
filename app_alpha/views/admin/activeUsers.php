@@ -5,8 +5,8 @@
 	<ul>
 
 	<?php foreach( $activeUsers as $user ) : ?>
-
-		<li> <?php echo $user->username; ?> | <?php echo $user->email; ?> </li>
+		<?php // print_r($user); ?>
+		<li> <a href="/admin/user/details/?uid=<?php echo $user->user_id; ?>"> <?php echo $user->username; ?> </a> </li>
 
 	<?php endforeach; ?>
 

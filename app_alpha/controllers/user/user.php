@@ -22,10 +22,7 @@ class user extends CI_Controller {
     function __construct()
     {
 
-        parent::__construct();
-
-        //admin nav
-        
+        parent::__construct();       
 
     	
     }
@@ -38,13 +35,19 @@ class user extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('header');
 
+			$data['user_info'] = $this->ion_auth->user()->row();
+			$this->load->view('user_body', $data );
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('footer');
 
 		} else {
 
+			//VIEW BEING CALLED HERE
+			$this->load->view('user/login');
+
 		}
+
 
 	}
 

@@ -25,41 +25,48 @@ class user extends CI_Controller {
         parent::__construct();
 
         //admin nav
-        $this->load->model('admin_Nav');
-        $this->menuData = $this->admin_Nav->getNavigation();
+        //$this->load->model('admin_Nav');
+        //$this->menuData = $this->admin_Nav->getNavigation();
        	//end of navigation
 
        	if( $this->ion_auth->is_admin() ) {
 
 			$this->currentUser = $this->ion_auth->user()->row();
-			$data['userName'] = $this->currentUser->email;
-
+			//$data['userName'] = $this->currentUser->email;
 			// active users
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
 
-        } else {
-
-        	$data['noinfo'] = true;
-
-    	}
+        } 
     	
     }
 	
 	public function index()
 	{
 		//bind navigation date to data array -- pass to view
-		if(!empty($this->menuData)) {
-			//$data['navigation']  = $this->menuData;
-		}
 
-		$data['userName'] = $this->currentUser->email;
+		//$data['userName'] = $this->currentUser->email;
 	
+		$data['noinfo'] = '';
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
+			if( $this->input->get('uid') ) {
+
+
+				echo $this->input->get('uid');
+
+			} else {
+
+				redirect("admin", 'redirect');
+
+			}
+
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
+
+
+
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
 
