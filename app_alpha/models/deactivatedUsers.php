@@ -19,4 +19,30 @@ class deactivatedUsers extends CI_Model
 
 	}
 
+	function perm_delete($uid) {
+
+
+		$sql = "SELECT submission_id, userid FROM registration WHERE userid = {$uid}";
+
+		$sqlResult = $this->db->query($sql);
+		$cleanResult = $sqlResult->result();
+
+		if( !empty( $cleanResult ) && is_array( $cleanResult ) ) {
+
+			if(isset($cleanResult[0]->userid) && isset($cleanResult[0]->submission_id)) {
+
+
+				$this->db->delete('registration', array('userid' => $cleanResult[0]->userid)); 
+				$this->db->delete('screener_survey', array('submission_id' => $cleanResult[0]->submission_id)); 
+
+			}
+
+		}
+		
+
+		return 0;
+
+		
+	}
+
 }

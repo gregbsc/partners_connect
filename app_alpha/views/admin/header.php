@@ -31,10 +31,6 @@
 	</head>
 	<body>
    
-
-
- 
-
     <div class="row red-header">
 
         <div class="container">
@@ -63,7 +59,7 @@
                           <ul class="dropdown-menu">
                             
                             <li><a href="/admin/users">users</a></li>
-                            <li><a href="/admin/submissions">Submissions</a></li>
+                            <li><a href="/admin/submissions">New Submissions</a></li>
                             <li><a href="/admin/create">create user</a></li>
                             <li class="divider"></li>
                             <li><a href="/admin/remove">remove user</a></li>

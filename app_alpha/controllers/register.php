@@ -68,7 +68,7 @@ class register extends CI_Controller {
 							$this->screener_model->user_registration_success( $sub_id, $createUser );
 
 							//redirect
-							$this->load->view('success');
+							$this->load->view('signup/success');
 							//redirect('user/login/', 'refresh');
 
 						}

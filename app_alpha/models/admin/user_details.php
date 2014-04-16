@@ -4,19 +4,21 @@
 class user_details extends CI_Model
 {
 	
-	function getNavigation() {
+	function submissions() {
 
 		//$sql = "SELECT submission_id, qualified, user_ip, status, consent FROM  registration WHERE active = 1";
 
 		$this->db->select('*');
 		$this->db->from('registration');
-		$this->db->join('users', 'users.id = registration.userid');
-
+		$this->db->where('status','new');
 		$query = $this->db->get();
 
-		return $query;
+		if( !empty($query)) {
+			return $query->result();
+		} else {
+			return NULL;
+		}
 
 	}
-
 
 }

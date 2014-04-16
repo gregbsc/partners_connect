@@ -18,12 +18,23 @@ class submissions extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index()
-	{
+	{	
+		$this->load->model('admin/user_details');
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header');
+
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 			
-			$this->load->view('welcome_message');
+			$data['new_submissions'] = $this->user_details->submissions();
+
+			//print_r($new_submissions);	
+			$this->load->view('admin/admin', $data);
 
 		}
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 }

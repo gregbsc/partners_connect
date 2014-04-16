@@ -155,8 +155,8 @@ class Admin extends CI_Controller {
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 			
 			$data['userName'] = $this->currentUser->email;
-			$data['navigation']  = $this->menuData;
-			//$data['activeUsers']  = $this->activeUsersList ;
+			//$data['navigation']  = $this->menuData;
+			$data['activeUsers']  = $this->activeUsersList ;
 			$data['createUsers'] = TRUE;
 
 			//VIEW BEING CALLED HERE
@@ -172,7 +172,7 @@ class Admin extends CI_Controller {
 				$username = $this->input->post('username');
 				$password = $this->input->post('password');
 
-				if (!$this->ion_auth->username_check($username)) {
+				if (!$this->ion_auth->username_check( $username )) {
 
 					$group_name = 'users';
 					$email = $username;
@@ -209,8 +209,8 @@ class Admin extends CI_Controller {
 			}
 
 			$data['userName'] = $this->currentUser->email;
-			$data['navigation']  = $this->menuData;
-			//$data['activeUsers']  = $this->activeUsers;
+			//$data['navigation']  = $this->menuData;
+			$data['activeUsers']  = $this->activeUsers;
 
 			$this->load->model('activeUsers');
 			$data['removeUsersList'] = $this->activeUsers->getActiveUsers();
@@ -233,6 +233,7 @@ class Admin extends CI_Controller {
 	public function deactivated() {
 
 		$deleteHashValue = md5('deletehash');
+		$this->load->model('deactivatedUsers');
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
@@ -243,6 +244,8 @@ class Admin extends CI_Controller {
 
 					$del_id = $this->input->get('delid');
 					$this->ion_auth->delete_user($del_id);
+					$this->deactivatedUsers->perm_delete($del_id);
+
 					redirect("admin/deactivated", 'refresh');
 
 				}
@@ -261,7 +264,7 @@ class Admin extends CI_Controller {
 			}
 
 			$data['userName'] = $this->currentUser->email;
-			$data['navigation']  = $this->menuData;
+			//$data['navigation']  = $this->menuData;
 			
 			$this->load->model('deactivatedUsers');
 			$data['removeUsersList'] = $this->deactivatedUsers->getDeactivated();
