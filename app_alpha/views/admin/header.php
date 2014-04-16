@@ -52,21 +52,21 @@
                             <!-- <li><a href="<?php //echo $navItem->link_url; ?>"><?php //echo $navItem->link_name; ?></a></li> -->
                         <?php //endforeach; endif; ?>
                                                     
-                        <li><a href="/admin">main</a></li>                            
+                        <li><a href="/admin">Home</a></li>                            
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
                           <span class="dropdown-arrow"></span>
                           <ul class="dropdown-menu">
                             
-                            <li><a href="/admin/users">users</a></li>
-                            <li><a href="/admin/submissions">New Submissions</a></li>
-                            <li><a href="/admin/create">create user</a></li>
+                            <li><a href="/admin/users">Users</a></li>
+                            <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
+                            <li><a href="/admin/create">Create user</a></li>
                             <li class="divider"></li>
-                            <li><a href="/admin/remove">remove user</a></li>
+                            <li><a href="/admin/remove">Remove user</a></li>
                             <li><a href="/admin/deactivated/">Deactivated</a></li>
                           </ul>
                         </li>
-                        <li><a href="/admin/logout">logout</a></li>
+                        <li><a href="/admin/logout">Logout</a></li>
                     </ul>
 
                     <p class='wfont fright mtop10'>Logged in as : <?php echo (isset($userName) ? $userName : ''); ?></p>

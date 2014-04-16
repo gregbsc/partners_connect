@@ -10,11 +10,11 @@
 
 					<?php if($qualified == 'true') : ?>
 
-						<h3> You are qualified... </h3>
+						<h3>  </h3>
 
 					<?php else: ?>
 
-						<h3> You are not qualified </h3>
+						<h3>  </h3>
 
 					<?php endif; ?>
 

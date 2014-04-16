@@ -28,7 +28,7 @@ class submissions extends CI_Controller {
 			
 			$data['new_submissions'] = $this->user_details->submissions();
 
-			//print_r($new_submissions);	
+			//print_r($new_submissions);
 			$this->load->view('admin/admin', $data);
 
 		}

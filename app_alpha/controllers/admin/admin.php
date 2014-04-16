@@ -38,18 +38,30 @@ class Admin extends CI_Controller {
 			// active users
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
-
 			
         } else {
 
         	$data['noinfo'] = true;
 
     	}
+
     	
     }
 	
 	public function index()
 	{
+		//creates admin...
+		// $username = 'greg@bluscs.com';
+		// $password = '1234';
+		// $email = $username;
+		// $additional_data = array(
+		// 						'first_name' => 'Gregory',
+		// 						'last_name' => 'Sobotka',
+		// 						);
+		// $group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default 
+		// $this->ion_auth->register($username, $password, $email, $additional_data, $group);
+
+
 		//bind navigation date to data array -- pass to view
 		if(!empty($this->menuData)) {
 			$data['navigation']  = $this->menuData;
@@ -153,7 +165,9 @@ class Admin extends CI_Controller {
 	public function create() {
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
-			
+
+			$this->load->model('admin/user_details');
+
 			$data['userName'] = $this->currentUser->email;
 			//$data['navigation']  = $this->menuData;
 			$data['activeUsers']  = $this->activeUsersList ;
@@ -167,14 +181,14 @@ class Admin extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('footer');
 
-			if( $_POST ) {
-
+			if( $this->input->post('username') && $this->input->post('password') ) {
+				
 				$username = $this->input->post('username');
 				$password = $this->input->post('password');
 
 				if (!$this->ion_auth->username_check( $username )) {
 
-					$group_name = 'users';
+					$group_name = array('2');
 					$email = $username;
 
 					//user information
@@ -183,7 +197,12 @@ class Admin extends CI_Controller {
 								'last_name' => $this->input->post('lastname'),
 								);
 
-					$this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
+					$new_uid = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
+
+
+					if( isset($new_uid) && $new_uid > 0 ) {
+						$this->user_details->insert_details($new_uid);
+					}
 
 				} else {
 					// duplicate user....

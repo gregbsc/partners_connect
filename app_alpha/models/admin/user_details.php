@@ -21,4 +21,21 @@ class user_details extends CI_Model
 
 	}
 
+	function insert_details( $uid ) {
+
+		$data = array(
+		   'user_ip' =>  time() ,
+		   'submission_id' => time() ,
+		   'qualified' => '0' ,
+		   'status' => 'registered',
+		   'consent' => '0',
+		   'userid' => $uid
+
+		);
+
+		$this->db->insert('registration', $data); 
+
+
+	}
+
 }

@@ -9,7 +9,7 @@ class signup_ip extends CI_Model
 		$userIP = $_SERVER['REMOTE_ADDR'];
 
 		$sql = "SELECT user_ip 
-		FROM screener_survey
+		FROM registration
 		WHERE user_ip = '$userIP' ";
 
 		$sqlResult = $this->db->query($sql);
