@@ -46,11 +46,6 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse-01">
 
                     <ul class="nav navbar-nav navbar-left">  
-
-                        <?php //if(!empty( $navigation ) && is_array( $navigation )) : ?>
-                        <?php //foreach($navigation as $navItem) : ?>
-                            <!-- <li><a href="<?php //echo $navItem->link_url; ?>"><?php //echo $navItem->link_name; ?></a></li> -->
-                        <?php //endforeach; endif; ?>
                                                     
                         <li><a href="/admin">Home</a></li>                            
                         <li class="dropdown">
@@ -66,7 +61,7 @@
                             <li><a href="/admin/deactivated/">Deactivated</a></li>
                           </ul>
                         </li>
-                        <li><a href="/admin/logout">Logout</a></li>
+                        <li><a href="/logout">Logout</a></li>
                     </ul>
 
                     <p class='wfont fright mtop10'>Logged in as : <?php echo (isset($userName) ? $userName : ''); ?></p>

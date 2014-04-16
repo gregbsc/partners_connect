@@ -74,6 +74,7 @@ class screener_model extends CI_Model
 	function user_registration_success( $sub_id, $userid ) {
 
 		$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => $userid );
+		
 		$this->db->where('submission_id', $sub_id);
 		$this->db->update('registration', $data); 
 

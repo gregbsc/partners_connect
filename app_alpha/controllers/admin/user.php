@@ -53,8 +53,43 @@ class user extends CI_Controller {
 
 			if( $this->input->get('uid') ) {
 
+	
 
-				echo $this->input->get('uid');
+			} else {
+				redirect("admin", 'redirect');
+			}
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/header', $data);
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/admin', $data);
+
+		} else {
+
+			//VIEW BEING CALLED HERE
+			redirect("admin/login", 'redirect');
+
+		}
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
+
+	}
+
+	public function contact() {
+
+	
+		$data['noinfo'] = '';
+
+		$this->load->model('admin/email_functionality');
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+
+			if( $this->input->get('uid') ) {
+
+				$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
+
 
 			} else {
 
@@ -65,10 +100,8 @@ class user extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 
-
-
 			//VIEW BEING CALLED HERE
-			$this->load->view('admin/admin', $data);
+			$this->load->view('admin/email_list', $data);
 
 		} else {
 

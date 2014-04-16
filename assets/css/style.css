@@ -36,6 +36,6 @@ p { font-size:14px; }
 	text-align:center;
 }
 
-.red-header { background: url('/assets/img/header.png') repeat-x; height:104px;}
+.red-header { background: url('/assets/img/header.png') repeat-x; /*height:104px;*/}
 
 .register-fields p { margin-top:20px; margin-bottom:0;}

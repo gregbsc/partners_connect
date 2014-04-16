@@ -6,7 +6,7 @@
 	<tr style="margin-bottom:20px"> <td>Name</td> <td>Email</td> <td>Consent</td> <td>Last Login</td></tr>
 
 		<?php foreach( $activeUsers as $user ) : ?>
-
+		
 			<tr style="font-size:14px">
 
 				<td><?php echo $user->first_name; ?> <?php echo $user->last_name; ?> </td> 

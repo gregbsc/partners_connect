@@ -8,7 +8,7 @@
 
 		<?php foreach( $removeUsersList as $userToRem ) : ?>
 			
-			<li> <?php echo $userToRem->username; ?> | <a href="/admin/remove/?remid=<?php echo $userToRem->id; ?>">Deactivate</a> </li>
+			<li> <?php echo $userToRem->username; ?> | <a href="/admin/remove/?remid=<?php echo $userToRem->user_id; ?>">Deactivate</a> </li>
 
 		<?php endforeach; ?>
 

@@ -221,10 +221,12 @@ class Admin extends CI_Controller {
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 			
 			if( $this->input->get('remid') ) {
+
 				//deactivate user
 				$id = $this->input->get('remid');
 				$dataRemove = array( 'active' => 0 );
-				$this->ion_auth->update($id, $dataRemove);
+				$this->ion_auth->update( $id, $dataRemove );
+
 			}
 
 			$data['userName'] = $this->currentUser->email;
@@ -233,6 +235,8 @@ class Admin extends CI_Controller {
 
 			$this->load->model('activeUsers');
 			$data['removeUsersList'] = $this->activeUsers->getActiveUsers();
+
+			//print_r($data['removeUsersList']);
 
 			$data['removeUser'] = TRUE;
 
