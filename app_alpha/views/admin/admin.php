@@ -4,8 +4,6 @@
 
 		<div class="container">
 
-			<h3>Admin</h3>
-
 			<?php // template of sorts // ?>
 			<?php if(isset($createUsers) &&  $createUsers == TRUE ) : ?>
 				<?php $this->load->view('admin/createUsers', $createUsers); ?>
@@ -26,7 +24,7 @@
 			<?php // new submissions // ?>
 			<?php if (isset($new_submissions) && !empty($new_submissions) && is_array($new_submissions)) : ?>
 				
-					<?php $this->load->view('admin/active_submissions', $submission); ?>
+				<?php $this->load->view('admin/active_submissions', $submission); ?>
 			
 			<?php endif; ?>
 

@@ -1,34 +1,41 @@
 <?php //display all users within a row // ?>
+
 <div class="container">
-<div class="row">
-	
-	<?php $this->load->view('admin/email_contact_form'); ?>
 
-	<ul style="margin-top:20px;width:100%;margin-left:20px; max-width:800px" class="emailul">
+	<div class="col-md-6">
 
-		<?php foreach( $email_history as $email ) : ?>
+		<?php $this->load->view('admin/email_contact_form'); ?>
 
-		<?php //print_r($email); ?> 
-			<li> <h4 class="h4"> <?php echo $email->subject; ?>, <?php echo $email->send_date; ?>  |  <span class="view-details">View details</span> </h4> 
+	</div>
+	<div class="col-md-4">
+		<h4 class="h4">History</h4>
 
-				<ul class="hiddenul">
-					<li> To : <?php echo $email->to_location;?></li>
-					<li> Subject : <?php echo $email->subject;?></li>
-					<li> Send date : <?php echo $email->send_date ;?></li>
-					<li> Sent : <?php echo ( $email->attempt == 1 ) ? "Successful" : "Failure";  ?></li>
-					<li> Message : <?php echo $email->message;?></li>
-				</ul>
+		<ul style="margin-top:20px;width:100%;max-width:800px" class="emailul">
 
-			</li>		
-		<?php endforeach; ?>
+			<?php foreach( $email_history as $email ) : ?>
 
-	</ul>
+				<li> <p> <?php echo $email->subject; ?>, <?php echo $email->send_date; ?>  |  <span class="view-details"><strong>View details</strong></span> </p> 
 
-</div>
+					<ul class="hiddenul">
+						<li> To : <?php echo $email->to_location;?></li>
+						<li> Type : <?php echo $email->type; ?></li>
+						<li> Subject : <?php echo $email->subject;?></li>
+						<li> Send date : <?php echo $email->send_date ;?></li>
+						<li> Sent : <?php echo ( $email->attempt == 1 ) ? "Successful" : "Failure";  ?></li>
+						<li> Message : <?php echo $email->message;?></li>
+					</ul>
+
+				</li>		
+
+			<?php endforeach; ?>
+
+		</ul>
+	</div>
+
+
 </div>
 
 <script>
-
 
 	jQuery( document ).ready(function() {
 
@@ -41,6 +48,5 @@
 
 
 	});
-
 
 </script>

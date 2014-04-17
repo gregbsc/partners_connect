@@ -1,45 +1,38 @@
 <?php //display all deactivated users within a row // ?>
 
-<div class="row">
+<div class="email-wrapper">
 
-	<div class="container">
+	<h4 class="h4"> Contact  </h4>
+	<div class="email-box">
 
-		<div class="email-wrapper">
+		<?php if($this->input->get('uid')) {
+			$uid = $this->input->get('uid');
+			$uid_string = "/admin/user/contact/?uid=".$uid;
+		} else {
+			$uid_string = "/admin/user/contact/";
+		} ?>
 
-			<h4 class="h4"> Contact  </h4>
-			<div class="email-box">
+		<?php echo form_open( $uid_string ); ?>
 
-				<?php if($this->input->get('uid')) {
-					$uid = $this->input->get('uid');
-					$uid_string = "/admin/user/contact/?uid=".$uid;
-				} else {
-					$uid_string = "/admin/user/contact/";
-				} ?>
+			<p class="form-element"> TItle </p>
+			<p><input type="text" name="email_title"/></p>
+			
+			<p class="form-element"> Contact Type </p>
 
-				<?php echo form_open( $uid_string ); ?>
+			<p><select name="email_type"> 
+				<option>Contact</option>
+				<option>Gift Card</option>
+				<option>Follow Up</option>
+			</select></p>
+			
+			<p class="form-element"> Message </p>
+			<p><textarea name="email_body"/> </textarea></p>
 
-					<p class="form-element"> TItle </p>
-					<p><input type="text" name="email_title"/></p>
-					
-					<p class="form-element"> Contact Type </p>
+			<input type="submit" value="submit"/> 
 
-					<p><select name="email_type"> 
-						<option>Contact</option>
-						<option>Gift Card</option>
-						<option>Follow Up</option>
-					</select></p>
-					
-					<p class="form-element"> Message </p>
-					<p><textarea name="email_body"/> </textarea></p>
-
-					<input type="submit" value="submit"/> 
-
-				</form>
-
-			</div>
-
-		</div>
+		</form>
 
 	</div>
 
 </div>
+
