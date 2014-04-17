@@ -23,6 +23,12 @@ p { font-size:14px; }
 
 .mright10 { margin-right:10px !important; }
 
+.form-element { padding-bottom:0;margin-bottom:0;}
+.email-wrapper textarea, .email-wrapper input[type=text] { width:600px; max-width: 700px; font-size:14px;}
+
+.email-wrapper textarea {
+
+}
 
 .custom-tab-header { width:100%; }
 
@@ -39,3 +45,9 @@ p { font-size:14px; }
 .red-header { background: url('/assets/img/header.png') repeat-x; /*height:104px;*/}
 
 .register-fields p { margin-top:20px; margin-bottom:0;}
+
+.hiddenul { display: none;}
+
+.view-details { cursor: pointer; cursor: hand; }
+
+.emailul { list-style:none;}

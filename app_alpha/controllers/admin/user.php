@@ -81,15 +81,33 @@ class user extends CI_Controller {
 
 	
 		$data['noinfo'] = '';
+		$this->load->helper('email_helper');
 
 		$this->load->model('admin/email_functionality');
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
+
 			if( $this->input->get('uid') ) {
 
-				$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
 
+				if( $this->input->post('email_title') && $this->input->post('email_type') && $this->input->post('email_body')) {
+
+					$email_title = $this->input->post('email_title');
+					$email_type = $this->input->post('email_type');
+					$email_body = $this->input->post('email_body');
+					$user_email = $this->email_functionality->user_email( $this->input->get('uid') );
+					
+					if( count($user_email) > 0 && isset( $user_email[0]->email ) ) {
+						// helper function -- email helper
+						//need to include email api
+						send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
+						$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
+					}
+				}
+				
+				//get email history last
+				$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
 
 			} else {
 

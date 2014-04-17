@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Partners Connect</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,54 +22,60 @@
 
     <link rel="shortcut icon" href="images/favicon.ico">
 
-	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-	<!--[if lt IE 9]>
-	  <script src="js/html5shiv.js"></script>
-	  <script src="js/respond.min.js"></script>
-	<![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
 
-	</head>
-	<body>
+</head>
+<body>
    
-    <div class="row red-header">
+<div class="row red-header">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="custom-tab-header">
-                <div class="custom-tab"> Text options here </div>
-            </div>
-            
-            <p> <img id="logo" src="/assets/img/logo.png" /> </p>
-
-            <nav class="navbar navbar-inverse navbar-embossed mtop50" role="navigation">
-
-                <div class="collapse navbar-collapse" id="navbar-collapse-01">
-
-                    <ul class="nav navbar-nav navbar-left">  
-                                                    
-                        <li><a href="/admin">Home</a></li>                            
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
-                          <span class="dropdown-arrow"></span>
-                          <ul class="dropdown-menu">
-                            
-                            <li><a href="/admin/users">Users</a></li>
-                            <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
-                            <li><a href="/admin/create">Create user</a></li>
-                            <li class="divider"></li>
-                            <li><a href="/admin/remove">Remove user</a></li>
-                            <li><a href="/admin/deactivated/">Deactivated</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-
-                    <p class='wfont fright mtop10'>Logged in as : <?php echo (isset($userName) ? $userName : ''); ?></p>
-
-                </div> <!-- /.navbar-collapse -->
-
-            </nav> <!-- /navbar -->
-
+        <div class="custom-tab-header">
+            <div class="custom-tab">Text options here</div>
         </div>
+        
+        <p> <img id="logo" src="/assets/img/logo.png" /> </p>
+
+        <nav class="navbar navbar-inverse navbar-embossed mtop50" role="navigation">
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+
+                <ul class="nav navbar-nav navbar-left">  
+                                                
+                    <li><a href="/admin">Home</a></li>                            
+                    
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                      
+                        <span class="dropdown-arrow"> </span>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/users">Users</a></li>
+                                <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
+                                <li><a href="/admin/create">Create user</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/admin/remove">Remove user</a></li>
+                                <li><a href="/admin/deactivated/">Deactivated</a></li>
+                            </ul>
+
+                    </li>
+
+                    <li><a href="">Scheduled</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+
+                <!-- <p class='wfont fright mtop10'>Logged in as : <?php // echo (isset($userName) ? $userName : ''); ?></p> -->
+
+            </div> <!-- /.navbar-collapse -->
+
+        </nav> <!-- /navbar -->
 
     </div>
+
+</div>
