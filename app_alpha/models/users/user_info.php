@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class user_details extends CI_Model
+class user_info extends CI_Model
 {
 	
 	function subid( $uid ) {
@@ -52,20 +52,33 @@ class user_details extends CI_Model
 
 	}
 
-	function baseline( $subid ) {
+	function details( $uid ) {
 
 		$this->db->select('*');
-		$this->db->from('screener_survey');
-		$this->db->where('submission_id', $subid);
+		$this->db->from('registration');
+		$this->db->where('userid', $uid );
 		$query = $this->db->get();
 
 
-		if( !empty($query)) {
+		if( !empty($query) ) {
 
-			return $query->result();
+			$clean_result = $query->result();
+
+			if(isset($clean_result[0])) {
+
+				$clean_result = $clean_result[0];
+				return $clean_result;
+
+			} else {
+
+				return NULL;
+
+			}
 			
 		} else {
+
 			return NULL;
+
 		}
 
 

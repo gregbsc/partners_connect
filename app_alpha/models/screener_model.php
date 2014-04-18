@@ -7,25 +7,29 @@ class screener_model extends CI_Model
 
 		$screener_count = 7;
 
-		$screen_1 = $POST['screen_1'];
-		$screen_2 = $POST['screen_2'];
-		$screen_3 = $POST['screen_3'];
-		$screen_4 = $POST['screen_4'];
-		$screen_5 = $POST['screen_5'];
-		$screen_6 = $POST['screen_6'];
-		$screen_7 = $POST['screen_7'];
+		$screen[1] = $POST['screen_1'];
+		$screen[2] = $POST['screen_2'];
+		$screen[3] = $POST['screen_3'];
+		$screen[4] = $POST['screen_4'];
+		$screen[5] = $POST['screen_5'];
+		$screen[6] = $POST['screen_6'];
+		$screen[7] = $POST['screen_7'];
 
 		for($i = 1; $i <= $screener_count; $i++) {
 
+			$question_response = $screen[$i];
+
 			$data = array(
 			   'question_name' => 'screen_'.$i.'',
-			   'question_response' => $screen_1,  
+			   'question_response' => $question_response,  
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
 			   'submission_time' => $submission_time
 			);
 
 			$this->db->insert('screener_survey', $data);
+
+			unset($question_response);
 
 		}
 

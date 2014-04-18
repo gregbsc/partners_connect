@@ -61,20 +61,14 @@ class screener extends CI_Controller {
 
 			*/
 
-			//prefix for screener questions 	
-			$_prefix = 'screen_';
+			if( ( $this->input->post('screen_1') || $this->input->post('screen_3') || $this->input->post('screen_4') || $this->input->post('screen_5') || $this->input->post('screen_6') || $this->input->post('screen_7') ) == 'yes' && $this->input->post('screen_2') == 'no') {
 
-			if( ( $this->input->post($_prefix.'1') || $this->input->post($_prefix .'3') || $this->input->post($_prefix .'4') || $this->input->post($_prefix .'5') || $this->input->post($_prefix .'6') || $this->input->post($_prefix .'7') ) == 'yes' && $this->input->post($_prefix .'2') == 'no') {
-				
 				$this->screener_model->register_user( $userIP, $submission_id );
 
-				//pass along "boolean" as string... its php... why not
-				$data['qualified'] = 'true';
 				$this->load->view('signup/qualified', $data);
 
 			} else {
 
-				$data['qualified'] = 'false';
 				$this->load->view('signup/not_qualified');
 
 			}

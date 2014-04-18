@@ -8,15 +8,8 @@
 
 				<div>
 
-					<?php if($qualified == 'true') : ?>
-
-						<h3> You are qualified... </h3>
-
-					<?php else: ?>
-
-						<h3> You are not qualified </h3>
-
-					<?php endif; ?>
+					<h4 class="h4">Unfortunately you are not qualified for our study. However please take a momen to visit our resources page to see what services are available.</h4>
+					<a href="/resources">Resources</a>
 
 				</div>
 			

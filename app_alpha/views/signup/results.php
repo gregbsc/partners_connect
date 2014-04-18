@@ -8,15 +8,6 @@
 
 				<div>
 
-					<?php if($qualified == 'true') : ?>
-
-						<h3>  </h3>
-
-					<?php else: ?>
-
-						<h3>  </h3>
-
-					<?php endif; ?>
 
 				</div>
 			

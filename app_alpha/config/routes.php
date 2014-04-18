@@ -49,7 +49,7 @@ $route['admin/users'] = "admin/admin/users";
 $route['admin/create'] = "admin/admin/create";
 $route['admin/remove'] = "admin/admin/remove";
 $route['admin/deactivated'] = "admin/admin/deactivated";
-$route['admin/user/details'] = "admin/user";
+$route['admin/user/details'] = "admin/user/details";
 $route['admin/user/contact'] = "admin/user/contact";
 
 $route['admin/submissions'] = "admin/submissions";

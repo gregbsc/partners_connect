@@ -24,16 +24,9 @@ class user extends CI_Controller {
 
         parent::__construct();
 
-        //admin nav
-        //$this->load->model('admin_Nav');
-        //$this->menuData = $this->admin_Nav->getNavigation();
-       	//end of navigation
-
        	if( $this->ion_auth->is_admin() ) {
 
 			$this->currentUser = $this->ion_auth->user()->row();
-			//$data['userName'] = $this->currentUser->email;
-			// active users
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
 
@@ -43,9 +36,6 @@ class user extends CI_Controller {
 	
 	public function index()
 	{
-		//bind navigation date to data array -- pass to view
-
-		//$data['userName'] = $this->currentUser->email;
 	
 		$data['noinfo'] = '';
 
@@ -53,7 +43,7 @@ class user extends CI_Controller {
 
 			if( $this->input->get('uid') ) {
 
-	
+				
 
 			} else {
 				redirect("admin", 'redirect');
@@ -130,6 +120,54 @@ class user extends CI_Controller {
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
+
+	}
+
+	public function details() {
+
+		
+		$data['noinfo'] = '';
+		$this->load->model('admin/user_details');
+
+
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+
+			if( $this->input->get('uid') && $this->input->get('type') ) {
+
+				$sub_id =  $this->user_details->subid( $this->input->get('uid') );
+
+				if( $this->input->get('type') == ( "baseline" || "all" ) ) {
+
+					if(isset($sub_id[0]->submission_id)) {
+						
+						$baseline_results = $this->user_details->baseline( $sub_id[0]->submission_id );
+						$data['baseline_results'] = $baseline_results;
+
+					}
+
+				}
+
+			} else {
+				redirect("admin", 'redirect');
+			}
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/header', $data);
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/details', $data);
+
+		} else {
+
+			//VIEW BEING CALLED HERE
+			redirect("admin/login", 'redirect');
+
+		}
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
+
 
 	}
 

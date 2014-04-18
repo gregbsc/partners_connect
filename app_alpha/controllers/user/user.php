@@ -32,10 +32,16 @@ class user extends CI_Controller {
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
+			$this->load->model('users/user_info');
+
 			//VIEW BEING CALLED HERE
 			$this->load->view('header');
+			$user_details = $this->ion_auth->user()->row();
 
-			$data['user_info'] = $this->ion_auth->user()->row();
+			$data['user_info'] = $user_details;
+
+			$data['user_progress'] = $this->user_info->details( $user_details->user_id );
+
 			$this->load->view('user_body', $data );
 
 			//VIEW BEING CALLED HERE

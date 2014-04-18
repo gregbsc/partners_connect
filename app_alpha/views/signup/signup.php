@@ -33,34 +33,3 @@
 	</div>
 
 </div>
-
-
-
-<?php 
-
-// $post_data = json_encode(
-
-// 				array( 'questionType' => 'table', 'questionContent' => '1. Over the last 2 weeks, how often have you been bothered by any of the following:', 
-
-// 					'scale' => 'daily',
-
-// 					'childQuestions' => array( 
-// 						'Little interest or pleasure in doing things?' => 'radio', 
-// 						'Feeling down, depressed, or hopeless?' => 'radio', 
-// 						'Trouble falling or staying asleep, or sleeping too much?' => 'radio',
-// 						'Feeling tired or having little energy?' => 'radio',
-// 						'Poor appetite or overeating?' => 'radio',
-// 						'Feeling bad about yourself, or that you are a failure, or have let yourself or your family down?' => 'radio',
-// 						'Trouble concentrating on things, such as reading the newspaper or watching television?' => 'radio',
-// 						'Moving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual?' => 'radio'
-// 					)
-// 				)
-// 			); 
-
-// $json_decode = json_decode($post_data);
-
-// print_r($json_decode);
-//print_r($json_decode->questionType);
-
-?>
-
