@@ -29,7 +29,7 @@ class user extends CI_Controller {
 			$this->currentUser = $this->ion_auth->user()->row();
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
-
+			$this->load->model('admin/email_functionality');
         } 
     	
     }
@@ -63,7 +63,7 @@ class user extends CI_Controller {
 		}
 
 		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 	}
 
@@ -73,7 +73,7 @@ class user extends CI_Controller {
 		$data['noinfo'] = '';
 		$this->load->helper('email_helper');
 
-		$this->load->model('admin/email_functionality');
+		//$this->load->model('admin/email_functionality');
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
@@ -93,7 +93,9 @@ class user extends CI_Controller {
 						//need to include email api
 						send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
 						$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
+
 					}
+
 				}
 				
 				//get email history last
@@ -119,7 +121,7 @@ class user extends CI_Controller {
 		}
 
 		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 	}
 
@@ -137,12 +139,16 @@ class user extends CI_Controller {
 
 				$sub_id =  $this->user_details->subid( $this->input->get('uid') );
 
+				$user_details = $this->ion_auth->user( $this->input->get('uid') )->row();
+
 				if( $this->input->get('type') == ( "baseline" || "all" ) ) {
 
 					if(isset($sub_id[0]->submission_id)) {
 						
 						$baseline_results = $this->user_details->baseline( $sub_id[0]->submission_id );
 						$data['baseline_results'] = $baseline_results;
+						$data['user_details'] = $user_details;
+						$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
 
 					}
 
@@ -166,7 +172,7 @@ class user extends CI_Controller {
 		}
 
 		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 
 	}

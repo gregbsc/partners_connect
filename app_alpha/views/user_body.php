@@ -3,8 +3,11 @@
     <div class="container register-fields">
 
         <?php // print_r($user_progress); ?> 
-        <h4 class="h4">Welcome back, </h4>
+        <h4 class="h4">Welcome back, <?php echo $user_info->first_name;?> </h4>
+        <p class="details">Last login : <?php echo date("d, M Y", $user_info->last_login); ?> </p>
+
         <div>
+            
         	<?php if( isset($user_progress) ) : ?>
         	
         		<p class="urgent-message"> <a href="/user/consent"><?php echo ( $user_progress->consent == 0 ) ? "You need to consent to continue" : "" ; ?></a> </p>

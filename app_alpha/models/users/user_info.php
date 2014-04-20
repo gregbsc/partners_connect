@@ -82,6 +82,20 @@ class user_info extends CI_Model
 		}
 
 
+	} // end details
+
+	function updat_consent( $status_consent, $uid ) {
+
+		/* 
+		0 == no submission
+		1 == consented
+		2 == did not consent
+		*/
+
+		$data = array('consent' => $status_consent );           
+		$this->db->where('userid', $uid);
+		$this->db->update('registration', $data);
+
 	}
 
 }

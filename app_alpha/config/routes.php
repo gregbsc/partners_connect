@@ -65,6 +65,7 @@ $route['404_override'] = '';
 
 //  USER STUFF
 $route['user'] = "user/user";
+$route['user/consent'] ="user/user/consent";
 $route['user/login'] = "user/user/login";
 
 
