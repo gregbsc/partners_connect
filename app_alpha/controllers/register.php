@@ -46,9 +46,11 @@ class register extends CI_Controller {
 
 			//if user info reflects new user ... 
 			if( $user_status != "null" && ( $user_status->status == 'new' && $user_status->qualified == 1 ) ) {
-				
+
+
 				if( $this->input->post('first_name') && $this->input->post('last_name') && $this->input->post('password') && $this->input->post('username') ) {
-				
+					
+
 					if ( !$this->ion_auth->username_check( $this->input->post('username') ) ) {
 					
 						$group_name = 'users';
@@ -67,24 +69,25 @@ class register extends CI_Controller {
 
 							//redirect
 							//$this->load->view('signup/success');
-							redirect('user/login/?user_success=true', 'refresh');
+							redirect('user/login/?user_success=true', 'redirect');
 
 						}
 					
 					} else { 
+						
+						$data['user_creation'] = "creation error";
 
 						// post did not pass...
 
 					}
 
-
 				} // end of if posts 
 
 				// sub id to pass to form -- hidden field
 				$data['subid'] = $user_status->submission_id;
-
-				// view loaded here
 				$this->load->view('register', $data);
+				// view loaded here
+				// $this->load->view('register', $data);
 			
 			} else {
 
@@ -92,7 +95,7 @@ class register extends CI_Controller {
 				if($user_status->status == "registered") {
 					
 					// Already Registered -- redirect to login
-					redirect('user/login/', 'refresh');
+					redirect('user/login/', 'redirect');
 
 				}
 

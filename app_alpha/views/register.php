@@ -5,6 +5,12 @@
              to share more about the project, ask a few follow-up questions, and discuss next steps with you.  After talking with RAND study staff, you can decide whether or not you would like to be involved in the project. 
              Participation is entirely voluntary and confidential and there will be no consequences if you decide not to participate. </p>
         <h4 class="h4" style="margin-top:30px;margin-bottom:20px;">Register</h4>
+        
+        <?php if(isset($user_creation)) : ?>
+
+            <p class="urgent-message">That username / email already exists.</p>
+
+        <?php endif; ?>
 
         <?php echo form_open('register'); ?>
 
@@ -15,10 +21,10 @@
         <input type="text" name="last_name" placeholder="Last" required="" />
 
         <p>Email address (used for contact and as your username)</p>
-        <input type="text" name="username" placeholder="email address" required="" />
+        <input type="email" name="username" placeholder="email address" required="" />
 
         <p>Phone Number</p>
-        <input type="text" name="phone" placeholder="555-555-5555" required="" />
+        <input type="tel" name="phone" placeholder="" required="" />
 
         <p>Pin number (to access your account)</p>
         <input type="password" name="password" placeholder="1234" required="" /> </br>

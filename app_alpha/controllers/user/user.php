@@ -90,7 +90,7 @@ class user extends CI_Controller {
 
 
 			//VIEW BEING CALLED HERE
-			$this->load->view('header');
+			//$this->load->view('header');
 
 			$data['user_id'] = $user_id;
 			$this->load->view('user/consent', $data );

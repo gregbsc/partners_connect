@@ -20,8 +20,9 @@
           <option value="3">Opt Out</option>
         </select>
 
-        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" /> </br>
-        <input type="submit" value="submit" />
+        <input class="mtop50" type="hidden" name="user_id" value="<?php echo $user_id; ?>" /> </br>
+
+        <input class="mtop50" type="submit" value="submit" />
 
       </form>
 

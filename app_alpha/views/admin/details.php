@@ -19,11 +19,8 @@
 
 			<?php endif; ?>
 
-			<h4 class="h4">Baseline Survey</h4>
-			<?php 
-			//echo "Submitted from IP address : ";
-			//echo ( isset( $baseline_results[0]->user_ip ) ) ?  $baseline_results[0]->user_ip : "No recorded IP"; 
-			?>
+			<h4 class="h4">Screener Survey</h4>
+
 			<ul style="padding-left:10px;list-style:none;">
 
 				<?php foreach( $baseline_results as $question ) : ?>
