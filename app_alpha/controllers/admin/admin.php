@@ -63,25 +63,27 @@ class Admin extends CI_Controller {
 
 
 		//bind navigation date to data array -- pass to view
-		if(!empty($this->menuData)) {
-			$data['navigation']  = $this->menuData;
-		}
 
-		$data['userName'] = $this->currentUser->email;
 	
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
+			if(!empty($this->menuData)) {
+				$data['navigation']  = $this->menuData;
+			}
+
+			$data['userName'] = $this->currentUser->email;
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
 
 		} else {
-
+			
+			redirect("admin/login", 'redirect');
 			//VIEW BEING CALLED HERE
 			$this->load->view('header', $data);
-			redirect("admin/login", 'redirect');
+			
 
 		}
 

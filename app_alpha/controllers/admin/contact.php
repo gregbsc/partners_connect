@@ -24,11 +24,6 @@ class user extends CI_Controller {
 
         parent::__construct();
 
-        //admin nav
-        //$this->load->model('admin_Nav');
-        //$this->menuData = $this->admin_Nav->getNavigation();
-       	//end of navigation
-
        	if( $this->ion_auth->is_admin() ) {
 
 			$this->currentUser = $this->ion_auth->user()->row();

@@ -6,12 +6,11 @@
 
 			<div class="mtop50">
 
-				<div>
+				<div class="asgnostic-message ptop50">
 
-					<h4 class="h4"> An error has occurred and you are not able to submit a second screening questionnaire.</p>
-					<p> If you have questions, please contact Partners Connect at 1-800-447-2631 x8224.</p>
+					<p class="notice"> An error has occurred and you are not able to submit a second screening questionnaire.</p>
+					<p class="select-option"> If you have questions, please contact Partners Connect at 1-800-447-2631 x8224.</p>
 					
-
 				</div>
 			
 			</div>

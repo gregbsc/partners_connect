@@ -38,6 +38,8 @@ class user_info extends CI_Model
 
 	function insert_details( $uid ) {
 
+		//get user details...
+
 		$data = array(
 		   'user_ip' =>  time() ,
 		   'submission_id' => time() ,
@@ -50,6 +52,36 @@ class user_info extends CI_Model
 
 		$this->db->insert('registration', $data); 
 
+	}
+
+	function consent_status( $uid ) {
+		
+		$this->db->select('consent');
+		$this->db->from('registration');
+		$this->db->where('userid', $uid );
+		$query = $this->db->get();
+
+
+		if( !empty($query) ) {
+
+			$clean_result = $query->result();
+
+			if(isset($clean_result[0])) {
+
+				$clean_result = $clean_result[0];
+				
+				if($clean_result->consent == 1) {
+					return true;
+				} else {
+					return false;
+				}
+
+			} else {
+
+				return false;
+
+			}
+		}
 	}
 
 	function details( $uid ) {
@@ -84,7 +116,7 @@ class user_info extends CI_Model
 
 	} // end details
 
-	function updat_consent( $status_consent, $uid ) {
+	function update_consent( $status_consent, $uid ) {
 
 		/* 
 		0 == no submission

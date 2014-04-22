@@ -54,8 +54,6 @@ class screener_model extends CI_Model
 		$sql = "SELECT submission_id, qualified, user_ip, status
 		FROM registration  
 		WHERE submission_id = '$subid' 
-		/* AND qualified = 1 
-		AND status = 'new' */
 		LIMIT 1";
 
 		$sqlResult = $this->db->query($sql);
@@ -64,6 +62,7 @@ class screener_model extends CI_Model
 
 		 	$sqlClear = $sqlResult->result();
 		 	$sqlClear = $sqlClear[0];
+
 		 	return $sqlClear;
 
 		} else {
@@ -77,8 +76,19 @@ class screener_model extends CI_Model
 
 	function user_registration_success( $sub_id, $userid ) {
 
-		$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => $userid );
-		
+		$sql = "SELECT submission_id, qualified, user_ip, status
+		FROM registration  
+		WHERE submission_id = '$sub_id' 
+		LIMIT 1";
+
+		$sqlResult = $this->db->query($sql);
+
+		if( $sqlResult->num_rows ) {
+			$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => md5(time()) );
+		} else {
+			$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => $userid );
+		}
+
 		$this->db->where('submission_id', $sub_id);
 		$this->db->update('registration', $data); 
 

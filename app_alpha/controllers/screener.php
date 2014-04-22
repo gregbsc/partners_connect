@@ -36,9 +36,12 @@ class screener extends CI_Controller {
 		$this->load->model('signup_ip');
 		$previousIP = $this->signup_ip->getIpRecord();
 
+
 		$userIP = $_SERVER['REMOTE_ADDR'];
-		$submission_id = md5( $userIP );
 		$submission_time = time();
+		
+		$submission_id = md5( $userIP + $submission_time );
+		
 
 		$this->load->model('screener_model');
 

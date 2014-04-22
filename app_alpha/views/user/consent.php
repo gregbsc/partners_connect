@@ -17,6 +17,7 @@
           <option>Select option : </option>
           <option value="1">I consent</option>
           <option value="2">I do not consent</option>
+          <option value="3">Opt Out</option>
         </select>
 
         <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" /> </br>

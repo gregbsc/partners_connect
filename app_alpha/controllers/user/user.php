@@ -22,30 +22,32 @@ class user extends CI_Controller {
     function __construct()
     {
 
-        parent::__construct();       
+        parent::__construct();   
 
-    	
+        if( $this->ion_auth->logged_in() ) {
+        	$this->load->model('users/user_info');
+        	$this->user_details = $this->ion_auth->user()->row();
+    		$this->user_id = $this->user_details->user_id;
+    	}
+
     }
 	
 	public function index()
 	{	
-
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+			
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
-			$this->load->model('users/user_info');
+			//boolean check if completed 
+			$data['consent'] = $this->user_info->consent_status( $this->user_id );
+			
+			$data['user_info'] = $this->user_details;
+			$data['user_progress'] = $this->user_info->details( $this->user_id );
+			
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('header');
-			$user_details = $this->ion_auth->user()->row();
+			$this->load->view('user/user_body', $data );
 
-			$data['user_info'] = $user_details;
-
-			$data['user_progress'] = $this->user_info->details( $user_details->user_id );
-
-			$this->load->view('user_body', $data );
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
 
 		} else {
 
@@ -54,10 +56,15 @@ class user extends CI_Controller {
 
 		}
 
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
 	public function consent() {
+		
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 			
@@ -68,13 +75,13 @@ class user extends CI_Controller {
 			//check make sure user id being submitted matches logged in, if not... nothing
 			if( $this->input->post('user_id') && $this->input->post('consent_box') && ( $this->input->post('user_id') == $user_id )) {
 
-				if($this->input->post('consent_box') == "consent") {
+				if($this->input->post('consent_box') == 1) {
 					// 1 == consented
-					$this->user_info->updat_consent(1, $user_id);
+					$this->user_info->update_consent( 1 , $user_id);
 
 				} else {
 					// 2 == not consented
-					$this->user_info->updat_consent(2, $user_id);
+					$this->user_info->update_consent( 2 , $user_id);
 				}
 
 				redirect("user", 'redirect');
@@ -85,9 +92,6 @@ class user extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('header');
 
-			//$data['user_info'] = $user_details;
-
-			//$data['user_progress'] = $this->user_info->details( $user_details->user_id );
 			$data['user_id'] = $user_id;
 			$this->load->view('user/consent', $data );
 
@@ -98,7 +102,7 @@ class user extends CI_Controller {
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('user/login');
-
+			$this->load->view('footer');
 		}
 
 
