@@ -5,28 +5,34 @@
 		<div class="container">
 
 			<?php // template of sorts // ?>
-			<?php if(isset($createUsers) &&  $createUsers == TRUE ) : ?>
-				<?php $this->load->view('admin/createUsers', $createUsers); ?>
-			<?php endif; ?>
 
-			<?php if(isset($activeUsers) && is_array( $activeUsers )) : ?>
-				<?php $this->load->view('admin/activeUsers', $activeUsers); ?>
-			<?php endif; ?>
+			<?php 
+			if(isset($createUsers) &&  $createUsers == TRUE ) : 
+				$this->load->view('admin/createUsers', $createUsers); 
+			endif; 
 
-			<?php if( isset($removeUser) && $removeUser == TRUE ) : ?>
-				<?php $this->load->view('admin/remove', $removeUsersList); ?>
-			<?php endif; ?>
+			if(isset($activeUsers) && is_array( $activeUsers )) : 
+				$this->load->view('admin/activeUsers', $activeUsers); 
+			endif;
 
-			<?php if( isset($deactivatedUser) && $deactivatedUser == TRUE ) : ?>
-				<?php $this->load->view('admin/deactivatedUsers', $removeUsersList); ?>
-			<?php endif; ?>
+			if( isset($removeUser) && $removeUser == TRUE ) :
+				$this->load->view('admin/remove', $removeUsersList);
+			endif;
 
-			<?php // new submissions // ?>
-			<?php if (isset($new_submissions) && !empty($new_submissions) && is_array($new_submissions)) : ?>
-				
-				<?php $this->load->view('admin/active_submissions', $submission); ?>
+			if( isset($deactivatedUser) && $deactivatedUser == TRUE ) : 
+				$this->load->view('admin/deactivatedUsers', $removeUsersList);
+			endif;
 			
-			<?php endif; ?>
+			if(isset($new_submissions) && !empty($new_submissions) && is_array($new_submissions)) :
+				$this->load->view('admin/active_submissions', $submission);
+			endif;
+
+			if(isset($upcomingEvens)) {
+
+				$this->load->view('admin/upcoming_events', $data['upcomingEvents'] = $upcomingEvents );
+			}
+
+			?>
 
 		</div>
 

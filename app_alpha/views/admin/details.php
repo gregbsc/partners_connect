@@ -37,7 +37,7 @@
 
 			<p><span class="h4">Email History</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/contact/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to contact user</a></p>
 
-			<ul style="margin-top:20px;width:100%;max-width:800px" class="emailul">
+			<ul class="emailul specialul">
 
 				<?php $this->load->view('admin/email_history', $data['email_history'] = $email_history); ?>
 

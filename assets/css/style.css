@@ -26,23 +26,30 @@ p { font-size:14px; }
 .mright10 { margin-right:10px !important; }
 
 .form-element { padding-bottom:0;margin-bottom:0;}
+
 .email-wrapper textarea, .email-wrapper input[type=text] { width:100%; font-size:14px;}
 
 .email-wrapper textarea {
 
+
+
 }
+
+.nomargin { margin:0 !important; }
 
 .custom-tab-header { width:100%; }
 
-.custom-tab { 
+.custom-tab {
+ 
 	background: url('/assets/img/header-tab.png') no-repeat right center; 
 	width:191px; 
 	height:30px; 
-	margin-top:-3px;
-	color:#fff;
-	font-size:14px;
-	float:right;
-	text-align:center;
+	margin-top:-3px; 
+	color:#fff; 
+	font-size:14px; 
+	float:right; 
+	text-align:center; 
+ 
 }
 
 .red-header { background: url('/assets/img/header.png') repeat-x; /*height:104px;*/}
@@ -51,9 +58,11 @@ p { font-size:14px; }
 
 .hiddenul { display: none; font-size:14px; color:#383838; margin-bottom:20px;}
 
+.specialul { margin-top:20px;width:100%;max-width:800px; }
+
 .view-details { cursor: pointer; cursor: hand; }
 
-.emailul { list-style:none; padding-left:15px;}
+.emailul { list-style:none; padding-left:15px; }
 
 .urgent-message { font-size:14px; color:red; font-weight:735px;}
 

@@ -29,7 +29,7 @@
         <p>Pin number (to access your account)</p>
         <input type="password" name="password" placeholder="1234" required="" /> </br>
 
-        <input type="hidden" name="subid" value="<?php echo $subid; ?>" />
+        <!-- <input type="hidden" name="subid" value="<?php // echo $subid; ?>" /> -->
 
         <input type="submit" value="submit" style="margin-top:20px;" />
         </form>

@@ -59,13 +59,13 @@
                                 <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
                                 <li><a href="/admin/create">Create user</a></li>
                                 <li class="divider"></li>
-                                <li><a href="/admin/remove">Remove user</a></li>
+                                <li><a href="/admin/remove">Deactivate user</a></li>
                                 <li><a href="/admin/deactivated/">Deactivated</a></li>
                             </ul>
 
                     </li>
 
-                    <li><a href="">Scheduled</a></li>
+                    <li><a href="/admin/scheduled">Scheduled</a></li>
                     <li><a href="/logout">Logout</a></li>
 
                 </ul>

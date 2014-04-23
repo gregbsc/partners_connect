@@ -14,6 +14,7 @@
         		<?php echo ( ( $user_progress->baseline == 0 ) && ( $consent == true ) )  ? "<p> <a href='/user/baseline'>Click here to take the baseline survey</a> </p>" : "" ; ?>
 
         	<?php endif; ?>
+            <p> <a href="/user/update">Edit your details</a></p>
 
             <p>You may opt out at any time. To do so click <a href="/user/consent">HERE</a>, and select "Opt out"</p>
 

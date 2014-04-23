@@ -51,6 +51,7 @@ $route['admin/remove'] = "admin/admin/remove";
 $route['admin/deactivated'] = "admin/admin/deactivated";
 $route['admin/user/details'] = "admin/user/details";
 $route['admin/user/contact'] = "admin/user/contact";
+$route['admin/scheduled'] = "admin/scheduled";
 
 $route['admin/submissions'] = "admin/submissions";
 
@@ -62,11 +63,13 @@ $route['baseline'] = 'baseline';
 
 $route['404_override'] = '';
 
-
 //  USER STUFF
 $route['user'] = "user/user";
+$route['user/baseline'] = "user/user/baseline";
 $route['user/consent'] ="user/user/consent";
 $route['user/login'] = "user/user/login";
+$route['user/update'] = "user/user/update";
+$route['user/lost'] = "lost";
 
 
 /* End of file routes.php */

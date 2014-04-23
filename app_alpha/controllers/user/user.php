@@ -78,7 +78,6 @@ class user extends CI_Controller {
 				if($this->input->post('consent_box') == 1) {
 					// 1 == consented
 					$this->user_info->update_consent( 1 , $user_id);
-
 				} else {
 					// 2 == not consented
 					$this->user_info->update_consent( 2 , $user_id);
@@ -87,10 +86,6 @@ class user extends CI_Controller {
 				redirect("user", 'redirect');
 
 			}
-
-
-			//VIEW BEING CALLED HERE
-			//$this->load->view('header');
 
 			$data['user_id'] = $user_id;
 			$this->load->view('user/consent', $data );
@@ -103,8 +98,25 @@ class user extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('user/login');
 			$this->load->view('footer');
+
 		}
 
+
+	}
+
+	public function baseline() {
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('header');
+
+			$this->load->view('user/baseline');
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('footer');
+
+		}
 
 	}
 
@@ -135,6 +147,51 @@ class user extends CI_Controller {
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
+
+	}
+
+	public function update() {
+		
+		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+
+			if($this->input->post('first_name') && $this->input->post('last_name') ) {
+
+				$user = $this->ion_auth->user()->row();
+
+				$update['first_name'] = $this->input->post('first_name');
+				$update['last_name'] = $this->input->post('last_name');
+
+				if($this->input->post('phone')) {
+					$update['phone'] = $this->input->post('phone');
+				} else {
+					$update['phone'] = ' ';
+				}
+				
+				if( isset($user->id) ) {
+					$this->ion_auth->update( $user->id, $update);
+				}
+
+				redirect('user/update','refresh');
+
+			}
+			
+			//VIEW BEING CALLED HERE
+			$this->load->view('header');
+
+			$data['user_info'] = $this->user_details;
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('user/user_details', $data);	
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('footer');			
+
+
+		} else {
+
+			redirect("user/login", 'redirect');
+
+		}
 
 	}
 	

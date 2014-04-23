@@ -58,6 +58,12 @@ class register extends CI_Controller {
 						$email = $this->input->post('username');
 						$username = $email;
 
+						if( $this->input->post('username') ) { 
+							$phoneNumber = $this->input->post('phone');
+						} else {
+							$phoneNumber = '';
+						}
+
 						$additional_data = array( 'first_name' => $this->input->post('first_name'), 'last_name' => $this->input->post('last_name'), );			
 
 						$createUser = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
@@ -76,7 +82,6 @@ class register extends CI_Controller {
 					} else { 
 						
 						$data['user_creation'] = "creation error";
-
 						// post did not pass...
 
 					}
@@ -87,7 +92,7 @@ class register extends CI_Controller {
 				$data['subid'] = $user_status->submission_id;
 				$this->load->view('register', $data);
 				// view loaded here
-				// $this->load->view('register', $data);
+
 			
 			} else {
 
