@@ -40,8 +40,6 @@
 
 $route['default_controller'] = "screener";
 
-//$route['admin/(:any)'] = "admin/admin/$1";
-
 //admin routes
 $route['admin'] = "admin/admin";
 $route['admin/login'] = "admin/admin/login";

@@ -4,7 +4,7 @@ body, html, .container { min-width:800px; }
 
 p { font-size:14px; }
 .h4 { font-size:18px; }
-.login-screen { background:none; }
+.login-screen { background:none; width:500px; padding:0 !important; margin:0 auto; margin-top:100px;}
 #required-message { text-align:center; color:#C80000; padding-top:15px; }
 .wfont { color:#fff; }
 .fright { float:right; }
@@ -16,10 +16,10 @@ p { font-size:14px; }
 
 .mtop50 { margin-top: 50px; }
 .mtop10 { margin-top:10px; }
-.mtop40 {margin-top:40px !important;}
-.mtop50 {margin-top:50px !important;}
-.mtop30 {margin-top:30px !important;}
-.mtop20 {margin-top:20px !important;}
+.mtop40 { margin-top:40px !important; }
+.mtop50 { margin-top:50px !important; }
+.mtop30 { margin-top:30px !important; }
+.mtop20 { margin-top:20px !important; }
 
 .ptop50 { padding-top:50px; }
 
@@ -31,9 +31,11 @@ p { font-size:14px; }
 
 .email-wrapper textarea {
 
-
-
 }
+
+.overflow-scroll { height:300px; overflow:scroll; margin-top:50px;padding: 10px; border: 1px solid #ccc; }
+
+.welcome { font-size:22px; font-weight:400; text-align:center; padding-top:0x; }
 
 .nomargin { margin:0 !important; }
 

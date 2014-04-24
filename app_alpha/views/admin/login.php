@@ -29,7 +29,7 @@
             <span id="login-form-login" class="btn btn-primary btn-lg btn-block">Login</span>
             <div id="required-message"> </div>
 
-            <a class="login-link" href="#">Lost your password?</a>
+            <!-- <a class="login-link" href="#">Lost your password?</a> -->
             
             </form>
             <!-- end of form -->

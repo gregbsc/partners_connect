@@ -2,15 +2,12 @@
 	<div class="container">
 
     <div class="login-screen">
-          <div class="login-icon">
-            <h4>Welcome to <small>Partners Connect</small></h4>
-              <h1> <?php // print_r($postinfo); ?> </h1>
-
-
-          </div>
-
+<h4 class="welcome">Welcome to Partners Connect</h4>
           <!-- start of form -->
           <div class="login-form">
+
+            
+
             <div class="form-group">
 
               <?php // form login // open ?>
@@ -33,7 +30,7 @@
             
             <div id="required-message"> </div>
 
-            <a class="login-link" href="#">Lost your password?</a>
+            <a class="login-link" href="/user/lost">Lost your password?</a>
             
             </form>
             <!-- end of form -->
