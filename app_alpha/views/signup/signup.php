@@ -1,8 +1,4 @@
-<div id="container">
-
-	<div class="row mtop40">
-
-		<div class="container mtop40">
+<div class="container mtop40">
 
 			<p> Welcome to the PARTNERS CONNECT Survey. The purpose of these questions is to understand how you are currently doing and what your relationship is like. Your answers to this survey will be kept private. That means we will not share your responses with anyone outside the research team.</p>
 			
@@ -27,9 +23,6 @@
 				</div>
 				
 			</form>
+			<p> Welcome to Partners Connect </P>
 
 		</div>
-
-	</div>
-
-</div>

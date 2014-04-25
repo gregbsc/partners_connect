@@ -33,7 +33,6 @@
 			As with any program such as this, some family conflict could arise should you participate either against the wishes or knowledge of your partner. It is important for you to know, however, that your partner's permission or his knowledge of your participation is not required in order for you to participate in this program. It is entirely up to you to decide whether or not s/he knows about your participation. We will not be talking to him/her about your participation. Of course, changing how you cope with your partner’s drinking problem as a result of participating in this program also could cause further conflict between you and your partner. During your phone interview, we will ask you to tell us about any conflict that occurs.</br>
 			In addition, we are asking you for an email address and phone number to contact you regarding surveys, program material, and follow-up. While we will not identify ourselves to anyone except you when calling, please be aware that it is possible your partner may answer the phone when we call. Likewise, email is not entirely secure and if your partner has access to your email, he/she may become aware of your involvement in the study.  </br>
 
-
 			<h4 class="h4">VI. Confidentiality</h4>
 			To help keep your information private, we have applied for a Confidentiality Certificate from the Department of Health and Human Services (DHHS). This certificate assures that RAND is not required to release information about you in any civil, criminal, administrative, legislative, or other proceedings, whether State, Federal, or local. The Certificate does not imply approval or disapproval of the project by the Secretary of DHHS.</br>
 
@@ -54,7 +53,6 @@
 
 			<h4 class="h4">IX. If you have questions</h4>
 			If you have questions about human subjects protection, please contact the Human Subjects Protection Administrator, Marilyn Yokota at 1-800-447-2631 x6369.</br>
-
 
 		</div>
 

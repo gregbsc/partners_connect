@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "screener";
+$route['default_controller'] = "screener/welcomePage";
 
 //admin routes
 $route['admin'] = "admin/admin";

@@ -23,8 +23,6 @@
 
 				<p>Before we go into detail about the program, we must first make sure this project is a good fit for you. Depending on your answers, and if you are interested in participating, we will ask for your name and contact information at the bottom of this form. Your responses are strictly confidential.</p>
 				
-				<!-- <form action="<?php // echo base_url(); ?>screen" method="POST"> -->
-
 				<?php $this->load->view('signup/screener_form'); ?>
 
 		</div>

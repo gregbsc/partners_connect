@@ -23,10 +23,7 @@ class screener extends CI_Controller {
     {
 
         parent::__construct();
-
         //admin nav
-        
-
     	
     }
 	
@@ -34,15 +31,15 @@ class screener extends CI_Controller {
 	{	
 		//check previous ip addresses
 		$this->load->model('signup_ip');
+
 		$previousIP = $this->signup_ip->getIpRecord();
 
-
 		$userIP = $_SERVER['REMOTE_ADDR'];
+
 		$submission_time = time();
 		
 		$submission_id = md5( $userIP + $submission_time );
 		
-
 		$this->load->model('screener_model');
 
 		//VIEW BEING CALLED HERE
@@ -64,7 +61,9 @@ class screener extends CI_Controller {
 
 			*/
 
-			if( ( $this->input->post('screen_1') || $this->input->post('screen_3') || $this->input->post('screen_4') || $this->input->post('screen_5') || $this->input->post('screen_6') || $this->input->post('screen_7') ) == 'yes' && $this->input->post('screen_2') == 'no') {
+			if( $this->input->post('screen_1') == 'yes' && $this->input->post('screen_3') == 'yes' && $this->input->post('screen_4') == 'yes' && $this->input->post('screen_5') == 'yes' && $this->input->post('screen_6') == 'yes' && $this->input->post('screen_7') == 'yes' && $this->input->post('screen_2') == 'no') {
+
+				print_r($_POST);
 
 				$this->screener_model->register_user( $userIP, $submission_id );
 
@@ -88,8 +87,18 @@ class screener extends CI_Controller {
 				$this->load->view('signup/screener');
 			}
 
-
 		}
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
+
+	}
+
+	public function welcomePage() {
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+
+		$this->load->view('signup/welcome');
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
