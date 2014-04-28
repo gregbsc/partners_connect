@@ -14,6 +14,7 @@ p { font-size:14px; }
 .sm-txt { font-size:14px;}
 .sm-txt div { padding:0; text-align:center; }
 
+.nomargin { margin:0; }
 .mtop50 { margin-top: 50px; }
 .mtop10 { margin-top:10px; }
 .mtop40 { margin-top:40px !important; }
@@ -32,7 +33,7 @@ p { font-size:14px; }
 .email-wrapper textarea {
 
 }
-
+.medtext { font-size:14px; }
 .overflow-scroll { height:300px; overflow:scroll; margin-top:50px;padding: 10px; border: 1px solid #ccc; }
 
 .welcome { font-size:22px; font-weight:400; text-align:center; padding-top:0x; }
@@ -60,6 +61,8 @@ p { font-size:14px; }
 
 .hiddenul { display: none; font-size:14px; color:#383838; margin-bottom:20px;}
 
+.ulspecial { margin-top:20px; width:100%; max-width:800px; }
+
 .specialul { margin-top:20px;width:100%;max-width:800px; }
 
 .view-details { cursor: pointer; cursor: hand; }
@@ -67,6 +70,7 @@ p { font-size:14px; }
 .emailul { list-style:none; padding-left:15px; }
 
 .urgent-message { font-size:14px; color:red; font-weight:735px;}
+.urgent { color:red; }
 
 .custom-signup { width:680px; margin:0 auto; text-align:center; padding-top:70px; }
 

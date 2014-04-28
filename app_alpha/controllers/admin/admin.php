@@ -60,16 +60,26 @@ class Admin extends CI_Controller {
 		// 						);
 		// $group = array('1'); // Sets user to admin. No need for array('1', '2') as user is always set to member by default 
 		// $this->ion_auth->register($username, $password, $email, $additional_data, $group);
-
-
 		//bind navigation date to data array -- pass to view
 
 	
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
-			if(!empty($this->menuData)) {
-				$data['navigation']  = $this->menuData;
+			// if(!empty($this->menuData)) {
+			// 	$data['navigation']  = $this->menuData;
+			// }
+
+			if($this->input->get('delall')) {
+
+				if($this->input->get('delall') == "true") {
+
+					$this->load->model('remove_registered');
+
+				    $this->remove_registered->all();
+
+				}
+
 			}
 
 			$data['userName'] = $this->currentUser->email;

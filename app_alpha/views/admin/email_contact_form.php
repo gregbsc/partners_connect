@@ -3,6 +3,7 @@
 <div class="email-wrapper">
 
 	<h4 class="h4"> Contact  </h4>
+	
 	<div class="email-box">
 
 		<?php if($this->input->get('uid')) {
@@ -20,9 +21,10 @@
 			<p class="form-element"> Contact Type </p>
 
 			<p><select name="email_type"> 
-				<option>Contact</option>
+				<option>General</option>
 				<option>Gift Card</option>
 				<option>Follow Up</option>
+				<option>Initial Contact</option>
 			</select></p>
 			
 			<p class="form-element"> Message </p>
@@ -35,4 +37,3 @@
 	</div>
 
 </div>
-

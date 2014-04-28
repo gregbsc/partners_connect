@@ -31,6 +31,9 @@ $config['remember_users'] = TRUE;
 // leave blank to remove index.php
 $config['index_page'] = '';
 
+
+$config['admin_email'] = "greg@bluscs.com";
+
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL

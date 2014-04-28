@@ -80,18 +80,35 @@ class user extends CI_Controller {
 
 			if( $this->input->get('uid') ) {
 
+				$uid = $this->input->get('uid');
+				$userLookup = $this->ion_auth->user($uid)->row();
+				$data['uid'] = $uid;
+
+				if( $this->input->post('email_type') == 'Initial Contact') {
+					$this->load->model('admin/user_details');
+					//this is to track the first email where we presume the user will get their password.
+					$this->user_details->update_initial_contact( $uid, 1 );
+				}
+
+				if(isset($userLookup)) {
+					$data['user_phone'] = $userLookup->phone;
+					$data['user_name'] = $userLookup->first_name . " " . $userLookup->last_name;
+					$data['user_email'] = $userLookup->email;
+				}
 
 				if( $this->input->post('email_title') && $this->input->post('email_type') && $this->input->post('email_body')) {
 
 					$email_title = $this->input->post('email_title');
 					$email_type = $this->input->post('email_type');
 					$email_body = $this->input->post('email_body');
+					//custom check email check based on uid.
 					$user_email = $this->email_functionality->user_email( $this->input->get('uid') );
 					
 					if( count($user_email) > 0 && isset( $user_email[0]->email ) ) {
 						// helper function -- email helper
 						//need to include email api
 						send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
+						//records mail for admin interface use
 						$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
 
 					}

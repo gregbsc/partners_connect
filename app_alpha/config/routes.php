@@ -68,6 +68,7 @@ $route['user/consent'] ="user/user/consent";
 $route['user/login'] = "user/user/login";
 $route['user/update'] = "user/user/update";
 $route['user/lost'] = "lost";
+$route['user/success'] = "user/user/success";
 
 
 /* End of file routes.php */

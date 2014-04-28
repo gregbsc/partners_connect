@@ -49,23 +49,19 @@ class screener extends CI_Controller {
 
 			$data['register_link'] = $submission_id;
 
+			$this->screener_model->register_user( $userIP, $submission_id );
+
 			//process  post first
 			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time );
 
 			/*
 			Important questions to check in screener :
-
 				If “No” to any of the following screener questions: 1, 3, 4-7 OR a “Yes” to question 2,  (CP does not qualify for Stage 2 screening):
-
 				If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening):
-
 			*/
 
+			//check if all required post variables are preseent
 			if( $this->input->post('screen_1') == 'yes' && $this->input->post('screen_3') == 'yes' && $this->input->post('screen_4') == 'yes' && $this->input->post('screen_5') == 'yes' && $this->input->post('screen_6') == 'yes' && $this->input->post('screen_7') == 'yes' && $this->input->post('screen_2') == 'no') {
-
-				print_r($_POST);
-
-				$this->screener_model->register_user( $userIP, $submission_id );
 
 				$this->load->view('signup/qualified', $data);
 
@@ -76,7 +72,7 @@ class screener extends CI_Controller {
 			}
 
 			//load view
-			$this->load->view('signup/results', $data);
+			//$this->load->view('signup/results', $data);
 
 		} else {
 
@@ -95,6 +91,7 @@ class screener extends CI_Controller {
 	}
 
 	public function welcomePage() {
+
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
 

@@ -97,6 +97,7 @@ class user extends CI_Controller {
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('user/login');
+			//VIEW BEING CALLED HERE
 			$this->load->view('footer');
 
 		}
@@ -192,6 +193,15 @@ class user extends CI_Controller {
 			redirect("user/login", 'redirect');
 
 		}
+
+	}
+
+	public function success() {
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+		$this->load->view('success');
+		$this->load->view('footer');
 
 	}
 	

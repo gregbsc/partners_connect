@@ -26,7 +26,7 @@ class user extends CI_Controller {
 
        	if( $this->ion_auth->is_admin() ) {
 
-			$this->currentUser = $this->ion_auth->user()->row();
+			//$this->currentUser = $this->ion_auth->user()->row();
 			//$data['userName'] = $this->currentUser->email;
 			// active users
 			$this->load->model('activeUsers');
@@ -39,7 +39,6 @@ class user extends CI_Controller {
 	public function index()
 	{
 		//bind navigation date to data array -- pass to view
-
 		//$data['userName'] = $this->currentUser->email;
 	
 		$data['noinfo'] = '';
@@ -47,20 +46,13 @@ class user extends CI_Controller {
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
 			if( $this->input->get('uid') ) {
-
-
 				echo $this->input->get('uid');
-
 			} else {
-
 				redirect("admin", 'redirect');
-
 			}
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
-
-
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
@@ -77,5 +69,4 @@ class user extends CI_Controller {
 
 	}
 
-	
 }

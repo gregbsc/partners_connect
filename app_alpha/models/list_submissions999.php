@@ -1,7 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class list_submissions extends CI_Model
+class list_submissions999 extends CI_Model
 {
 	
 	function getNavigation() {

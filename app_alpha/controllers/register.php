@@ -22,49 +22,46 @@ class register extends CI_Controller {
 	{	
 
 		$this->load->model('screener_model');
+		$this->load->helper('admin_email_contact');
 
+		//View being called here 
 		$this->load->view('header');
 		
 		if( $this->input->get('subid') ||  $this->input->post('subid') ) {
 
 			if( $this->input->get('subid') ) {
-
 				$sub_id = $this->input->get('subid');
 				$user_status = $this->screener_model->user_info( $sub_id );
 
 			} else if( $this->input->post('subid') ) {
-
 				$sub_id = $this->input->post('subid');
 				$user_status = $this->screener_model->user_info( $sub_id );
 
 			} else { 
-
-				$sub_id = '';
-				$user_status = '';
-
+				$sub_id = 'error';
+				$user_status = 'error';
 			}
 
 			//if user info reflects new user ... 
 			if( $user_status != "null" && ( $user_status->status == 'new' && $user_status->qualified == 1 ) ) {
 
-
-				if( $this->input->post('first_name') && $this->input->post('last_name') && $this->input->post('password') && $this->input->post('username') ) {
-					
+				if( $this->input->post('first_name') && $this->input->post('last_name') && $this->input->post('username') && $this->input->post('phone') ) {
 
 					if ( !$this->ion_auth->username_check( $this->input->post('username') ) ) {
 					
 						$group_name = 'users';
-						$password = $this->input->post('password');
 						$email = $this->input->post('username');
-						$username = $email;
+						$username = $this->input->post('username');
+						$phone = $this->input->post('phone');
+						
+						//remove any type of slashes etc. from phone number to set original password
+						$disallowed = array("-",".","(",")");
+						$password = str_replace($disallowed,"",$phone);
 
-						if( $this->input->post('username') ) { 
-							$phoneNumber = $this->input->post('phone');
-						} else {
-							$phoneNumber = '';
-						}
-
-						$additional_data = array( 'first_name' => $this->input->post('first_name'), 'last_name' => $this->input->post('last_name'), );			
+						//data to create user...
+						$additional_data = array( 'first_name' => $this->input->post('first_name'), 
+							'last_name' => $this->input->post('last_name'), 
+							'phone' => $phone );			
 
 						$createUser = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
 
@@ -73,15 +70,17 @@ class register extends CI_Controller {
 							//update user via model to registered
 							$this->screener_model->user_registration_success( $sub_id, $createUser );
 
+							//send email to admin on successful submission. Email set in config file for CI. 
+							success_register_contact( $this->config->item('admin_email') );
+
 							//redirect
-							//$this->load->view('signup/success');
-							redirect('user/login/?user_success=true', 'redirect');
+							redirect('user/success', 'redirect');
 
 						}
 					
 					} else { 
 						
-						$data['user_creation'] = "creation error";
+						$data['user_creation'] = "error";
 						// post did not pass...
 
 					}
@@ -90,15 +89,16 @@ class register extends CI_Controller {
 
 				// sub id to pass to form -- hidden field
 				$data['subid'] = $user_status->submission_id;
-				$this->load->view('register', $data);
-				// view loaded here
 
-			
+				// view loaded here
+				$this->load->view('register', $data);
+				
+
 			} else {
 
 				// if not qualified 
 				if($user_status->status == "registered") {
-					
+
 					// Already Registered -- redirect to login
 					redirect('user/login/', 'redirect');
 
@@ -115,6 +115,5 @@ class register extends CI_Controller {
 		$this->load->view('footer');
 
 	}
+
 }
-
-

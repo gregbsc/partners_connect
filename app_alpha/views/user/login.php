@@ -53,13 +53,13 @@
     loginPass = $('#login-pass').val();
     loginPassVal = $('#login-pass').val().length;
 
-      if( loginName > 2 && loginPassVal == 4 && !isNaN( loginPassVal ) ) {
+      if( loginName > 2 && loginPassVal > 4 ) {
 
         $('#login-form').submit();
 
       } else {
 
-        $('#required-message').html('Enter your email address and 4 digit pin number.');
+        $('#required-message').html('Please enter your email address and password.');
 
       }
 

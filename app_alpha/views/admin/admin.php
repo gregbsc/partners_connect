@@ -7,7 +7,7 @@
 			<?php // template of sorts // ?>
 
 			<?php 
-			if(isset($createUsers) &&  $createUsers == TRUE ) : 
+			if( isset($createUsers) &&  $createUsers == TRUE ) : 
 				$this->load->view('admin/createUsers', $createUsers); 
 			endif; 
 
@@ -19,7 +19,7 @@
 				$this->load->view('admin/remove', $removeUsersList);
 			endif;
 
-			if( isset($deactivatedUser) && $deactivatedUser == TRUE ) : 
+			if( isset($deactivatedUser) ) : 
 				$this->load->view('admin/deactivatedUsers', $removeUsersList);
 			endif;
 			

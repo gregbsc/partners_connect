@@ -59,6 +59,7 @@
                                 <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
                                 <li><a href="/admin/create">Create user</a></li>
                                 <li class="divider"></li>
+                                <li><a href="/admin?delall=true">Remove temp users</a></li>
                                 <li><a href="/admin/remove">Deactivate user</a></li>
                                 <li><a href="/admin/deactivated/">Deactivated</a></li>
                             </ul>

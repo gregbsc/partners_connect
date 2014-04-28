@@ -13,7 +13,8 @@ class activeUsers extends CI_Model
 			INNER JOIN registration
 				ON registration.userid = users.id 
 		WHERE users.active = 1 
-		AND users_groups.group_id = 2"; 
+		AND users_groups.group_id = 2
+		ORDER BY users.created_on DESC"; 
 
 		$sqlResult = $this->db->query($sql);
 

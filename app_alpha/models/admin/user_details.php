@@ -68,7 +68,22 @@ class user_details extends CI_Model
 			return NULL;
 		}
 
+	}
+
+	function update_initial_contact( $uid, $boolean ) {
+
+		//boolean taking form as int ( 0 || 1 ) where 0 == false. 
+		//initial contact can be set back to 0 if desired using this function
+
+		if( !( $boolean == 1 || $boolean == 0 ) ) {
+			$boolean = 0;
+		}
+
+		$data = array( 'initial_contact' => $boolean );
+		$this->db->where('userid', $uid);
+		$this->db->update('registration', $data); 
 
 	}
+
 
 }

@@ -4,7 +4,7 @@ class screener_model extends CI_Model
 {
 	
 	function process_screen( $POST, $userIP, $submission_id, $submission_time ) {
-
+	
 		$screener_count = 7;
 
 		$screen[1] = $POST['screen_1'];
@@ -68,11 +68,9 @@ class screener_model extends CI_Model
 
 	function user_info( $subid ) {
 
-		$sql = "SELECT submission_id, qualified, user_ip, status
+		$sql = "SELECT *
 		FROM registration  
 		WHERE submission_id = '$subid' 
-		/* AND qualified = 1 
-		AND status = 'new' */
 		LIMIT 1";
 
 		$sqlResult = $this->db->query($sql);

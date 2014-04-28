@@ -19,7 +19,7 @@ class user999 extends CI_Model
 
 	}
 
-	function 	( $uid ) {
+	function insert_details( $uid ) {
 
 		$data = array(
 		   'user_ip' =>  NOW() ,
