@@ -13,4 +13,12 @@ if (!function_exists('admin_email_contact'))
 
     }
 
+    function initial_contact( $email_to, $name ) {
+
+		$email_title = "Successful Registration here is login info.... {$name}";
+    	$email_body = "A user just successfully registered.";
+
+    	mail( $email_to, $email_title, $email_body );
+    }
+
 }

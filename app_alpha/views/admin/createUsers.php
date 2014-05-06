@@ -12,7 +12,9 @@
 			<p><input type="text" name="firstname" value="" placeholder="First Name" required="" /></p>
 			<p><input type="text" name="lastname" value="" placeholder="Last Name" required="" /></p>
 
-			<p><input type="text" pattern=".{4,4}" name="password" value="" placeholder="Password - 4 digits" required="" /></p>
+			<p><input type="text" name="phone" value="" placeholder="Phone" required="" /></p>
+
+			<p><input type="text" name="password" value="" placeholder="Password" required="" /></p>
 			<p><input type="submit" value="Create User"/></p>
 
 		</form>

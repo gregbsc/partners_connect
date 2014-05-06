@@ -11,39 +11,50 @@
 				<h4 class="h4"><?php echo $user_details->first_name . " " . $user_details->last_name; ?></h4>
 
 				<ul style="padding-left:10px;list-style:none;">
+
 					<?php // print_r($user_details);?>
 					<li> <?php echo ( isset( $user_details->email ) ) ? $user_details->email : "No recorded email"; ?> </li>
-					<li> <?php echo ( isset( $user_details->created_on ) ) ? "Created on " . date('D-m-y',$user_details->created_on) : "No record of when created"; ?> </li>
+					<li> <?php echo ( isset( $user_details->created_on ) ) ? "Created on " . date('D-M-y',$user_details->created_on) : "No record of when created"; ?> </li>
 					<li> <?php echo ( isset( $user_details->phone ) ) ? $user_details->phone : "No record of a phone number"; ?> </li>
+				
 				</ul>
 
 			<?php endif; ?>
 
-			<h4 class="h4">Screener Survey</h4>
+			<?php if(isset($baseline_results)) : ?>
 
-			<ul style="padding-left:10px;list-style:none;">
+				<h4 class="h4">Screener Survey <span class="medtext"> - Submitted : <?php echo  ( isset($baseline_results[0]->submission_time) ? $baseline_results[0]->submission_time : " "); ?></span> </h4>
 
-				<?php foreach( $baseline_results as $question ) : ?>
+				<ul style="padding-left:10px;list-style:none;">
 
-					<li> <?php echo $question->question_name; ?> : <?php echo $question->question_response; ?> </pre> </li>
+					<?php foreach( $baseline_results as $question ) : ?>
 
-				<?php endforeach; ?>
+						<li> <?php echo $question->question_name; ?> : <?php echo $question->question_response; ?> </pre> </li>
 
-			</ul>
+					<?php endforeach; ?>
 
-		</div>
-
-		<div class="col-md-4">
-
-			<p><span class="h4">Email History</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/contact/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to contact user</a></p>
-
-			<ul class="emailul specialul">
-
-				<?php $this->load->view('admin/email_history', $data['email_history'] = $email_history); ?>
-
-			</ul>
+				</ul>
+			
+			<?php endif; ?>
 
 		</div>
+		
+		<?php if(isset($email_history)) : ?>
+		
+			<div class="col-md-4">
+
+				<p><span class="h4">Email History</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/contact/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to contact user</a></p>
+
+				<ul class="emailul specialul">
+
+					<?php $this->load->view('admin/email_history', $data['email_history'] = $email_history); ?>
+
+				</ul>
+
+			</div>
+
+		<?php endif; ?>
+
 	</div>
 
 </div>

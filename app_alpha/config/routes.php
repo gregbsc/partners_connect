@@ -38,9 +38,16 @@
 |
 */
 
+
+// The plan is to explicity declare the controllers being used, then to find a generic rewrite for each case that works. 
+
 $route['default_controller'] = "screener/welcomePage";
 
+//auth lbrary 
+//$route['auth/(.+)$'] = "auth/$1";
+
 //admin routes
+
 $route['admin'] = "admin/admin";
 $route['admin/login'] = "admin/admin/login";
 $route['admin/users'] = "admin/admin/users";
@@ -50,18 +57,33 @@ $route['admin/deactivated'] = "admin/admin/deactivated";
 $route['admin/user/details'] = "admin/user/details";
 $route['admin/user/contact'] = "admin/user/contact";
 $route['admin/scheduled'] = "admin/scheduled";
-
+$route['admin/user/notes'] = "admin/user/notes";
+$route['admin/opted-out'] = "admin/admin/opted_out";
+$route['admin/not-eligible'] = "admin/admin/not_qualified";
 $route['admin/submissions'] = "admin/submissions";
 
+//end of admin route
+
+
+//$route['migration'] = "migrations";
+
+
+//single instances
 $route['screen'] = "screener";
 
 $route['resources'] = 'resources';
 
+$route['contact'] = "resources/contact";
+
+$route['no-thank-you'] = "resources/nothankyou";
+
 $route['baseline'] = 'baseline';
 
 $route['404_override'] = '';
+//end of single instances
 
-//  USER STUFF
+
+//  USER routes
 $route['user'] = "user/user";
 $route['user/baseline'] = "user/user/baseline";
 $route['user/consent'] ="user/user/consent";
@@ -69,7 +91,9 @@ $route['user/login'] = "user/user/login";
 $route['user/update'] = "user/user/update";
 $route['user/lost'] = "lost";
 $route['user/success'] = "user/user/success";
-
+$route['user/update/password'] = "user/user/password";
+$route['user/schedule'] = 'user/user/schedule';
+//end of user routes
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

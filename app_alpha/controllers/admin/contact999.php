@@ -46,7 +46,7 @@ class user extends CI_Controller {
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
 			if( $this->input->get('uid') ) {
-				echo $this->input->get('uid');
+				//echo $this->input->get('uid');
 			} else {
 				redirect("admin", 'redirect');
 			}

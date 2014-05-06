@@ -50,19 +50,22 @@
                     <li><a href="/admin">Home</a></li>                            
                     
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                        
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Participants <b class="caret"></b></a>
                       
                         <span class="dropdown-arrow"> </span>
 
-                            <ul class="dropdown-menu">
-                                <li><a href="/admin/users">Users</a></li>
-                                <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
-                                <li><a href="/admin/create">Create user</a></li>
-                                <li class="divider"></li>
-                                <li><a href="/admin?delall=true">Remove temp users</a></li>
-                                <li><a href="/admin/remove">Deactivate user</a></li>
-                                <li><a href="/admin/deactivated/">Deactivated</a></li>
-                            </ul>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/users">Eligible Participants</a></li>
+                            <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
+                            <li><a href="/admin/not-eligible">Not Eligible Participants</a></li>
+                            <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
+                            <li class="divider"></li> 
+                            <li><a href="/admin/create">Create user</a></li>
+                            <li><a href="/admin?delall=true">Remove temp users</a></li>
+                            <li><a href="/admin/remove">Deactivate user</a></li>
+                            <li><a href="/admin/deactivated/">Deactivated</a></li>
+                        </ul>
 
                     </li>
 

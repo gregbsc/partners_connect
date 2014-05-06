@@ -38,6 +38,7 @@ class Admin extends CI_Controller {
 			// active users
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
+			$this->opt_out_users = $this->activeUsers->opt_out_users();
 			
         } else {
 
@@ -207,13 +208,13 @@ class Admin extends CI_Controller {
 					$additional_data = array(
 								'first_name' => $this->input->post('firstname'),
 								'last_name' => $this->input->post('lastname'),
+								'phone' => $this->input->post('phone')
 								);
 
-					$new_uid = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
-
+					$new_uid = $this->ion_auth->register( $username, $password, $email, $additional_data, $group_name );
 
 					if( isset($new_uid) && $new_uid > 0 ) {
-						$this->user_details->insert_details($new_uid);
+						$this->user_details->insert_details( $new_uid );
 					}
 
 				} else {
@@ -223,7 +224,9 @@ class Admin extends CI_Controller {
 			}
 
 		} else { 
+
 			redirect("admin/login", 'redirect');
+
 		} 
 
 	}
@@ -262,6 +265,88 @@ class Admin extends CI_Controller {
 		} else { 
 			redirect("admin/login", 'redirect');
 		} 
+
+	}
+
+	public function opted_out() {
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+
+
+
+			$data['userName'] = $this->currentUser->email;
+			//$data['navigation']  = $this->menuData;
+			$data['activeUsers']  = $this->opt_out_users;
+
+			//$data['userDetails'] = $this
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/header', $data);
+			
+			//VIEW BEING CALLED HERE
+			//users view is called within the admin/admin view
+			$this->load->view('admin/admin', $data);
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('footer');
+
+		} else { 
+			redirect("admin/login", 'redirect');
+		} // end of is logged in as admin
+
+	}
+
+	public function not_qualified() {
+
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+
+			//remove this user FOREVER...
+			if( $this->input->get('delid') && $this->input->get('dcheck') ) {
+
+				if($this->input->get('dcheck') == $deleteHashValue ) {
+
+					$del_id = $this->input->get('delid');
+					$this->ion_auth->delete_user($del_id);
+					$this->deactivatedUsers->perm_delete($del_id);
+
+					redirect("admin/deactivated", 'refresh');
+
+				}
+
+			}
+
+			//re-activated this user... 
+			if( $this->input->get('activateid') ) {
+
+				//deactivate user
+				$act_id = $this->input->get('activateid');
+
+				$dataAdd = array( 'active' => 1 );
+				$this->ion_auth->update($act_id, $dataAdd);
+			
+			}
+
+			$data['userName'] = $this->currentUser->email;
+			//$data['navigation']  = $this->menuData;
+			
+			$this->load->model('deactivatedUsers');
+			$data['removeUsersList'] = $this->deactivatedUsers->getDeactivated();
+
+			$data['deactivatedUser'] = TRUE;
+
+			//VIEW BEING CALLED HERE
+			$this->load->view('admin/header', $data);
+			$this->load->view('admin/admin', $data);
+			
+			//VIEW BEING CALLED HERE
+			$this->load->view('footer');
+
+		} else { 
+			redirect("admin/login", 'redirect');
+		} 
+
+
 
 	}
 

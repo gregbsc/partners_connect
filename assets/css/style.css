@@ -9,11 +9,14 @@ p { font-size:14px; }
 .wfont { color:#fff; }
 .fright { float:right; }
 .thin { font-weight:200; }
-.mbot20 { margin-bottom:20px; }
+
+.user-button { margin:40px 0; width:400px;}
 
 .sm-txt { font-size:14px;}
 .sm-txt div { padding:0; text-align:center; }
 
+.mbot20 { margin-bottom:20px; }
+.mbot40 {margin-bottom:40px;}
 .nomargin { margin:0; }
 .mtop50 { margin-top: 50px; }
 .mtop10 { margin-top:10px; }
@@ -24,16 +27,28 @@ p { font-size:14px; }
 
 .ptop50 { padding-top:50px; }
 
+.mauto { margin:0 auto; display:block; }
+
+.tcenter { text-align:center; }
 .mright10 { margin-right:10px !important; }
 
 .form-element { padding-bottom:0;margin-bottom:0;}
 
+.baseline-table td, .baseline-table th { max-width: 400px; min-width:100px; font-size:13px; padding:5px 10px; border:1px solid;}
+.baseline-table th { font-weight:800; text-align:center; }
 .email-wrapper textarea, .email-wrapper input[type=text] { width:100%; font-size:14px;}
 
 .email-wrapper textarea {
 
 }
+
+table input[type="radio"]{
+	margin:0 auto;
+	display:block;
+} 
+
 .medtext { font-size:14px; }
+.ltext {font-size:20px;}
 .overflow-scroll { height:300px; overflow:scroll; margin-top:50px;padding: 10px; border: 1px solid #ccc; }
 
 .welcome { font-size:22px; font-weight:400; text-align:center; padding-top:0x; }
@@ -41,6 +56,8 @@ p { font-size:14px; }
 .nomargin { margin:0 !important; }
 
 .custom-tab-header { width:100%; }
+
+textarea.special { width: 400px; font-size:14px;}
 
 .custom-tab {
  

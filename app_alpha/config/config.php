@@ -17,6 +17,9 @@
 $config['base_url']	= 'http://dev.partnersconnect.com';
 
 $config['remember_users'] = TRUE;
+
+$config['test_urls'] = array('127.0.0.1');
+
 /*
 |--------------------------------------------------------------------------
 | Index File

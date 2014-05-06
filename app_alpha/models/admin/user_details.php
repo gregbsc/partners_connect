@@ -38,13 +38,16 @@ class user_details extends CI_Model
 
 	function insert_details( $uid ) {
 
+		$expCondition = rand(0,1);
+		
 		$data = array(
 		   'user_ip' =>  time() ,
 		   'submission_id' => time() ,
 		   'qualified' => '0' ,
 		   'status' => 'registered',
 		   'consent' => '0',
-		   'userid' => $uid
+		   'userid' => $uid,
+		   'group_condition' => $expCondition
 
 		);
 
@@ -85,5 +88,28 @@ class user_details extends CI_Model
 
 	}
 
+	function all_notes( $uid ) {
+		
+		$this->db->select('*');
+		$this->db->from('user_notes');
+		$this->db->where('uid', $uid);
+		$this->db->order_by('post_time', 'ASC');
+		$query = $this->db->get();
+		
+		return $query->result();
+
+	}
+
+	function submit_note( $uid, $note_subject, $note_message ) { 
+
+		$data = array(
+		   'uid' =>  $uid,
+		   'note_subject' => $note_subject,
+		   'note_message' => $note_message
+		);
+
+		$this->db->insert('user_notes', $data); 
+
+	}
 
 }

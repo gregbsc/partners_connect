@@ -6,8 +6,6 @@
           <!-- start of form -->
           <div class="login-form">
 
-            
-
             <div class="form-group">
 
               <?php // form login // open ?>
@@ -53,7 +51,7 @@
     loginPass = $('#login-pass').val();
     loginPassVal = $('#login-pass').val().length;
 
-      if( loginName > 2 && loginPassVal > 4 ) {
+      if( loginName > 2 && loginPassVal > 3 ) {
 
         $('#login-form').submit();
 

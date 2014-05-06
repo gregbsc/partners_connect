@@ -35,12 +35,13 @@ class screener_model extends CI_Model
 
 	}
 
-
 	function register_user( $userIP, $submission_id ) {
 		
 		$sql = "SELECT submission_id, qualified, user_ip, status
 		FROM registration  
 		WHERE submission_id = '$submission_id'";
+
+		$expCondition = rand(0,1);
 
 		$sqlResult = $this->db->query($sql);
 
@@ -50,7 +51,8 @@ class screener_model extends CI_Model
 			   'submission_id' => md5(time()), 
 			   'user_ip' => $userIP, 
 			   'qualified' => 1,
-			   'status' => 'new');
+			   'status' => 'new',
+			   'group_condition' => $expCondition);
 		
 		} else {
 		
@@ -58,7 +60,8 @@ class screener_model extends CI_Model
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
 			   'qualified' => 1,
-			   'status' => 'new');
+			   'status' => 'new',
+			   'group_condition' => $expCondition);
 		
 		}
 
@@ -86,7 +89,6 @@ class screener_model extends CI_Model
 			return 'null';
 
 		}
-		
 
 	}
 

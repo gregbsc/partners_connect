@@ -1,0 +1,258 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Partners Connect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="http://pconnect.linuxblu.com/assets/flat/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="http://pconnect.linuxblu.com/assets/flat/bootstrap/css/prettify.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="http://pconnect.linuxblu.com/assets/flat/css/flat-ui.css" rel="stylesheet">
+    <link href="http://pconnect.linuxblu.com/assets/flat/css/docs.css" rel="stylesheet">
+    <link href="http://pconnect.linuxblu.com/assets/css/style.css" rel="stylesheet">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- <script type='text/javascript' src='http://pconnect.linuxblu.com/assets/js/knockout-3.1.0.js'></script> -->
+
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+   
+<div class="row red-header">
+
+    <div class="container">
+
+        <div class="custom-tab-header">
+            <div class="custom-tab">Text options here</div>
+        </div>
+        
+        <p> <img id="logo" src="/assets/img/logo.png" /> </p>
+
+        <nav class="navbar navbar-inverse navbar-embossed mtop50" role="navigation">
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+
+                <ul class="nav navbar-nav navbar-left">  
+                                                
+                    <li><a href="/admin">Home</a></li>                            
+                    
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+                      
+                        <span class="dropdown-arrow"> </span>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/users">Users</a></li>
+                                <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
+                                <li><a href="/admin/create">Create user</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/admin?delall=true">Remove temp users</a></li>
+                                <li><a href="/admin/remove">Deactivate user</a></li>
+                                <li><a href="/admin/deactivated/">Deactivated</a></li>
+                            </ul>
+
+                    </li>
+
+                    <li><a href="/admin/scheduled">Scheduled</a></li>
+                    <li><a href="/logout">Logout</a></li>
+
+                </ul>
+
+                <!-- <p class='wfont fright mtop10'>Logged in as : </p> -->
+
+            </div> <!-- /.navbar-collapse -->
+
+        </nav> <!-- /navbar -->
+
+    </div>
+
+</div>
+<div class="container">
+
+	<div class="col-md-6">
+
+		
+<div class="email-wrapper">
+
+	<h4 class="h4"> Contact  </h4>
+	
+	<div class="email-box">
+
+		
+		<form action="http://pconnect.linuxblu.com/admin/user/contact/?uid=36" method="post" accept-charset="utf-8">
+			<p class="form-element"> TItle </p>
+			<p><input type="text" name="email_title"/></p>
+			
+			<p class="form-element"> Contact Type </p>
+
+			<p><select name="email_type"> 
+				<option>General</option>
+				<option>Gift Card</option>
+				<option>Follow Up</option>
+				<option>Initial Contact</option>
+			</select></p>
+			
+			<p class="form-element"> Message </p>
+			<p><textarea name="email_body"/> </textarea></p>
+
+			<input type="submit" value="submit"/> 
+
+		</form>
+
+	</div>
+
+</div>
+	</div>
+
+	<div class="col-md-4">
+		<h4 class="h4">User details</h4>
+		<ul class="emailul ulspecial medtext">
+					<li>Gregory Marven</li>
+							<li>Email: sobotkg@gmail.com</li>
+						</ul>
+
+		<h4 class="h4 mtop20">Email History</h4>
+		<ul class="emailul ulspecial">
+						
+	
+		<li> <p> Initial email, 2014-04-28 11:14:50  |  <span class="view-details"><strong>View details</strong></span> </p> 
+
+			<ul class="hiddenul">
+				<li> To : sobotkg@gmail.com</li>
+				<li> Type : Initial Contact</li>
+				<li> Subject : Initial email</li>
+				<li> Send date : 2014-04-28 11:14:50</li>
+				<li> Sent : Failure</li>
+				<li> Message : Initial email..... </li>
+			</ul>
+
+		</li>		
+
+	
+		<li> <p> Hi Greg, test email, 2014-04-21 23:22:24  |  <span class="view-details"><strong>View details</strong></span> </p> 
+
+			<ul class="hiddenul">
+				<li> To : sobotkg@gmail.com</li>
+				<li> Type : Contact</li>
+				<li> Subject : Hi Greg, test email</li>
+				<li> Send date : 2014-04-21 23:22:24</li>
+				<li> Sent : Failure</li>
+				<li> Message : This is just a test email. </li>
+			</ul>
+
+		</li>		
+
+			</ul>
+
+	</div>
+
+</div>      <!-- library for logout -->
+  <script src="http://pconnect.linuxblu.com/assets/js/idle-timer.js"></script>
+
+	<!-- code for logout -->
+	
+   <script>
+        (function ($) {
+            var
+                session = {
+                    //Logout Settings
+                    inactiveTimeout: 10000,     //(ms) The time until we display a warning message
+                    warningTimeout: 10000,      //(ms) The time until we log them out
+                    minWarning: 5000,           //(ms) If they come back to page (on mobile), The minumum amount, before we just log them out
+                    warningStart: null,         //Date time the warning was started
+                    warningTimer: null,         //Timer running every second to countdown to logout
+                    logout: function () {       //Logout function once warningTimeout has expired
+                        //window.location = settings.autologout.logouturl;
+                        $("#mdlLoggedOut").modal("show");
+                    },
+
+                    //Keepalive Settings
+                    keepaliveTimer: null,
+                    keepaliveUrl: "",
+                    keepaliveInterval: 5000,     //(ms) the interval to call said url
+                    keepAlive: function () {
+                        $.ajax({ url: session.keepaliveUrl });
+                    }
+                }
+            ;
+
+
+            $(document).on("idle.idleTimer", function (event, elem, obj) {
+                //Get time when user was last active
+                var
+                    diff = (+new Date()) - obj.lastActive - obj.timeout,
+                    warning = (+new Date()) - diff
+                ;
+                
+                //On mobile js is paused, so see if this was triggered while we were sleeping
+                if (diff >= session.warningTimeout || warning <= session.minWarning) {
+                    $("#mdlLoggedOut").modal("show");
+                } else {
+                    //Show dialog, and note the time
+                    $('#sessionSecondsRemaining').html(Math.round((session.warningTimeout - diff) / 1000));
+                    $("#myModal").modal("show");
+                    session.warningStart = (+new Date()) - diff;
+
+                    //Update counter downer every second
+                    session.warningTimer = setInterval(function () {
+                        var remaining = Math.round((session.warningTimeout / 1000) - (((+new Date()) - session.warningStart) / 1000));
+                        if (remaining >= 0) {
+                            $('#sessionSecondsRemaining').html(remaining);
+                        } else {
+                            session.logout();
+                        }
+                    }, 1000)
+                }
+            });
+
+            // create a timer to keep server session alive, independent of idle timer
+            session.keepaliveTimer = setInterval(function () {
+                session.keepAlive();
+            }, session.keepaliveInterval);
+
+            //User clicked ok to extend session
+            $("#extendSession").click(function () {
+                clearTimeout(session.warningTimer);
+            });
+            //User clicked logout
+            $("#logoutSession").click(function () {
+                session.logout();
+            });
+
+            //Set up the timer, if inactive for 10 seconds log them out
+            $(document).idleTimer(session.inactiveTimeout);
+        })(jQuery);
+    </script>    
+	<!-- <p class="footer">Page rendered in <strong>0.0556</strong> seconds</p> -->
+
+    <!-- Load JS here for greater good =============================-->
+
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/jquery-1.8.3.min.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/bootstrap.min.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/bootstrap-select.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/bootstrap-switch.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/flatui-checkbox.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/flatui-radio.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/jquery.tagsinput.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/flat/js/jquery.placeholder.js"></script>
+    <script src="http://pconnect.linuxblu.com/assets/js/custom.js"></script>
+	<script src="http://pconnect.linuxblu.com/assets/js/admin.js"></script>
+
+  </body>
+
+</html>

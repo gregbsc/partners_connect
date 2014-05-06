@@ -4,9 +4,7 @@
         <p> If you are interested, you can list your contact information below and someone from RAND will contact you within 5 business days 
              to share more about the project, ask a few follow-up questions, and discuss next steps with you.  After talking with RAND study staff, you can decide whether or not you would like to be involved in the project. 
              Participation is entirely voluntary and confidential and there will be no consequences if you decide not to participate. </p>
-        
-        <h4 class="h4" style="margin-top:30px;margin-bottom:20px;">Register</h4>
-        
+                
         <?php if( isset($user_creation) ) : ?>
 
             <p class="urgent-message">That username / email already exists.</p>

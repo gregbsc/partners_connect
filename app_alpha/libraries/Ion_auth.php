@@ -196,7 +196,7 @@ class Ion_auth
 	 * @return void
 	 * @author Mathew
 	 **/
-	public function forgotten_password_complete($code)
+	public function forgotten_password_complete($code, $custom_password)
 	{
 		$this->ion_auth_model->trigger_events('pre_password_change');
 
@@ -210,7 +210,7 @@ class Ion_auth
 			return FALSE;
 		}
 
-		$new_password = $this->ion_auth_model->forgotten_password_complete($code, $profile->salt);
+		$new_password = $this->ion_auth_model->forgotten_password_complete($code, $profile->salt, $custom_password);
 
 		if ($new_password)
 		{

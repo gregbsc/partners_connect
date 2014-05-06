@@ -2,11 +2,12 @@
 	<div class="container">
 
     <div class="login-screen">
+
           <div class="login-icon">
-            <h4>Welcome to <small>Partners Connect</small></h4>
+
+              <h4>Welcome to <small>Partners Connect</small></h4>
               <h1> <?php // print_r($postinfo); ?> </h1>
-
-
+              
           </div>
 
           <!-- start of form -->

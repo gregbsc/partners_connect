@@ -75,11 +75,8 @@ class user_info extends CI_Model
 				} else {
 					return false;
 				}
-
 			} else {
-
 				return false;
-
 			}
 		}
 	}
@@ -97,27 +94,19 @@ class user_info extends CI_Model
 			$clean_result = $query->result();
 
 			if(isset($clean_result[0])) {
-
 				$clean_result = $clean_result[0];
 				return $clean_result;
-
 			} else {
-
 				return NULL;
-
 			}
-			
 		} else {
-
 			return NULL;
-
 		}
 
 
 	} // end details
 
 	function update_consent( $status_consent, $uid ) {
-
 		/* 
 		0 == no submission
 		1 == consented
@@ -128,6 +117,14 @@ class user_info extends CI_Model
 		$this->db->where('userid', $uid);
 		$this->db->update('registration', $data);
 
+	}
+
+	function decline_reason( $sub_id, $decline_reason ) {
+
+		$data = array('user_notes' => $decline_reason );
+		$this->db->where('submission_id', $sub_id);
+		$this->db->update('registration', $data);
+		
 	}
 
 }

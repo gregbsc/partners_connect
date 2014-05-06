@@ -14,6 +14,26 @@ class activeUsers extends CI_Model
 				ON registration.userid = users.id 
 		WHERE users.active = 1 
 		AND users_groups.group_id = 2
+		AND registration.consent != 2
+		ORDER BY users.created_on DESC"; 
+
+		$sqlResult = $this->db->query($sql);
+
+		return $sqlResult->result();
+
+	}
+
+	function opt_out_users() {
+
+		// select users who have opted out of the study
+		$sql = "SELECT DISTINCT *
+		FROM users 
+			INNER JOIN users_groups 
+				ON users.id = users_groups.user_id 
+			INNER JOIN registration
+				ON registration.userid = users.id 
+		WHERE users.active = 1 
+		AND registration.consent = 2
 		ORDER BY users.created_on DESC"; 
 
 		$sqlResult = $this->db->query($sql);

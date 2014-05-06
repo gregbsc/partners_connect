@@ -740,7 +740,7 @@ class Ion_auth_model extends CI_Model
 	 * @return string
 	 * @author Mathew
 	 **/
-	public function forgotten_password_complete($code, $salt=FALSE)
+	public function forgotten_password_complete($code, $salt=FALSE, $custom_password)
 	{
 		$this->trigger_events('pre_forgotten_password_complete');
 
@@ -765,7 +765,11 @@ class Ion_auth_model extends CI_Model
 				}
 			}
 
-			$password = $this->salt();
+			if(isset($custom_password) && !empty($custom_password)) {
+				$password = $custom_password;
+			} else {
+				$password = $this->salt();
+			}
 
 			$data = array(
 			    'password'                => $this->hash_password($password, $salt),

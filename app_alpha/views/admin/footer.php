@@ -1,10 +1,10 @@
-    <?php $this->load->view('fiveTimeOut'); ?>
+    <?php // $this->load->view('fiveTimeOut'); ?>
     
 	<!-- <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p> -->
 
     <!-- Load JS here for greater good =============================-->
 
-    <script src="<?php echo base_url(); ?>assets/flat/js/jquery-1.8.3.min.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>assets/flat/js/jquery-1.8.3.min.js"></script> -->
     <script src="<?php echo base_url(); ?>assets/flat/js/jquery-ui-1.10.3.custom.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/flat/js/jquery.ui.touch-punch.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/flat/js/bootstrap.min.js"></script>

@@ -29,6 +29,7 @@ class register extends CI_Controller {
 		
 		if( $this->input->get('subid') ||  $this->input->post('subid') ) {
 
+			//check get subid first, then post subid
 			if( $this->input->get('subid') ) {
 				$sub_id = $this->input->get('subid');
 				$user_status = $this->screener_model->user_info( $sub_id );
@@ -38,6 +39,7 @@ class register extends CI_Controller {
 				$user_status = $this->screener_model->user_info( $sub_id );
 
 			} else { 
+				// error fallback... 
 				$sub_id = 'error';
 				$user_status = 'error';
 			}
@@ -61,10 +63,12 @@ class register extends CI_Controller {
 						//data to create user...
 						$additional_data = array( 'first_name' => $this->input->post('first_name'), 
 							'last_name' => $this->input->post('last_name'), 
-							'phone' => $phone );			
+							'phone' => $phone );
 
+						// create application user
 						$createUser = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);
 
+						//if application user was created
 						if( $createUser ) {
 
 							//update user via model to registered
@@ -97,7 +101,7 @@ class register extends CI_Controller {
 			} else {
 
 				// if not qualified 
-				if($user_status->status == "registered") {
+				if( isset($user_status->status) && $user_status->status == "registered") {
 
 					// Already Registered -- redirect to login
 					redirect('user/login/', 'redirect');
