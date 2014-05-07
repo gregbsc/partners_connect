@@ -24,9 +24,24 @@ p { font-size:14px; }
 .mtop50 { margin-top:50px !important; }
 .mtop30 { margin-top:30px !important; }
 .mtop20 { margin-top:20px !important; }
-
 .ptop50 { padding-top:50px; }
 
+.left-checkbox [type=checkbox] { 
+	margin-right:5px;
+}
+.radio-buttons input[type=radio] {
+	margin-right:5px;
+}
+
+.max-form input[type=checkbox] {
+	float:right;
+}
+.max-width {
+	max-width:600px;
+}
+.med-width {
+	max-width:400px;
+}
 .mauto { margin:0 auto; display:block; }
 
 .tcenter { text-align:center; }

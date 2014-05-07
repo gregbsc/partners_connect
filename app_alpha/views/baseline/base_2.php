@@ -32,7 +32,7 @@
 
 		<p>4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.)</p>
 
-		<p class="custom-q-wrapper" style="max-width:500px;">
+		<p class="custom-q-wrapper max-form">
 			From a mental health professional at a Military Facility 	 						<input type="checkbox" name="MHHELP3" value="1" class="fright" /> </br>
 			From a general medical doctor at a Military Facility 	 							<input type="checkbox" name="MHHELP3" value="2" class="fright"/> </br>
 			From a Military Chaplain 	 														<input type="checkbox" name="MHHELP3" value="3" class="fright"/> </br>
@@ -124,6 +124,8 @@
 			</tr>
 
 		</table>
+
+		<input type="hidden" name="section" value="2" />
 
 		<input type="submit" value="submit" class="mtop50"/>
 

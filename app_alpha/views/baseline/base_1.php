@@ -78,7 +78,11 @@
 				<td><input type="radio" name="DEP7" value="3"/> </td>
 			</tr>
 			
-			<tr> <td>Moving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual? </td> <td> <input type="radio" name="DEP8" value="1"/> </td> <td> <input type="radio" name="DEP8" value="1"/> </td> <td> <input type="radio" name="DEP8" value="2"/> </td> <td> <input type="radio" name="DEP8" value="3"/> </td> </tr>
+			<tr> <td>Moving or speaking so slowly that other people could have noticed. Or the opposite – being so fidgety or restless that you have been moving around a lot more than usual? </td> 
+				<td> <input type="radio" name="DEP8" value="0"/> </td> 
+				<td> <input type="radio" name="DEP8" value="1"/> </td> 
+				<td> <input type="radio" name="DEP8" value="2"/> </td> 
+				<td> <input type="radio" name="DEP8" value="3"/> </td> </tr>
 		
 		</table>
 

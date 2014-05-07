@@ -3,6 +3,7 @@
 if (!function_exists('email_helper'))
 {
 
+
     function send_email( $email_title, $email_type, $email_body, $email_to )
     {
 

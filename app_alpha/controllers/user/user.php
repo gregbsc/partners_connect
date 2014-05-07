@@ -118,6 +118,15 @@ class user extends CI_Controller {
 	public function baseline() {
 
 		$baseMax = 9;
+		$this->load->model('users/process_baseline');
+		$this->load->helper('form_building_helper');
+
+		if( $_POST && ( $this->input->post('section') < $baseMax ) && isset( $this->user_id ) ) { 
+
+			$baseline = $_POST;
+			$this->process_baseline->process( $baseline, $this->user_id );
+
+		}
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
@@ -242,6 +251,7 @@ class user extends CI_Controller {
 
 		$data['initialize'] = true;
 		$this->load->helper('email_helper');
+		$this->load->library('email');
 
 		if( $this->input->get('account') && $this->input->get('activecode') ) {
 
@@ -270,13 +280,19 @@ class user extends CI_Controller {
 
 				$title = "Password Reset";
 				$email_type = "Password Reset";
-				
-				$reset_link = $this->site_url."user/update/password/?action=reset&account={$forgotten['identity']}&activecode={$forgotten['forgotten_password_code']}";
 
-				$email_body = "To reset your email address go to the following link ".$reset_link."";
+				$site_url = base_url();
+				$email_title = "Password reset";
+				$reset_link = $site_url."user/update/password/?action=reset&account={$forgotten['identity']}&activecode={$forgotten['forgotten_password_code']}";
+				$email_body = "To reset your email address go to the following link ".$reset_link;
 
-				//echo $reset_link;
-				send_email($email_title, $email_type, $email_body, $forgotten['identity']);
+				$this->email->from($this->config->item('rand_email'), 'Partners Connect');
+				$this->email->to( $forgotten['identity'] ); 
+				$this->email->subject($email_title);
+				$this->email->message($email_body);	
+
+				$this->email->send();
+				//send_email($email_title, $email_type, $email_body, $forgotten['identity']);
 
 				redirect("user/update/password?status=success", 'redirect');
 
