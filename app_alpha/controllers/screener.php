@@ -23,7 +23,7 @@ class screener extends CI_Controller {
     {
 
         parent::__construct();
-        //admin nav
+
     	
     }
 	
@@ -31,6 +31,7 @@ class screener extends CI_Controller {
 	{	
 		//check previous ip addresses
 		$this->load->model('signup_ip');
+		$this->load->model('screener_model');
 
 		$previousIP = $this->signup_ip->getIpRecord();
 
@@ -38,21 +39,19 @@ class screener extends CI_Controller {
 
 		$submission_time = time();
 		
+		// REALLY IMPORTANT -- THIS IS HOW USERS SUBMISSIOSN ARE TRACKED ON SUBMISSION 
 		$submission_id = md5( $userIP + $submission_time );
-		
-		$this->load->model('screener_model');
+
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
+		//END VIEW
+
+
 
 		if( $_POST && $previousIP < 1 ) {
 
 			$data['register_link'] = $submission_id;
-
-			$this->screener_model->register_user( $userIP, $submission_id );
-
-			//process  post first
-			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time );
 
 			/*
 			Important questions to check in screener :
@@ -60,19 +59,24 @@ class screener extends CI_Controller {
 				If “Yes” to all of the following screener questions: 1, 3, 4-7 AND a “No” to question 2, (CP qualifies for Stage 2 screening):
 			*/
 
-			//check if all required post variables are preseent
+			//check if all required post variables are preseent from screener
 			if( $this->input->post('screen_1') == 'yes' && $this->input->post('screen_3') == 'yes' && $this->input->post('screen_4') == 'yes' && $this->input->post('screen_5') == 'yes' && $this->input->post('screen_6') == 'yes' && $this->input->post('screen_7') == 'yes' && $this->input->post('screen_2') == 'no') {
 
 				$this->load->view('signup/qualified', $data);
+				
+				//registers submission //user qualified == 1
+				$this->screener_model->register_user( $userIP, $submission_id, $qualified = 1 );
 
 			} else {
 
 				$this->load->view('signup/not_qualified');
 
+				//registers submission// if user is not qualified == 2
+				$this->screener_model->register_user( $userIP, $submission_id, $qualified = 2);
 			}
 
-			//load view
-			//$this->load->view('signup/results', $data);
+			//process post
+			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time, $qualified );
 
 		} else {
 
@@ -94,10 +98,7 @@ class screener extends CI_Controller {
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
-
 		$this->load->view('signup/welcome');
-
-		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
 
 	}

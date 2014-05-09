@@ -15,6 +15,7 @@ class activeUsers extends CI_Model
 		WHERE users.active = 1 
 		AND users_groups.group_id = 2
 		AND registration.consent != 2
+		AND registration.qualified = 1
 		ORDER BY users.created_on DESC"; 
 
 		$sqlResult = $this->db->query($sql);
@@ -32,8 +33,7 @@ class activeUsers extends CI_Model
 				ON users.id = users_groups.user_id 
 			INNER JOIN registration
 				ON registration.userid = users.id 
-		WHERE users.active = 1 
-		AND registration.consent = 2
+		WHERE registration.qualified = 3
 		ORDER BY users.created_on DESC"; 
 
 		$sqlResult = $this->db->query($sql);

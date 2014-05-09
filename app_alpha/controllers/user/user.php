@@ -29,41 +29,69 @@ class user extends CI_Controller {
 
         if( $this->ion_auth->logged_in() ) {
 
+        	$this->load->model('users/process_baseline');
         	$this->load->model('users/user_info');
         	$this->user_details = $this->ion_auth->user()->row();
     		$this->user_id = $this->user_details->user_id;
-    		
+    		$this->baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
+    		$this->active_baseline = $this->config->item('baseline_max_v1');
     	}
 
     }
 	
+	//this is currently set the default -- this is what the user see's when they first login
 	public function index()
 	{	
+
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
-			
+
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
+			//current baseline status
+			$baseline_status = $this->baseline_status;
+			$base_prefix = "/user/baseline/?bid=";
+
+			if( $baseline_status == 0 ) { 
+				$return_base = $base_prefix.'1';
+			} else if( $baseline_status <= $this->active_baseline ) {
+				$next_int = $baseline_status + 1;
+				$return_base = $base_prefix.$next_int;
+			} else {
+				$return_base = $base_prefix;
+			}
+
+			$data['return_base'] = $return_base;
+
 			//boolean check if completed 
-			$data['consent'] = $this->user_info->consent_status( $this->user_id );
+			$consent = $this->user_info->consent_status( $this->user_id );
+			$data['consent'] = $consent;
 			$data['user_info'] = $this->user_details;
 
 			$user_progress = $this->user_info->details( $this->user_id );
 
-			if( isset($user_progress->baseline ) && $user_progress->baseline == 1 ) {
+			//once a user completes the baseline survey, they can schedule their sessions 
+			if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
+				
 				$data['schedule_sessions'] = '/user/schedule/';
+
 			} else {
-				$data['user_progress'] = $user_progress;
+
+				if( $user_progress->baseline == 0 ) {
+					//this would be the case for a user whom has not completed 
+					//the baseline survey AND has consented to the study
+					$data['user_progress'] = $user_progress;
+				} else {
+					//this would be a case where an individual has not consented to the study
+				}
+
 			}
 
 			$this->load->view('user/user_body', $data );
 
-
 		} else {
-
 			//VIEW BEING CALLED HERE
 			$this->load->view('user/login');
-
 		}
 
 		//VIEW BEING CALLED HERE
@@ -117,14 +145,23 @@ class user extends CI_Controller {
 
 	public function baseline() {
 
-		$baseMax = 9;
-		$this->load->model('users/process_baseline');
+		$baseMax = $this->active_baseline;
+
 		$this->load->helper('form_building_helper');
 
-		if( $_POST && ( $this->input->post('section') < $baseMax ) && isset( $this->user_id ) ) { 
+		$baseline_status = $this->baseline_status;
 
-			$baseline = $_POST;
-			$this->process_baseline->process( $baseline, $this->user_id );
+		if( $_POST && ( $this->input->post('section') <= $baseMax ) && isset( $this->user_id ) ) { 
+
+			$this->process_baseline->process( $baseline = $_POST, $this->user_id );
+
+		}
+
+		//update user status to baseline completed AND redirect to user login page when completed
+		if( $baseline_status == $this->active_baseline ) {
+
+			$this->process_baseline->complete_baseline( $this->user_id );
+			redirect('/user/','redirect');
 
 		}
 
@@ -139,15 +176,16 @@ class user extends CI_Controller {
 				
 				$currentPage = $this->input->get('bid');
 				$percentComp = ($currentPage / $baseMax) * 100;
-				
+
+				// eek -- I need to move this to the view before completing.. and remove inline style..
 				$data['percentDone'] = '<div class="mtop50" style="width:100%;border:1px solid #ccc;height:30px"><div style="background-color:blue;width:'.$percentComp.'%;height:28px;"></div></div>';		
 
 				if( $currentPage < $baseMax ) {
 					$next_page = $currentPage + 1;
 					$data['form_direction'] = $page_url.$next_page;
 				} else { 
-					//final submission case
-					$data['form_direction'] = $page_url.'0';
+					//final submission case ... /random fallback
+					$data['form_direction'] = $page_url.'1';
 				}
 
 				$this->load->view('baseline/base_'.$this->input->get('bid').'', $data);

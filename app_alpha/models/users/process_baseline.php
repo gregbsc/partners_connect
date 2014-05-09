@@ -32,5 +32,35 @@ class process_baseline extends CI_Model
 	} // end of process(); 
 
 
+	function baseline_progress( $uid ) {
+
+		$sql = "SELECT uid, section 
+				FROM baseline_results 
+				WHERE uid = {$uid} 
+				ORDER BY section 
+				DESC LIMIT 1";
+
+		$sqlResult = $this->db->query( $sql );
+
+		$cleanResult = $sqlResult->result();
+		
+		if(empty($cleanResult)) {
+			$recent = 0;
+		} else {
+			$recent = $cleanResult[0]->section;
+		}		
+
+		return $recent;
+
+	}
+
+	function complete_baseline( $uid ) {
+
+		$data = array( 'baseline' => 1 );
+		$this->db->where('userid', $uid);
+		$this->db->update('registration', $data); 
+
+	}
+
 
 }

@@ -7,20 +7,13 @@
 			<?php // template of sorts // ?>
 
 			<?php 
-			if( isset($createUsers) &&  $createUsers == TRUE ) : 
-				$this->load->view('admin/createUsers', $createUsers); 
-			endif; 
 
 			if(isset($activeUsers) && is_array( $activeUsers )) : 
 				$this->load->view('admin/activeUsers', $activeUsers); 
 			endif;
 
-			if( isset($removeUser) && $removeUser == TRUE ) :
-				$this->load->view('admin/remove', $removeUsersList);
-			endif;
-
 			if( isset($deactivatedUser) ) : 
-				$this->load->view('admin/deactivatedUsers', $removeUsersList);
+				$this->load->view('admin/deactivatedUsers', $deactivatedUser);
 			endif;
 			
 			if(isset($new_submissions) && !empty($new_submissions) && is_array($new_submissions)) :

@@ -35,7 +35,7 @@
         <div class="container">
 
         <div class="custom-tab-header">
-            <div class="custom-tab"> Text options here </div>
+            <div class="custom-tab"> <a href="/resources/">Resources</a> </div>
         </div>
             <p> <img id="logo" src="/assets/img/logo.png" />
         </div>

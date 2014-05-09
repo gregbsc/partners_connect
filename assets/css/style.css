@@ -71,7 +71,7 @@ table input[type="radio"]{
 .nomargin { margin:0 !important; }
 
 .custom-tab-header { width:100%; }
-
+.custom-tab-header a { color:white; padding-top:2px;}
 textarea.special { width: 400px; font-size:14px;}
 
 .custom-tab {

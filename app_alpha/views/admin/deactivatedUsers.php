@@ -5,12 +5,13 @@
 	<div class="container">
 
 		<ul>
+					
+			<?php foreach( $removeUsersList as $userToRem ) : ?>
 
-		<?php foreach( $removeUsersList as $userToRem ) : ?>
-			
-			<li> <?php echo $userToRem->username; ?> | <a href="/admin/deactivated/?activateid=<?php echo $userToRem->id; ?>">Re-activate</a> | <a href="/admin/deactivated/?delid=<?php echo $userToRem->id; ?>&dcheck=<?php echo md5('deletehash'); ?>">Permanently remove user</a> </li>
+				<?php // print_r($userToRem); ?>
+				<li> <?php echo $userToRem->username; ?> | <a href="/admin/deactivated/?activateid=<?php echo $userToRem->user_id; ?>">Re-activate</a> | <a href="/admin/deactivated/?delid=<?php echo $userToRem->user_id; ?>&dcheck=<?php echo md5('deletehash'); ?>">Permanently remove user</a> </li>
 
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 
 		</ul>
 

@@ -35,9 +35,9 @@
 
     <div class="container">
 
-        <div class="custom-tab-header">
-            <div class="custom-tab">Text options here</div>
-        </div>
+        <!-- <div class="custom-tab-header"> -->
+            <!-- <div class="custom-tab">Text options here</div> -->
+        <!-- </div> -->
         
         <p> <img id="logo" src="/assets/img/logo.png" /> </p>
 
@@ -47,7 +47,7 @@
 
                 <ul class="nav navbar-nav navbar-left">  
                                                 
-                    <li><a href="/admin">Home</a></li>                            
+                    <!-- <li><a href="/admin">Home</a></li> -->
                     
                     <li class="dropdown">
                         
@@ -55,21 +55,22 @@
                       
                         <span class="dropdown-arrow"> </span>
 
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/users">Eligible Participants</a></li>
-                            <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
-                            <li><a href="/admin/not-eligible">Not Eligible Participants</a></li>
-                            <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
-                            <li class="divider"></li> 
-                            <li><a href="/admin/create">Create user</a></li>
-                            <li><a href="/admin?delall=true">Remove temp users</a></li>
-                            <li><a href="/admin/remove">Deactivate user</a></li>
-                            <li><a href="/admin/deactivated/">Deactivated</a></li>
-                        </ul>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin/users">Eligible Participants</a></li>
+                                <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
+                                <li><a href="/admin/not-eligible">Not Eligible Participants</a></li>
+                                <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
+                                <li class="divider"></li> 
+                                <li><a href="/admin/create">Create User</a></li>
+                                <li><a href="/admin?delall=true">Remove Non Successful Attempts</a></li>
+                                <li><a href="/admin/opt-out-user">Opt Out User From Study</a></li>
+                                <li><a href="/admin/deactivated/">Delete Opted Out Users Data</a></li>
+                            </ul>
 
                     </li>
 
                     <li><a href="/admin/scheduled">Scheduled</a></li>
+                    <li><a href="/admin/resources">Useful Info</a></li>
                     <li><a href="/logout">Logout</a></li>
 
                 </ul>

@@ -24,7 +24,7 @@ class screener_model extends CI_Model
 			   'question_response' => $question_response,  
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
-			   'submission_time' => $submission_time
+			   //'submission_time' => $submission_time
 			);
 
 			$this->db->insert('screener_survey', $data);
@@ -35,40 +35,37 @@ class screener_model extends CI_Model
 
 	}
 
-	function register_user( $userIP, $submission_id ) {
+	function register_user( $userIP, $submission_id, $qualified ) {
 		
 		$sql = "SELECT submission_id, qualified, user_ip, status
 		FROM registration  
 		WHERE submission_id = '$submission_id'";
 
-		$expCondition = rand(0,1);
+		//$expCondition = rand(0,1);
+		$expCondition = 5;
 
 		$sqlResult = $this->db->query($sql);
 
 		if( isset($sqlResult->num_rows) && $sqlResult->num_rows > 0 ) {
-		
 			$data = array(
 			   'submission_id' => md5(time()), 
 			   'user_ip' => $userIP, 
-			   'qualified' => 1,
+			   'qualified' => $qualified,
 			   'status' => 'new',
 			   'group_condition' => $expCondition);
-		
 		} else {
-		
 			$data = array(
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
-			   'qualified' => 1,
+			   'qualified' => $qualified,
 			   'status' => 'new',
 			   'group_condition' => $expCondition);
-		
 		}
 
 		$this->db->insert('registration', $data);
 
 	}
-
+	
 	function user_info( $subid ) {
 
 		$sql = "SELECT *
@@ -94,7 +91,7 @@ class screener_model extends CI_Model
 
 	function user_registration_success( $sub_id, $userid ) {
 
-		$data = array( 'status' => 'registered', 'qualified' => 0, 'userid' => $userid );
+		$data = array( 'status' => 'registered', 'userid' => $userid );
 		
 		$this->db->where('submission_id', $sub_id);
 		$this->db->update('registration', $data); 

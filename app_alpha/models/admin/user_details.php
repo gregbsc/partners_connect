@@ -43,13 +43,11 @@ class user_details extends CI_Model
 		$data = array(
 		   'user_ip' =>  time() ,
 		   'submission_id' => time() ,
-		   'qualified' => '0' ,
+		   'qualified' => 1,
 		   'status' => 'registered',
 		   'consent' => '0',
 		   'userid' => $uid,
-		   'group_condition' => $expCondition
-
-		);
+		   'group_condition' => $expCondition );
 
 		$this->db->insert('registration', $data); 
 
@@ -111,5 +109,14 @@ class user_details extends CI_Model
 		$this->db->insert('user_notes', $data); 
 
 	}
+
+	function update_status ( $uid, $qualified ) {
+
+		$data = array( 'qualified' => $qualified  );
+		$this->db->where('userid', $uid);
+		$this->db->update('registration', $data); 
+
+	}
+
 
 }

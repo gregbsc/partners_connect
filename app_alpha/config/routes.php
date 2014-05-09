@@ -47,11 +47,11 @@ $route['default_controller'] = "screener/welcomePage";
 //$route['auth/(.+)$'] = "auth/$1";
 
 //admin routes
-
-$route['admin'] = "admin/admin";
+$route['admin'] = "admin/admin/users";
 $route['admin/login'] = "admin/admin/login";
 $route['admin/users'] = "admin/admin/users";
 $route['admin/create'] = "admin/admin/create";
+$route['admin/opt-out-user'] = "admin/admin/remove";
 $route['admin/remove'] = "admin/admin/remove";
 $route['admin/deactivated'] = "admin/admin/deactivated";
 $route['admin/user/details'] = "admin/user/details";
@@ -61,12 +61,8 @@ $route['admin/user/notes'] = "admin/user/notes";
 $route['admin/opted-out'] = "admin/admin/opted_out";
 $route['admin/not-eligible'] = "admin/admin/not_qualified";
 $route['admin/submissions'] = "admin/submissions";
-
+$route['admin/resources'] = "admin/admin/resources";
 //end of admin route
-
-
-//$route['migration'] = "migrations";
-
 
 //single instances
 $route['screen'] = "screener";

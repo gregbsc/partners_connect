@@ -33,9 +33,16 @@ $config['test_urls'] = array('127.0.0.1');
 
 // leave blank to remove index.php
 $config['index_page'] = '';
-
 $config['admin_email'] = "greg@bluscs.com";
 $config['rand_email'] = "greg@bluscs.com";
+
+//registration values -- mostly just for information sake
+$config['reg_val'] = array( 'null' => 0, 'qualified' => 1, 'not_qualified' => 2, 'opted_out' => 3 );
+
+$config['baseline_max_v1'] = 9;
+
+//version 2 could be any number... this is just in case somebody wants to make custom changes in the future
+//$config['baseline_max_v1'] = ...;
 
 /*
 |--------------------------------------------------------------------------
