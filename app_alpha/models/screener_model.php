@@ -47,19 +47,23 @@ class screener_model extends CI_Model
 		$sqlResult = $this->db->query($sql);
 
 		if( isset($sqlResult->num_rows) && $sqlResult->num_rows > 0 ) {
+
 			$data = array(
 			   'submission_id' => md5(time()), 
 			   'user_ip' => $userIP, 
 			   'qualified' => $qualified,
 			   'status' => 'new',
 			   'group_condition' => $expCondition);
+
 		} else {
+
 			$data = array(
 			   'submission_id' => $submission_id, 
 			   'user_ip' => $userIP, 
 			   'qualified' => $qualified,
 			   'status' => 'new',
 			   'group_condition' => $expCondition);
+			
 		}
 
 		$this->db->insert('registration', $data);

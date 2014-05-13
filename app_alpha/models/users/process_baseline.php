@@ -13,14 +13,27 @@ class process_baseline extends CI_Model
 
 			if($question != "section") {
 
-				$data_response = array(
-					'uid' => $uid,
-				    'question' => $question,
-				    'response' => $response,
-				    'date' => time(),
-				    'section' => $section_id
-				);
+				if(is_array($response)) {
 
+					$array_response = json_encode($response);
+
+					$data_response = array(
+						'uid' => $uid,
+					    'question' => $question,
+					    'response' => $array_response,
+					    'date' => time(),
+					    'section' => $section_id
+					);
+					
+				} else {
+					$data_response = array(
+						'uid' => $uid,
+					    'question' => $question,
+					    'response' => $response,
+					    'date' => time(),
+					    'section' => $section_id
+					);
+				}
 				$this->db->insert('baseline_results', $data_response); 
 
 				unset($data_response);
@@ -45,7 +58,7 @@ class process_baseline extends CI_Model
 		$cleanResult = $sqlResult->result();
 		
 		if(empty($cleanResult)) {
-			$recent = 0;
+			$recent = 1;
 		} else {
 			$recent = $cleanResult[0]->section;
 		}		
@@ -56,7 +69,8 @@ class process_baseline extends CI_Model
 
 	function complete_baseline( $uid ) {
 
-		$data = array( 'baseline' => 1 );
+		$expCondition = rand(0,1);
+		$data = array( 'baseline' => 1, 'group_condition' => $expCondition );
 		$this->db->where('userid', $uid);
 		$this->db->update('registration', $data); 
 

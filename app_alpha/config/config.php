@@ -37,9 +37,14 @@ $config['admin_email'] = "greg@bluscs.com";
 $config['rand_email'] = "greg@bluscs.com";
 
 //registration values -- mostly just for information sake
+//qualified value in the registration table
 $config['reg_val'] = array( 'null' => 0, 'qualified' => 1, 'not_qualified' => 2, 'opted_out' => 3 );
 
+//this is the value used to track the total number of views being loaded for the baseline survey. Max is 9, so on the ninth the survey is complete
 $config['baseline_max_v1'] = 9;
+
+//baseline version, load views in that folder
+$config['baseline_version'] = "v1";
 
 //version 2 could be any number... this is just in case somebody wants to make custom changes in the future
 //$config['baseline_max_v1'] = ...;

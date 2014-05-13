@@ -35,7 +35,7 @@ class user extends CI_Controller {
 	
 	public function index()
 	{
-	
+
 		$data['noinfo'] = '';
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
@@ -96,6 +96,7 @@ class user extends CI_Controller {
 
 					$email_title = "Test title for initial contact";
 					$email_type = "Initial Email";
+					$site_url = '';
 					$email_body = "Hi, Name Here. Login using the following URL, <a href='http://pconnect.linuxblu.com/user/'>http://pconnect.linuxblu.com/user/</a> ";
 
 					//send email
@@ -176,7 +177,11 @@ class user extends CI_Controller {
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
-			if( $this->input->get('uid') && $this->input->get('type') ) {
+			if( $this->input->get('uid') ) {
+
+				//get all notes here
+				$all_notes = $this->user_details->all_notes( $this->input->get('uid') );
+				$data['note_history'] = $all_notes;
 
 				$sub_id =  $this->user_details->subid( $this->input->get('uid') );
 				$user_details = $this->ion_auth->user( $this->input->get('uid') )->row();

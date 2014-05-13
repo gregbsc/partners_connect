@@ -41,7 +41,7 @@
 
 // The plan is to explicity declare the controllers being used, then to find a generic rewrite for each case that works. 
 
-$route['default_controller'] = "screener/welcomePage";
+$route['default_controller'] = "resources/welcome";
 
 //auth lbrary 
 //$route['auth/(.+)$'] = "auth/$1";
@@ -60,6 +60,7 @@ $route['admin/scheduled'] = "admin/scheduled";
 $route['admin/user/notes'] = "admin/user/notes";
 $route['admin/opted-out'] = "admin/admin/opted_out";
 $route['admin/not-eligible'] = "admin/admin/not_qualified";
+$route['admin/not-opt-in'] = "admin/admin/not_opt_in";
 $route['admin/submissions'] = "admin/submissions";
 $route['admin/resources'] = "admin/admin/resources";
 //end of admin route
@@ -73,7 +74,7 @@ $route['contact'] = "resources/contact";
 
 $route['no-thank-you'] = "resources/nothankyou";
 
-$route['baseline'] = 'baseline';
+// $route['baseline/:num'] = 'baseline';
 
 $route['404_override'] = '';
 //end of single instances
@@ -81,7 +82,7 @@ $route['404_override'] = '';
 
 //  USER routes
 $route['user'] = "user/user";
-$route['user/baseline'] = "user/user/baseline";
+$route['user/baseline/:num'] = "user/user/baseline";
 $route['user/consent'] ="user/user/consent";
 $route['user/login'] = "user/user/login";
 $route['user/update'] = "user/user/update";

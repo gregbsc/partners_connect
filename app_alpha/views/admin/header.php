@@ -39,7 +39,7 @@
             <!-- <div class="custom-tab">Text options here</div> -->
         <!-- </div> -->
         
-        <p> <img id="logo" src="/assets/img/logo.png" /> </p>
+        <p> <img id="logo" src="/assets/img/pconnect.png" /> </p>
 
         <nav class="navbar navbar-inverse navbar-embossed mtop50" role="navigation">
 
@@ -58,6 +58,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/admin/users">Eligible Participants</a></li>
                                 <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
+                                <li><a href="/admin/not-opt-in">Participants who didnt opt in</a></li>
                                 <li><a href="/admin/not-eligible">Not Eligible Participants</a></li>
                                 <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
                                 <li class="divider"></li> 

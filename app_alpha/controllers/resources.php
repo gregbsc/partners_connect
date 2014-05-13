@@ -37,8 +37,13 @@ class Resources extends CI_Controller {
 			if( $this->input->post('reason') ) {
 
 				//load model 
-				$this->load->model('users/user_info');	
-				$this->user_info->decline_reason($this->input->get('subid'), $this->input->post('reason'));
+				$this->load->model('users/user_info');
+
+				//decline notes
+				$this->user_info->decline_reason($this->input->get('subid'), $this->input->post('reason'), $this->input->post('reason_select'));
+
+				//1 == declined / opted out before creating user account
+				$this->user_info->declined_status( $this->input->get('subid'), 1 );
 				redirect('no-thank-you','refresh');
 
 			}
@@ -59,6 +64,14 @@ class Resources extends CI_Controller {
 		$this->load->view('contact');
 		$this->load->view('footer');
 
+	}
+
+	public function welcome()
+	{	
+		$this->load->view('header');
+		$this->load->view('signup/welcome');
+		$this->load->view('footer');
+		
 	}
 
 }

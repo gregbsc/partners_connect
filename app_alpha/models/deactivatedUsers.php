@@ -32,7 +32,17 @@ class deactivatedUsers extends CI_Model
 		return $clean_result;
 
 	}
+	function getNotOptIn() {
 
+		$sql = "SELECT * FROM registration WHERE qualified = 1";
+
+		$sqlResult = $this->db->query($sql);
+
+		$clean_result = $sqlResult->result();
+
+		return $clean_result;
+
+	}
 	function notEligScreener( $sub_id ) {
 
 		$sql = "SELECT * FROM screener_survey WHERE submission_id = '$sub_id' ";

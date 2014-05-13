@@ -61,7 +61,6 @@ class user_info extends CI_Model
 		$this->db->where('userid', $uid );
 		$query = $this->db->get();
 
-
 		if( !empty($query) ) {
 
 			$clean_result = $query->result();
@@ -88,7 +87,6 @@ class user_info extends CI_Model
 		$this->db->where('userid', $uid );
 		$query = $this->db->get();
 
-
 		if( !empty($query) ) {
 
 			$clean_result = $query->result();
@@ -103,7 +101,6 @@ class user_info extends CI_Model
 			return NULL;
 		}
 
-
 	} // end details
 
 	function update_consent( $status_consent, $uid ) {
@@ -112,19 +109,28 @@ class user_info extends CI_Model
 		1 == consented
 		2 == did not consent
 		*/
-
 		$data = array('consent' => $status_consent );           
 		$this->db->where('userid', $uid);
 		$this->db->update('registration', $data);
 
 	}
 
-	function decline_reason( $sub_id, $decline_reason ) {
+	function decline_reason( $sub_id, $decline_reason, $decline_array ) {
 
-		$data = array('user_notes' => $decline_reason );
+		$decline_array = json_encode($decline_array);
+
+		$data = array('decline_notes' => $decline_reason, 'user_decline_options' => $decline_array );
 		$this->db->where('submission_id', $sub_id);
 		$this->db->update('registration', $data);
 		
+	}
+
+	function declined_status( $sub_id, $status ) {
+
+		$data = array('declined' => $status );           
+		$this->db->where('submission_id', $sub_id);
+		$this->db->update('registration', $data);
+
 	}
 
 }

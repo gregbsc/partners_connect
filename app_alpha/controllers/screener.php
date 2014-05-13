@@ -42,12 +42,9 @@ class screener extends CI_Controller {
 		// REALLY IMPORTANT -- THIS IS HOW USERS SUBMISSIOSN ARE TRACKED ON SUBMISSION 
 		$submission_id = md5( $userIP + $submission_time );
 
-
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
 		//END VIEW
-
-
 
 		if( $_POST && $previousIP < 1 ) {
 

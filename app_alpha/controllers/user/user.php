@@ -50,12 +50,13 @@ class user extends CI_Controller {
 
 			//current baseline status
 			$baseline_status = $this->baseline_status;
-			$base_prefix = "/user/baseline/?bid=";
+			$raw_next_int =  $baseline_status + 1;
+			$base_prefix = "/user/baseline/";
 
 			if( $baseline_status == 0 ) { 
 				$return_base = $base_prefix.'1';
 			} else if( $baseline_status <= $this->active_baseline ) {
-				$next_int = $baseline_status + 1;
+				$next_int = $raw_next_int;
 				$return_base = $base_prefix.$next_int;
 			} else {
 				$return_base = $base_prefix;
@@ -145,50 +146,73 @@ class user extends CI_Controller {
 
 	public function baseline() {
 
-		$baseMax = $this->active_baseline;
-
-		$this->load->helper('form_building_helper');
-
-		$baseline_status = $this->baseline_status;
-
-		if( $_POST && ( $this->input->post('section') <= $baseMax ) && isset( $this->user_id ) ) { 
-
-			$this->process_baseline->process( $baseline = $_POST, $this->user_id );
-
-		}
-
-		//update user status to baseline completed AND redirect to user login page when completed
-		if( $baseline_status == $this->active_baseline ) {
-
-			$this->process_baseline->complete_baseline( $this->user_id );
-			redirect('/user/','redirect');
-
-		}
-
 		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+
+			$baseMax = $this->active_baseline;
+
+			//this is where baseline values are sent to db
+			if( $_POST && ( $this->input->post('section') <= $baseMax ) && isset( $this->user_id ) ) { 
+
+				$this->process_baseline->process( $baseline = $_POST, $this->user_id );
+
+			} 
+
+			//this is used multiple places, specifically for current page.
+			$form_position = $this->uri->segment(3);
+
+			
+
+			$this->load->helper('form_building_helper');
+
+			//this is the number of the last section submitted
+			$baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
+			//this is the last submission section + 1, which should also be the current page a user would be one
+			$raw_next_int =  $baseline_status + 1;
+			//this would be the current page location based on the url + 1, or the next form location 
+			$next_form_page = $form_position + 1;
+
+
+
+			//update user status to baseline completed AND redirect to user login page when completed
+			if( $baseline_status == $this->active_baseline ) {
+
+				$this->process_baseline->complete_baseline( $this->user_id );
+				//$this->process_baseline->random_condtion( $this->user_id );
+				redirect('/user/','redirect');
+
+			}
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('header');
-			$page_url = 'user/baseline?bid=';
+			$page_url = 'user/baseline/';
 
 			//if baseline page
-			if($this->input->get('bid')) { 
+			if($this->uri->segment(3)) {
 				
-				$currentPage = $this->input->get('bid');
+				$currentPage = $form_position;
+
 				$percentComp = ($currentPage / $baseMax) * 100;
 
 				// eek -- I need to move this to the view before completing.. and remove inline style..
 				$data['percentDone'] = '<div class="mtop50" style="width:100%;border:1px solid #ccc;height:30px"><div style="background-color:blue;width:'.$percentComp.'%;height:28px;"></div></div>';		
 
+				//force a redirect if wrong link or user breaks flow
+				if( $currentPage > $baseline_status + 1 || $currentPage < $baseline_status ) {
+					$force_redirect = '/user/baseline/'.$raw_next_int;
+					redirect($force_redirect,'redirect');
+				}
+
 				if( $currentPage < $baseMax ) {
-					$next_page = $currentPage + 1;
-					$data['form_direction'] = $page_url.$next_page;
+
+					$next_page = $raw_next_int + 1;
+					$data['form_direction'] = $page_url.$next_form_page;
+
 				} else { 
 					//final submission case ... /random fallback
 					$data['form_direction'] = $page_url.'1';
 				}
 
-				$this->load->view('baseline/base_'.$this->input->get('bid').'', $data);
+				$this->load->view('baseline/'.$this->config->item('baseline_version').'/base_'.$currentPage.'', $data);
 
 			} else {
 
@@ -350,7 +374,7 @@ class user extends CI_Controller {
 
 			} else {
 
-				$data['message'] = 'There was an issue with reseting your password. Please contact rand.';
+				$data['message'] = 'There was an issue with reseting your password. Please contact Rand.';
 
 			}
 
@@ -367,10 +391,12 @@ class user extends CI_Controller {
 
 	public function schedule() {
 
+		$data['initiatilize'] = true;
+
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
 		//VIEW BEING CALLED HERE
-		$this->load->view('user/change_password', $data);
+		$this->load->view('user/schedule', $data);
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
 

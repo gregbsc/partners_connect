@@ -8,7 +8,7 @@
 
 				<div>
 
-					<p>You successfully created your account. <a href="/user/login/">Click here</a> to login.</p>
+					<p>Thank you for your interest! We will get in touch with you soon.</p>
 
 				</div>
 			

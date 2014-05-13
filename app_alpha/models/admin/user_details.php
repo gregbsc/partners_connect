@@ -38,7 +38,6 @@ class user_details extends CI_Model
 
 	function insert_details( $uid ) {
 
-		$expCondition = rand(0,1);
 		
 		$data = array(
 		   'user_ip' =>  time() ,
@@ -47,7 +46,7 @@ class user_details extends CI_Model
 		   'status' => 'registered',
 		   'consent' => '0',
 		   'userid' => $uid,
-		   'group_condition' => $expCondition );
+		   'group_condition' => 5 );
 
 		$this->db->insert('registration', $data); 
 

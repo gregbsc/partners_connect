@@ -8,9 +8,11 @@
 
 				<div>
 
-					<h4 class="h4">Unfortunately you are not qualified for our study. However please take a momen to visit our resources page to see what services are available.</h4>
-					<a href="<?php echo site_url("resources"); ?>" class="btn btn-block btn-lg btn-inverse" style="width:400px; margin:0 auto; margin-top:100px;">Resources Page</a>
+					<h4 class="h4">Thanks for filling out those questions. Based on your answers, this study is not the best fit for you.</h4>
+					
+					<p class="mtop40"> If you have questions about Partners Connect, please contact us at connect@rand.org. If you are interested in other resources, please click <a href='/resources'>here</a> </p>
 
+					
 				</div>
 			
 			</div>

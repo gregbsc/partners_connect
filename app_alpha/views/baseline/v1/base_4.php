@@ -65,26 +65,26 @@
 		<p class="mtop40">12. How often do you have a drink containing alcohol?</p>
 
 		<p class="custom-q-wrapper med-width">
-			<input type="checkbox" name="AUD1" value="0"/> Never </br>						
-			<input type="checkbox" name="AUD1" value="1"/> Monthly or less </br>
-			<input type="checkbox" name="AUD1" value="2"/> 2-4 times a month </br>
-			<input type="checkbox" name="AUD1" value="3"/> 2-3 times a week </br>
-			<input type="checkbox" name="AUD1" value="4"/> 4 or more times a week </br>
+			<input type="checkbox" name="AUD1[]" value="0"/> Never </br>						
+			<input type="checkbox" name="AUD1[]" value="1"/> Monthly or less </br>
+			<input type="checkbox" name="AUD1[]" value="2"/> 2-4 times a month </br>
+			<input type="checkbox" name="AUD1[]" value="3"/> 2-3 times a week </br>
+			<input type="checkbox" name="AUD1[]" value="4"/> 4 or more times a week </br>
 		</p>
 
 		<p class="mtop40">13. How many standard drinks containing alcohol do you have on a typical day?</p>
 			<input type="number" name="AUD2" min="0" max="90" required /> </br>
-			<p class="mtop20"> I don't know <input type="checkbox" name="AUD2b" /> </span> </p>
+			<p class="mtop20"> I don't know <input type="checkbox" name="AUD2CheckBox" /> </span> </p>
 
 
 		<p class="mtop40">14. How often do you have six or more drinks on one occasion?</p>
 
 		<p class="custom-q-wrapper max-form med-width">	
-			Never 						<input type="checkbox" name="AUD3" value="0" required /> </br>
-			Less than monthly   		<input type="checkbox" name="AUD3" value="1" /> </br>
-			Monthly  	 				<input type="checkbox" name="AUD3" value="2" /> </br>
-			Weekly  					<input type="checkbox" name="AUD3" value="3" /> </br>
-			Daily or almost daily   	<input type="checkbox" name="AUD3" value="4" /> </br>
+			Never 						<input type="checkbox" name="AUD3[]" value="0" required /> </br>
+			Less than monthly   		<input type="checkbox" name="AUD3[]" value="1" /> </br>
+			Monthly  	 				<input type="checkbox" name="AUD3[]" value="2" /> </br>
+			Weekly  					<input type="checkbox" name="AUD3[]" value="3" /> </br>
+			Daily or almost daily   	<input type="checkbox" name="AUD3[]" value="4" /> </br>
 		</p>
 
 		<h4 class="h4 mtop50">YOUR PARTNER</h4>

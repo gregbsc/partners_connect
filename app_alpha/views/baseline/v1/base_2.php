@@ -32,15 +32,15 @@
 
 		<p>4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.)</p>
 
-		<p class="custom-q-wrapper max-form">
-			From a mental health professional at a Military Facility 	 						<input type="checkbox" name="MHHELP3" value="1" class="fright" /> </br>
-			From a general medical doctor at a Military Facility 	 							<input type="checkbox" name="MHHELP3" value="2" class="fright"/> </br>
-			From a Military Chaplain 	 														<input type="checkbox" name="MHHELP3" value="3" class="fright"/> </br>
-			From a mental health professional at a civilian facility 	 						<input type="checkbox" name="MHHELP3" value="4" class="fright"/> </br>
-			From a general medical doctor at a civilian facility 	 							<input type="checkbox" name="MHHELP3" value="5" class="fright"/> </br>
-			From a civilian clergy member (for example, from a priest, minister, or rabbi)  	<input type="checkbox" name="MHHELP3" value="6" class="fright"/> </br>
-			From an adult family member or friend 												<input type="checkbox" name="MHHELP3" value="7" class="fright"/> </br>
-			From some other source: <input type="text" value="" placeholder="Please Specify" /> [8 (& 9 if applicable)] Question <--	</br>
+		<p class="checkboxes">
+			<input type="checkbox" name="MHHELP3[]" value="1" /> From a mental health professional at a Military Facility 	 						 </br>
+			<input type="checkbox" name="MHHELP3[]" value="2" /> From a general medical doctor at a Military Facility 	 							 </br>
+			<input type="checkbox" name="MHHELP3[]" value="3" /> From a Military Chaplain 	 														 </br>
+			<input type="checkbox" name="MHHELP3[]" value="4" /> From a mental health professional at a civilian facility 	 						 </br>
+			<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
+			<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
+			<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
+			From some other source: <input type="text" value="" placeholder="Please Specify" name="MHHELPOTHER"/> <strong> [8 (& 9 if applicable)] Question <-- </strong>	</br>
 		</p>
 		
 

@@ -236,6 +236,31 @@ class Admin extends CI_Controller {
 			$data['notqlist'] = $this->deactivatedUsers->getNotElig();
 
 			if( $this->input->get('note_id') ) {
+				$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
+			}
+
+		} else { 
+
+			redirect("admin/login", 'redirect');
+
+		} 
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/notqualifieduers', $data);
+		$this->load->view('footer');
+
+	}
+	
+	public function not_opt_in() {
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+			
+			$this->load->model('deactivatedUsers');
+
+			$data['notqlist'] = $this->deactivatedUsers->getNotOptIn();
+
+			if( $this->input->get('note_id') ) {
  
 				$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
 
@@ -243,7 +268,7 @@ class Admin extends CI_Controller {
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
-			$this->load->view('admin/notqualifieduers', $data);
+			$this->load->view('admin/notoptin', $data);
 			$this->load->view('footer');
 
 		} else { 
@@ -251,7 +276,6 @@ class Admin extends CI_Controller {
 		} 
 
 	}
-
 	public function opted_out() {
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {

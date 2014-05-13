@@ -4,7 +4,7 @@
 
 	<div class="container">
 
-		<div class="col-md-6">
+		<div class="col-md-4">
 
 			<?php if(isset($user_details)) : ?>
 				
@@ -54,6 +54,23 @@
 			</div>
 
 		<?php endif; ?>
+
+		<?php if(isset($note_history)) : ?>
+		
+			<div class="col-md-4">
+
+				<p><span class="h4">User Notes</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/notes/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to add notes</a></p>
+
+				<ul class="emailul specialul">
+
+					<?php $this->load->view('admin/note_history', $data['note_history'] = $note_history); ?>
+
+				</ul>
+
+			</div>
+
+		<?php endif; ?>
+
 
 	</div>
 
