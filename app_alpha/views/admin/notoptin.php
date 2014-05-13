@@ -3,7 +3,7 @@
 <div class="row">
 
 	<div class="container">
-		<p class="tcenter"> This section (participants who did not option in) displays users whom were eligible for the study but chose not to take part. </p>
+		<p class="tcenter"> This section  displays participants who did not opt in but were eligible for the study and chose not to take part. </p>
 		<div class="col-md-6">
 
 			<ul>

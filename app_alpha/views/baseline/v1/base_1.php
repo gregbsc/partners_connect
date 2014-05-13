@@ -8,7 +8,7 @@
 							
 		<h4 class="h4 tcenter mtop40">Baseline Survey</h4>
 
-		<?php echo ( isset( $percentDone ) ? $percentDone : "" ); ?>
+		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
 		<p>Welcome to the PARTNERS CONNECT Survey. The purpose of these questions is to understand how you are currently doing and what your relationship is like. Your answers to this survey will be kept private. That means we will not share your responses with anyone outside the research team.  </p>
 			
@@ -149,6 +149,42 @@
 			</tr>
 
 		</table>
+<p class="mtop40">Sometimes people need help for personal or emotional issues. These next questions ask about help you might have gotten.</p>
+
+		<p>3. Do you regularly take any prescribed medication for any psychological issues? </p>
+
+		<select name="MHHELP1" required class="mbot40">
+			<option selected="selected" disabled="disabled">Select One</option>
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</select>
+
+		<p>4. In the past year, did you receive mental health counseling or therapy for personal or emotional issues? </p>
+
+		<select name="MHHELP2" required class="mbot40" onchange="alert(this)">
+			<option selected="selected" disabled="disabled">Select One</option>
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</select> </br>
+
+		<?php // if yes to 4, 4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.) // ?>
+		
+		<div id="4a" class="cover">
+			
+			<p>4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.)</p>
+
+			<p class="checkboxes">
+				<input type="checkbox" name="MHHELP3[]" value="1" /> From a mental health professional at a Military Facility 	 						 </br>
+				<input type="checkbox" name="MHHELP3[]" value="2" /> From a general medical doctor at a Military Facility 	 							 </br>
+				<input type="checkbox" name="MHHELP3[]" value="3" /> From a Military Chaplain 	 														 </br>
+				<input type="checkbox" name="MHHELP3[]" value="4" /> From a mental health professional at a civilian facility 	 						 </br>
+				<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
+				<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
+				<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
+				From some other source: <input type="text" value="" placeholder="Please Specify" name="MHHELPOTHER"/> <strong> [8 (& 9 if applicable)] Question <-- </strong>	</br>
+			</p>
+
+		</div>
 
 		<input type="hidden" name="section" value="1" />
 
@@ -161,6 +197,7 @@
 	</div>
 
 </div>
+
 
 <script src="/assets/js/baseline.js" type="text/javascript" />
 		

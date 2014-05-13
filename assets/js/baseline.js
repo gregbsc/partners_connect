@@ -1,5 +1,10 @@
 jQuery( document ).ready(function() {
 
-	//alert('still in developement');
+	function childID( childID ) {
+
+		childIdToShow = '#'+childID;
+		$(childIdToShow).show();
+
+	}
 
 });

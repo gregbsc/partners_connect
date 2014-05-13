@@ -1,5 +1,5 @@
     
-    <?php $this->load->view('fiveTimeOut'); ?>
+    <?php // $this->load->view('fiveTimeOut'); ?>
     
 	<!-- <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p> -->
 

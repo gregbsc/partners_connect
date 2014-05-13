@@ -24,6 +24,9 @@
         <p>Phone Number ( format : 555-555-5555 ) </p>
         <input type="tel" name="phone" placeholder="" required="" /> </br>
 
+        <p>Best time to contact</p>
+        <textarea name='best_time' placeholder="Instructions for the best time to contact you."></textarea> </br>
+
         <input type="hidden" name="subid" value="<?php echo $subid; ?>" />
 
         <input type="submit" value="submit" style="margin-top:20px;" />

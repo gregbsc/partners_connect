@@ -53,7 +53,7 @@ class user extends CI_Controller {
 			$raw_next_int =  $baseline_status + 1;
 			$base_prefix = "/user/baseline/";
 
-			if( $baseline_status == 0 ) { 
+			if( $baseline_status == 0 || $baseline_status == 1 ) {
 				$return_base = $base_prefix.'1';
 			} else if( $baseline_status <= $this->active_baseline ) {
 				$next_int = $raw_next_int;
@@ -160,8 +160,6 @@ class user extends CI_Controller {
 			//this is used multiple places, specifically for current page.
 			$form_position = $this->uri->segment(3);
 
-			
-
 			$this->load->helper('form_building_helper');
 
 			//this is the number of the last section submitted
@@ -194,19 +192,18 @@ class user extends CI_Controller {
 				$percentComp = ($currentPage / $baseMax) * 100;
 
 				// eek -- I need to move this to the view before completing.. and remove inline style..
-				$data['percentDone'] = '<div class="mtop50" style="width:100%;border:1px solid #ccc;height:30px"><div style="background-color:blue;width:'.$percentComp.'%;height:28px;"></div></div>';		
+				$data['percentDone'] = $percentComp;		
 
 				//force a redirect if wrong link or user breaks flow
-				if( $currentPage > $baseline_status + 1 || $currentPage < $baseline_status ) {
+				//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
+				if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
 					$force_redirect = '/user/baseline/'.$raw_next_int;
 					redirect($force_redirect,'redirect');
-				}
+				} 
 
 				if( $currentPage < $baseMax ) {
-
 					$next_page = $raw_next_int + 1;
 					$data['form_direction'] = $page_url.$next_form_page;
-
 				} else { 
 					//final submission case ... /random fallback
 					$data['form_direction'] = $page_url.'1';
@@ -218,8 +215,9 @@ class user extends CI_Controller {
 
 				$percentComp = 1 / $baseMax * 100;
 				$data['form_direction'] = $page_url.'2';
-				$data['percentDone'] = '<div class="width:400px;border:1px solid #ccc;height:28px;"><div style="background-color:blue;width:'.$percentComp.'%;height:28px;"></div></div>';
+				$data['percentDone'] = $percentComp;
 
+				//view called here
 				$this->load->view('baseline/base_1', $data);
 
 			}

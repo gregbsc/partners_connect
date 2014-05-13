@@ -46,4 +46,14 @@ if (!function_exists('form_building_helper'))
 
     }
 
+    function form_progress( $percentDone ) {
+
+        $int_progress = intval($percentDone);
+        $html_return = '<p class="tcenter mtop20">'.$int_progress.'% Complete</p>';
+        $html_return .= '<div class="complete-bar mbot20"><div class="bar-inner" style="width:'.$percentDone.'%;"></div></div>';
+        return $html_return;
+
+    }
+
+
 }

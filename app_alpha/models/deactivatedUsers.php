@@ -24,9 +24,7 @@ class deactivatedUsers extends CI_Model
 	function getNotElig() {
 
 		$sql = "SELECT * FROM registration WHERE qualified = 2";
-
 		$sqlResult = $this->db->query($sql);
-
 		$clean_result = $sqlResult->result();
 
 		return $clean_result;
@@ -34,10 +32,8 @@ class deactivatedUsers extends CI_Model
 	}
 	function getNotOptIn() {
 
-		$sql = "SELECT * FROM registration WHERE qualified = 1";
-
+		$sql = "SELECT * FROM registration WHERE qualified = 1 AND declined = 1";
 		$sqlResult = $this->db->query($sql);
-
 		$clean_result = $sqlResult->result();
 
 		return $clean_result;
@@ -56,7 +52,6 @@ class deactivatedUsers extends CI_Model
 
 
 		$sql = "SELECT submission_id, userid FROM registration WHERE userid = {$uid}";
-
 		$sqlResult = $this->db->query($sql);
 		$cleanResult = $sqlResult->result();
 
@@ -81,9 +76,9 @@ class deactivatedUsers extends CI_Model
 		//table users_groups defines user permisions based off of the table groups. Admin group_id = 1, user group_id = 2. 
 		$sql = "SELECT * 
 		FROM users 
-		INNER JOIN registration
-		ON users.id = registration.userid
-		WHERE registration.consent = 2 ";
+			INNER JOIN registration
+			ON users.id = registration.userid
+		WHERE registration.consent = 2";
 
 		$sqlResult = $this->db->query($sql);
 

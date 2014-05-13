@@ -58,7 +58,7 @@ class process_baseline extends CI_Model
 		$cleanResult = $sqlResult->result();
 		
 		if(empty($cleanResult)) {
-			$recent = 1;
+			$recent = 0;
 		} else {
 			$recent = $cleanResult[0]->section;
 		}		

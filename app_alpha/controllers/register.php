@@ -63,7 +63,8 @@ class register extends CI_Controller {
 						//data to create user...
 						$additional_data = array( 'first_name' => $this->input->post('first_name'), 
 							'last_name' => $this->input->post('last_name'), 
-							'phone' => $phone );
+							'phone' => $phone,
+							'best_contact' => $this->input->post('best_time') );
 
 						// create application user
 						$createUser = $this->ion_auth->register($username, $password, $email, $additional_data, $group_name);

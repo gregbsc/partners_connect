@@ -8,91 +8,106 @@
 							
 		<h4 class="h4 mtop40 tcenter">Baseline Survey</h4>
 		
-		<?php echo ( isset( $percentDone ) ? $percentDone : "" ); ?>
+		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
-			<table class="baseline-table mtop40"> 
+		<p class="mtop40">21. On a scale from 0 to 10, how ready do you think your partner feels about seeking help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
+			0 = Has not done anything to seek help
+			1
+			2=  Has talked about seeking help, but has no plans to do so yet 
+			3
+			4
+			5 = Has a plan for seeking help
+			5
+			7 = Just started seeking help
+			8
+			9
+			10 = Has sought help and plans to continue
 
-			<tr> <th></th><th>Not at all</th><th></th><th></th><th></th><th></th><th></th> <th>Very much</th> </tr>
-			<tr> <td>17. To what extent do you think your partner has an alcohol problem?1</td> 
-				<?php table_row( 1, 7, '', 'CPD26' ); ?>
+
+		<p class="mtop40">22. In the past three months, how often did you…</p>
+
+		<table class="baseline-table">
+			<tr> <th>Never or only once</th><th>Sometimes</th><th>Frequently</th><th>Frequently</th><th>Always or almost always</th> </tr>
+
+			<tr> 
+				<td>Try to stop your partner's drinking by getting angry?</td>
+				<?php table_row( 1, 4, '', 'INT1' ); ?>
+			</tr>
+			<tr> 
+				<td>Have arguments about your partner’s drinking while he/she was drinking?</td>
+				<?php table_row( 1, 4, '', 'INT2' ); ?>
+			 </tr>
+			<tr> 
+				<td>Show how unhappy you were when your partner was drinking?</td>
+				<?php table_row( 1, 4, '', 'INT3' ); ?>
+			</tr>
+
+			<tr> 
+				<td>Try to scare your partner from drinking by giving warnings?</td>
+				<?php table_row( 1, 4, '', 'INT4' ); ?>
+			</tr>
+			<tr> 
+				<td>Tell your partner the things that he/she did when he/she was drunk?</td>
+				<?php table_row( 1, 4, '', 'INT5' ); ?>
+			</tr>
+			<tr> 
+				<td>Spend more time with your partner when he/she was not drinking?</td>
+				<?php table_row( 1, 4, '', 'INT6' ); ?>
+			</tr>
+			<tr> 
+				<td>Do things your partner likes when he/she was not drinking?</td>
+				<?php table_row( 1, 4, '', 'INT7' ); ?>
+			</tr>
+			<tr> <td>Give your partner compliments when he/she was not drinking?</td>
+				<?php table_row( 1, 4, '', 'INT8' ); ?>
+			</tr>
+			<tr> 
+				<td>Enjoy your partner's company when he/she was not drinking?</td>
+				<?php table_row( 1, 4, '', 'INT9' ); ?>
+			</tr>
+			<tr> <td>Do special things for your partner when he/she was not drinking?</td>
+				<?php table_row( 1, 4, '', 'INT10' ); ?> 
+			</tr>
+			<tr> <td>Support your partner when he/she was having trouble staying sober?</td>
+				<?php table_row( 1, 4, '', 'INT11' ); ?>
+			<tr> 
+				<td>Arrange non-drinking social outings with your partner?</td>
+				<?php table_row( 1, 4, '', 'INT12' ); ?>
+			</tr>
+			<tr> 
+				<td>When your partner was not drinking, how much did you enjoy each other?</td>
+				<?php table_row( 1, 4, '', 'INT13' ); ?>
+			</tr>
+			<tr> 
+				<td>Bring alcoholic beverages home?</td>
+				<?php table_row( 1, 4, '', 'INT14' ); ?> 
+			</tr>
+			<tr> 
+				<td>Do things your partner likes when he/she was drinking?</td>
+				<?php table_row( 1, 4, '', 'INT15' ); ?>
+			</tr>
+			<tr> 
+				<td>Support your partner to have "just two or three" drinks?</td>
+				<?php table_row( 1, 4, '', 'INT16' ); ?>
+			</tr>
+			<tr> 
+				<td>Refuse be home with your partner when he/she was drinking?</td>
+				<?php table_row( 1, 4, '', 'INT17' ); ?>
+			</tr>
+			<tr> 
+				<td>Keep out of your partner's way when he/she was drunk?</td>
+				<?php table_row( 1, 4, '', 'INT18' ); ?>
+			</tr>
+			<tr> 
+				<td>Go out alone when your partner was drinking?</td>
+				<?php table_row( 1, 4, '', 'INT19' ); ?>
+			</tr>
+			<tr> 
+				<td>Refuse to take care of your partner when he/she was drunk?</td>
+				<?php table_row( 1, 4, '', 'INT20' ); ?>
 			</tr>
 
 		</table>
-
-		<p class="mtop40">18. How often do you and your partner argue about your partner’s drinking?</p>
-
-			<p class="radio-buttons">
-
-				<input type="radio" name="ADP1" value="0" required/> Never </br>
-				<input type="radio" name="ADP1" value="1" /> Less than once per year </br>
-				<input type="radio" name="ADP1" value="2" /> About once per year </br>
-				<input type="radio" name="ADP1" value="3" /> Two to three times per year </br>
-				<input type="radio" name="ADP1" value="4" /> About once every two months </br>
-				<input type="radio" name="ADP1" value="5" /> Once a month </br>
-				<input type="radio" name="ADP1" value="6" /> Two times a month </br>
-				<input type="radio" name="ADP1" value="7" /> Three times a month </br>
-				<input type="radio" name="ADP1" value="8" /> Once or twice a week </br>
-				<input type="radio" name="ADP1" value="9" /> Three or more times per week </br>
-				<input type="radio" name="ADP1" value="10" /> Everyday </br>
-				<input type="radio" name="ADP1" value="11" /> More than once per day </br>
-
-			</p>
-
-		<p class="mtop40">19. How often in the last month have you told your partner your concerns about his/her drinking?</p>
-		
-		<p class="radio-buttons">
-
-			<input type="radio" name="TPD1" value="0" required/> Never </br>
-			<input type="radio" name="TPD1" value="1" /> Once</br>
-			<input type="radio" name="TPD1" value="2" /> Two or three times </br>
-			<input type="radio" name="TPD1" value="3" /> Four or five times </br>
-			<input type="radio" name="TPD1" value="4" /> Weekly </br>
-			<input type="radio" name="TPD1" value="5" /> Almost daily </br>
-			<input type="radio" name="TPD1" value="6" /> Daily </br>
-
-		</p>
-
-
-		<p class="mtop40">19a. How satisfied were you with how these discussions went?</p>
-
-		<p class="radio-buttons">
-			<input type="radio" name="TPD2" value="0" required/> Not at all satisfied </br>
-			<input type="radio" name="TPD2" value="1" /> Somewhat satisfied </br>
-			<input type="radio" name="TPD2" value="2" /> Very satisfied </br>
-			<input type="radio" name="TPD2" value="3" /> Extremely satisfied </br>
-		</p>
-
-		if 19 > 1 show following
-
-		<p class="mtop40">19b. What influence do you think the conversation(s) has had on your partner’s drinking?</p>
-
-		<p class="radio-buttons">
-			<input type="radio" name="TPD3" value="0" required/> He/she is drinking more </br>
-			<input type="radio" name="TPD3" value="1" />No influence </br>
-			<input type="radio" name="TPD3" value="2" />He/she is thinking of drinking less or none at all </br>
-			<input type="radio" name="TPD3" value="3" />He/she is preparing to drink less or none at all </br>
-			<input type="radio" name="TPD3" value="4" />He/she has started to drink less or none at all </br>
-			<input type="radio" name="TPD3" value="5" />He/she has already made a change by drinking less and is sticking with it </br>
-		</p>
-
-		<p>On the ruler below, please indicate the number that best describes how you think your partner feels right now:</p>
-
-		<p class="mtop40">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </br>
-
-		0 = Has not done anything to change his/her drinking</br>
-		1</br>
-		2= Has talked about changing, but has no plans to do so yet</br>
-		3</br>
-		4</br>
-		5 = Has a plan for changing</br>
-		6</br>
-		7 = Just started to change</br>
-		8</br>
-		9</br>
-		10= Has started to change and plans to continue</br>
-
-
-
 
 		<input type="hidden" name="section" value="6" />
 		<input type="submit" value="submit" class="mtop40 mbot40" />

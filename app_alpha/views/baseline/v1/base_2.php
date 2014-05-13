@@ -8,40 +8,7 @@
 							
 		<h4 class="h4 tcenter mtop40">Baseline Survey</h4>
 		
-		<?php echo ( isset( $percentDone ) ? $percentDone : "" ); ?>
-
-		<p class="mtop40">Sometimes people need help for personal or emotional issues. These next questions ask about help you might have gotten.</p>
-
-		<p>3. Do you regularly take any prescribed medication for any psychological issues? </p>
-
-		<select name="MHHELP1" required class="mbot40">
-			<option selected="selected" disabled="disabled">Select One</option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
-		</select>
-
-		<p>4. In the past year, did you receive mental health counseling or therapy for personal or emotional issues? </p>
-
-		<select name="MHHELP2" required class="mbot40">
-			<option selected="selected" disabled="disabled">Select One</option>
-			<option value="Yes">Yes</option>
-			<option value="No">No</option>
-		</select>
-
-		<?php // if yes to 4, 4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.) // ?>
-
-		<p>4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.)</p>
-
-		<p class="checkboxes">
-			<input type="checkbox" name="MHHELP3[]" value="1" /> From a mental health professional at a Military Facility 	 						 </br>
-			<input type="checkbox" name="MHHELP3[]" value="2" /> From a general medical doctor at a Military Facility 	 							 </br>
-			<input type="checkbox" name="MHHELP3[]" value="3" /> From a Military Chaplain 	 														 </br>
-			<input type="checkbox" name="MHHELP3[]" value="4" /> From a mental health professional at a civilian facility 	 						 </br>
-			<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
-			<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
-			<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
-			From some other source: <input type="text" value="" placeholder="Please Specify" name="MHHELPOTHER"/> <strong> [8 (& 9 if applicable)] Question <-- </strong>	</br>
-		</p>
+		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 		
 
 		<p class="mtop40">5. Here are some questions about your health and feelings.  Please read each question carefully and indicate your best answer.  You should answer the questions in your own way.  There are no right or write answers.</p>
@@ -125,11 +92,83 @@
 
 		</table>
 
+		<p class="mtop40">7. During the past week, how much trouble have you had with:</p>
+
+		<table class="baseline-table">
+			<tr> <th> </th> <th>None</th> <th>Some</th> <th>A Lot</th> </tr>
+
+			<tr> 
+				<td>Sleeping</td> 
+				<td> <input type="radio" name="HF10" value="0" required /> </td> 
+				<td> <input type="radio" name="HF10" value="1" /> </td> 
+				<td> <input type="radio" name="HF10" value="2" /> </td> 
+			</tr>
+			<tr> 
+				<td>Hurting or aching in any part of your body</td> 
+				<td> <input type="radio" name="HF11" value="0" required/> </td> 
+				<td> <input type="radio" name="HF11" value="1" /> </td> 
+				<td> <input type="radio" name="HF11" value="2" /> </td> 
+			</tr>
+			<tr> 
+				<td>Getting tired easily</td> 
+				<td> <input type="radio" name="HF12" value="0" required /> </td> 
+				<td> <input type="radio" name="HF12" value="1" /> </td> 
+				<td> <input type="radio" name="HF12" value="2" /> </td> 
+			</tr>
+			<tr> 
+				<td>Feeling depressed or sad</td> 
+				<td> <input type="radio" name="HF13" value="0" required /> </td> 
+				<td> <input type="radio" name="HF13" value="1" /> </td> 
+				<td> <input type="radio" name="HF13" value="2" /> </td> 
+			</tr>
+			<tr> 
+				<td>Nervousness</td> 
+				<td> <input type="radio" name="HF14" value="0" required /> </td> 
+				<td> <input type="radio" name="HF14" value="1" /> </td> 
+				<td> <input type="radio" name="HF14" value="2" /> </td>  
+			</tr>
+		</table>
+
+		<p class="mtop40">8. During the past week, how often did you:</p>
+
+		<table class="baseline-table">
+			<tr> <th> </th> <th>None</th> <th>Some</th> <th>A Lot</th> </tr>
+
+			<tr> 
+				<td>Socialize with other people (talk or visit with friends or relatives)</td> 
+				<td> <input type="radio" name="HF15" value="0" required /> </td> 
+				<td> <input type="radio" name="HF15" value="1" /> </td> 
+				<td> <input type="radio" name="HF15" value="2" /> </td> 
+			</tr>
+
+			<tr> 
+				<td>Take part in social, religious, or recreation activities (meetings, church, movies, sports, parties)</td> 
+				<td> <input type="radio" name="HF16" value="0" required /> </td> 
+				<td> <input type="radio" name="HF16" value="1" /> </td> 
+				<td> <input type="radio" name="HF16" value="2" /> </td> 
+			</tr>
+		</table>
+
+		<p class="mtop40">9. During the past week, how often did you:</p>
+
+		<table class="baseline-table">
+
+			<tr> <th> </th> <th>None</th> <th>1-4 Days</th> <th>5-7 Days</th> </tr>
+
+			<tr> 
+				<td>Stay in your home, a nursing home, or hospital because of sickness, injury, or other health problem</td> 
+				<td> <input type="radio" name="HF17" value="0" required /> </td>
+				<td> <input type="radio" name="HF17" value="1" /> </td> 
+				<td> <input type="radio" name="HF17" value="2" /> </td> 
+			</tr>
+
+		</table>
+
 		<input type="hidden" name="section" value="2" />
 
-		<input type="submit" value="submit" class="mtop50"/>
+		<input type="submit" value="submit" class="mtop50 mbot40"/>
 
-		</form>
+	</form>
 
 	</div>
 
