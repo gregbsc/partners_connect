@@ -11,18 +11,18 @@
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
 		<p class="mtop40">21. On a scale from 0 to 10, how ready do you think your partner feels about seeking help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
-			0 = Has not done anything to seek help
-			1
-			2=  Has talked about seeking help, but has no plans to do so yet 
-			3
-			4
-			5 = Has a plan for seeking help
-			5
-			7 = Just started seeking help
-			8
-			9
-			10 = Has sought help and plans to continue
+		
+		<table class="top-number-radio">
+			
+			<tr> 
+				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
+			</tr>
 
+			<tr> 
+				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
+			</tr>
+
+		</table>
 
 		<p class="mtop40">22. In the past three months, how often did you…</p>
 

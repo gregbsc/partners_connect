@@ -117,5 +117,17 @@ class user_details extends CI_Model
 
 	}
 
+	function user_baseline( $uid ) {
+
+		$this->db->select('*');
+		$this->db->from('baseline_results');
+		$this->db->where('uid', $uid);
+		//$this->db->order_by('date', 'ASC');
+		$query = $this->db->get();
+		
+		return $query->result();
+
+	}
+
 
 }

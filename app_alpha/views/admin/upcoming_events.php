@@ -4,7 +4,7 @@
 
 	<div class="container">
 
-		<?php if( isset($upcomingEvens) ) : foreach ( $upcomingEvens as $event ) : ?>
+		<?php if( isset($upcomingEvents) ) : foreach ( $upcomingEvents as $event ) : ?>
 			
 			<pre>
 			<?php print_r($event); ?>

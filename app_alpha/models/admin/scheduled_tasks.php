@@ -3,8 +3,9 @@
 
 class scheduled_tasks extends CI_Model
 {
-	
-	function upcomming( $uid ) {
+
+
+	function upcomming() {
 
 		$customSql = "SELECT * FROM scheduled_tasks WHERE run_time > NOW() ORDER BY run_time ASC";
 
@@ -16,6 +17,17 @@ class scheduled_tasks extends CI_Model
 
 	}
 
+	function fetch_time_lapsed_taks() {
+
+		$customSql = "SELECT * FROM scheduled_tasks WHERE run_time < NOW() ORDER BY run_time ASC";
+
+		$sqlResult = $this->db->query( $customSql );
+
+		$cleanResult = $sqlResult->result();
+		
+		return $cleanResult;
+
+	}
 
 
 }

@@ -31,6 +31,7 @@ class scheduled extends CI_Controller {
 			$this->load->model('admin/scheduled_tasks');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
 			$this->load->model('admin/email_functionality');
+			$this->current_time = time();
 
         } 
     	
@@ -38,16 +39,14 @@ class scheduled extends CI_Controller {
 	
 	public function index()
 	{
-	
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
-	
+			$data = '';
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 
-	
-			$data['upcomingEvens'] = $this->scheduled_tasks->upcomming();
+			$data['upcomingEvents'] = $this->scheduled_tasks->upcomming();
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
@@ -55,12 +54,55 @@ class scheduled extends CI_Controller {
 		} else {
 
 			//VIEW BEING CALLED HERE
-			//redirect("admin/login", 'redirect');
+			redirect("admin/login", 'redirect');
 
 		}
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/footer');
+
+	}
+
+	public function run_pending_tasks() {
+
+		$this->load->model('admin/scheduled_tasks');
+		$need_to_process = $this->scheduled_tasks->fetch_time_lapsed_taks();
+
+		foreach( $need_to_process as $process ) {
+
+			echo $this->act_on_process();
+
+		}
+
+
+	}
+
+	public function act_on_process( $process ) {
+
+		if( isset($process->action) ) {
+
+			switch($process->action) {
+
+				case 'email':
+
+					if($process->)
+					
+					return 'email action';
+				
+				break;
+
+				default:
+					//log error
+
+			}
+
+		}
+
+	}
+
+	public function create_task() {
+
+
 
 	}
 

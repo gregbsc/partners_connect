@@ -21,7 +21,7 @@ class process_baseline extends CI_Model
 						'uid' => $uid,
 					    'question' => $question,
 					    'response' => $array_response,
-					    'date' => time(),
+					    //'date' => time(),
 					    'section' => $section_id
 					);
 					
@@ -30,7 +30,7 @@ class process_baseline extends CI_Model
 						'uid' => $uid,
 					    'question' => $question,
 					    'response' => $response,
-					    'date' => time(),
+					    //'date' => time(),
 					    'section' => $section_id
 					);
 				}

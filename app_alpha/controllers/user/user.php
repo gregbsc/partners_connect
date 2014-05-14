@@ -169,8 +169,6 @@ class user extends CI_Controller {
 			//this would be the current page location based on the url + 1, or the next form location 
 			$next_form_page = $form_position + 1;
 
-
-
 			//update user status to baseline completed AND redirect to user login page when completed
 			if( $baseline_status == $this->active_baseline ) {
 
@@ -225,6 +223,8 @@ class user extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('footer');
 
+		} else { 
+			redirect('/user/login', 'redirect');
 		}
 
 	}

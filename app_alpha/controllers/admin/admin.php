@@ -28,7 +28,6 @@ class Admin extends CI_Controller {
 
 			$this->currentUser = $this->ion_auth->user()->row();
 			$data['userName'] = $this->currentUser->email;
-
 			// active users
 			$this->load->model('activeUsers');
 			$this->activeUsersList = $this->activeUsers->getActiveUsers();
@@ -341,7 +340,6 @@ class Admin extends CI_Controller {
 
 		$this->load->model('admin/user_details');
 		$this->load->model('deactivatedUsers');
-
 		$deleteHashValue = md5('deletehash');
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
@@ -390,6 +388,35 @@ class Admin extends CI_Controller {
 
 		$this->load->view('admin/header');
 		$this->load->view('admin/resources');
+		$this->load->view('footer');
+
+	}
+
+	public function user_baseline() {
+
+		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+
+			$this->load->model('admin/user_details');
+			$data['empty'] = '';
+
+			if( $this->input->get('uid') ) {
+				$user_baseline = $this->user_details->user_baseline( $this->input->get('uid') );
+
+				if(isset($user_baseline)) {
+					$data['user_baseline'] = $user_baseline;
+				} 
+
+			}
+
+		} else {
+
+			redirect("admin/login", 'redirect');
+
+		}
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header');
+		$this->load->view('admin/display_base', $data);
 		$this->load->view('footer');
 
 	}

@@ -63,6 +63,7 @@ $route['admin/not-eligible'] = "admin/admin/not_qualified";
 $route['admin/not-opt-in'] = "admin/admin/not_opt_in";
 $route['admin/submissions'] = "admin/submissions";
 $route['admin/resources'] = "admin/admin/resources";
+$route['admin/baseline-view'] = "admin/admin/user_baseline";
 //end of admin route
 
 //single instances
@@ -74,11 +75,9 @@ $route['contact'] = "resources/contact";
 
 $route['no-thank-you'] = "resources/nothankyou";
 
-// $route['baseline/:num'] = 'baseline';
 
 $route['404_override'] = '';
 //end of single instances
-
 
 //  USER routes
 $route['user'] = "user/user";

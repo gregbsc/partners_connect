@@ -161,7 +161,7 @@
 
 		<p>4. In the past year, did you receive mental health counseling or therapy for personal or emotional issues? </p>
 
-		<select name="MHHELP2" required class="mbot40" onchange="alert(this)">
+		<select name="MHHELP2" required class="mbot40">
 			<option selected="selected" disabled="disabled">Select One</option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
@@ -169,7 +169,7 @@
 
 		<?php // if yes to 4, 4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.) // ?>
 		
-		<div id="4a" class="cover">
+		<div id="4a" class="">
 			
 			<p>4a. Where did you receive mental health counseling or therapy in the past year? (Check all that apply.)</p>
 
@@ -181,14 +181,14 @@
 				<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
 				<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
 				<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
-				From some other source: <input type="text" value="" placeholder="Please Specify" name="MHHELPOTHER"/> <strong> [8 (& 9 if applicable)] Question <-- </strong>	</br>
+				<span id='other' class='cover'>From some other source: <input type="text" value="" placeholder="Please Specify" name="8"/> <strong> </span> </strong>	</br>
 			</p>
 
 		</div>
 
 		<input type="hidden" name="section" value="1" />
 
-		<input type="submit" value="submit" class="mtop50" />
+		<input type="submit" value="submit" class="mtop20 mbot40" />
 
 		</form>
 

@@ -56,8 +56,8 @@
 
 		<p class="radio-buttons">
 
-			<input type="radio" name="REL1" value="1" required onclick="$('married').show()"/> Married</br>
-			<input type="radio" name="REL1" value="2" onclick="$('living-partner').show()"/> Living With Partner</br>
+			<input type="radio" name="REL1" value="1" required onclick="$('#married').show()"/> Married</br>
+			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').show()"/> Living With Partner</br>
 			<input type="radio" name="REL1" value="3" /> Widowed</br>
 			<input type="radio" name="REL1" value="4" /> Divorced</br>
 			<input type="radio" name="REL1" value="5" /> Separated</br>
@@ -79,15 +79,14 @@
 				<input type="number" name="REL3" /> years </br>
 			</div>
 
-		<p class="mtop40">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time? [KID1-KID2]</p>
+		<p class="mtop40">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
 			
 			<p class="radio-buttons">
-				<input type="radio" name="KID1" value="1" required /> Yes </br>
+				<input type="radio" name="KID1" value="1" onclick="$('#35a').show()" required /> Yes </br>
 				<input type="radio" name="KID1" value="0" /> No </br>
 			</p>
 
-			[If Question 35 = “Yes,” then ask:] </br>
-			<div class="hidden">
+			<div class="cover" id="35a">
 
 				<p class="mtop40"> 35a. How old are the children who live with you?  Mark the number of children you have in each category.</p>
 
@@ -101,16 +100,16 @@
 
 			</div>
 
-			<p class="mtop40">36. Which U.S. state or territory do you currently live in? [STATE]</p>
-			<?php print_r(state_list_dropwdown( 'STATE' )); ?> [code 1-50 alphabetically]</br>
+			<p class="mtop40">36. Which U.S. state or territory do you currently live in? </p>
+			<?php echo state_list_dropwdown( 'STATE' ); ?> </br>
 
 
 			<p class="mtop40">37. Are you a U.S. veteran? </p>
 
 				<p class="radio-buttons">
 					<input type="radio" name="VET1" value="0" required /> No</br>
-					<input type="radio" name="VET1" value="1" onclick="$('37subs').show()"/> Yes, I am a discharged veteran </br>
-					<input type="radio" name="VET1" value="2" onclick="$('37subs').show()"/> Yes, I am a retired veteran </br>
+					<input type="radio" name="VET1" value="1" onclick="$('#37subs').show()"/> Yes, I am a discharged veteran </br>
+					<input type="radio" name="VET1" value="2" onclick="$('#37subs').show()"/> Yes, I am a retired veteran </br>
 				</p>
 
 			<!-- [If Question 37 = yes (discharged or retired) then ask:]</br> -->

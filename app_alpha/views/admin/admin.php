@@ -4,9 +4,7 @@
 
 		<div class="container">
 
-			<?php // template of sorts // ?>
-
-			<?php 
+			<?php // template of sorts //
 
 			if(isset($activeUsers) && is_array( $activeUsers )) : 
 				$this->load->view('admin/activeUsers', $activeUsers); 
@@ -20,12 +18,9 @@
 				$this->load->view('admin/active_submissions', $submission);
 			endif;
 
-			if(isset($upcomingEvens)) {
-
+			if(isset($upcomingEvents)) {
 				$this->load->view('admin/upcoming_events', $data['upcomingEvents'] = $upcomingEvents );
-			}
-
-			?>
+			} ?>		
 
 		</div>
 

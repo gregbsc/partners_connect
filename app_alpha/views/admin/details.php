@@ -22,7 +22,8 @@
 			<?php endif; ?>
 
 			<?php if(isset($baseline_results)) : ?>
-
+				<p> <a href='/admin/baseline-view/?uid=<?php echo $user_details->user_id; ?>'>Click here to see baseline results</a> </p>
+				<?php //print_r($baseline_results); ?>
 				<h4 class="h4">Screener Survey <span class="medtext"> - Submitted : <?php echo  ( isset($baseline_results[0]->submission_time) ? $baseline_results[0]->submission_time : " "); ?></span> </h4>
 
 				<ul style="padding-left:10px;list-style:none;">
@@ -38,7 +39,7 @@
 			<?php endif; ?>
 
 		</div>
-		
+
 		<?php if(isset($email_history)) : ?>
 		
 			<div class="col-md-4">
