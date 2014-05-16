@@ -1,6 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class schedule_tasks extends CI_Model
 {
 	
@@ -16,20 +15,32 @@ class schedule_tasks extends CI_Model
 
 	}
 
+
 	function schedule_a_session( $uid, $date, $session ) {
 
-
-
+		
 
 	}
 
 	function reschedule_a_session( $uid, $date, $session ) {
 
-
-
+		
 
 	}
 
+	function schedule_reminder($uid, $action, $run_time, $title, $message, $path) {
+
+		$data = array( 'uid' => $uid,
+					   'action' => $action,
+					   'run_time' => $run_time,
+					   'title' => $title,
+					   'completed' => 0,
+					   'message' => $message,
+					   'path' => $path );
+
+		$this->db->insert('scheduled_tasks', $data);
+
+	}
 
 
 }

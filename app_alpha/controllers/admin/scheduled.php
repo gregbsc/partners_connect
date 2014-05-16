@@ -58,51 +58,82 @@ class scheduled extends CI_Controller {
 
 		}
 
+		// just for testing -- run_pending_tasks() will be run via cron job 
+		$this->run_pending_tasks();
+
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/footer');
 
 	}
 
-	public function run_pending_tasks() {
+	private function run_pending_tasks() {
 
 		$this->load->model('admin/scheduled_tasks');
 		$need_to_process = $this->scheduled_tasks->fetch_time_lapsed_taks();
 
-		foreach( $need_to_process as $process ) {
+		if( isset($need_to_process) ) {
 
-			echo $this->act_on_process();
+			foreach( $need_to_process as $process ) {
+				
+				if( isset($process->uid) && isset($process->action) && isset($process->run_time) && isset($process->completed) && isset($process->message) && isset($process->path) && isset($process->id) ) {
+					
+					if($process->completed == 0) {
 
-		}
+						$task_completion_status = $this->act_on_process( $process->uid, $process->action, $process->run_time, $process->message, $process->path, $process->title, $process->id );
 
+						//if successful response... update to sent
+						if($task_completion_status == 1) {
 
-	}
+							$this->scheduled_tasks->complete_process($process->uid, $process->id);
 
-	public function act_on_process( $process ) {
+						}
 
-		if( isset($process->action) ) {
+					} // emd of if completed 
 
-			switch($process->action) {
+				} //end of if isset
+
+			} // end of foreach
+
+		} // end if 
+
+	} // end of run pending tasks
+
+	private function act_on_process( $uid, $action, $run_time, $message, $path, $title, $entry_id ) {
+
+		$this->load->library('email');
+
+		if( isset( $action ) ) {
+
+			switch( $action ) {
 
 				case 'email':
 
-					if($process->)
+					$this->email->from( $this->config->item('rand_email'), $this->config->item('email_from_name') );
+					$this->email->to( $path );
+					$this->email->subject( $title );
+					$this->email->message( $message );
 					
-					return 'email action';
+					if( $this->email->send() ) {
+						$status = 1;
+					} else {
+						$status = 0;
+					}
 				
 				break;
 
 				default:
-					//log error
+					// status = 0 
+					$status = 0;
+					// log error
+
+
 
 			}
 
+			//return message / response from process
+			return $status;
+
 		}
-
-	}
-
-	public function create_task() {
-
-
 
 	}
 

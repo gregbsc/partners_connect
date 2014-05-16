@@ -26,6 +26,7 @@ class process_baseline extends CI_Model
 					);
 					
 				} else {
+
 					$data_response = array(
 						'uid' => $uid,
 					    'question' => $question,
@@ -33,7 +34,9 @@ class process_baseline extends CI_Model
 					    //'date' => time(),
 					    'section' => $section_id
 					);
+
 				}
+				
 				$this->db->insert('baseline_results', $data_response); 
 
 				unset($data_response);

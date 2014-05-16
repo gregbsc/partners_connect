@@ -35,13 +35,18 @@ $config['test_urls'] = array('127.0.0.1');
 $config['index_page'] = '';
 $config['admin_email'] = "greg@bluscs.com";
 $config['rand_email'] = "greg@bluscs.com";
+$config['email_from_name'] = "Partners Connect";
 
 //registration values -- mostly just for information sake
+
 //qualified value in the registration table
 $config['reg_val'] = array( 'null' => 0, 'qualified' => 1, 'not_qualified' => 2, 'opted_out' => 3 );
+$config['exp_condition'] = array( 'WBI' => 0, 'delayed' => 1 );
+$config['sessions'] = array('baseline' => 0, 'session1' => 1, 'session2' => 2, 'session3' => 3, 'session4' => 4);
 
-//this is the value used to track the total number of views being loaded for the baseline survey. Max is 9, so on the ninth the survey is complete
+// this is the value used to track the total number of views being loaded for the baseline survey. Max is 9, so on the ninth the survey is complete
 $config['baseline_max_v1'] = 9;
+$config['total_sessions'] = 4;
 
 //baseline version, load views in that folder
 $config['baseline_version'] = "v1";

@@ -4,6 +4,7 @@
 class scheduled_tasks extends CI_Model
 {
 
+	//this is used from within the admin area only // users have their own version of the model
 
 	function upcomming() {
 
@@ -26,6 +27,15 @@ class scheduled_tasks extends CI_Model
 		$cleanResult = $sqlResult->result();
 		
 		return $cleanResult;
+
+	}
+
+	function complete_process($uid, $id) {
+
+		$data = array( 'completed' => 1 );
+		$this->db->where('id', $id);
+		$this->db->where('uid', $uid);
+		$this->db->update('scheduled_tasks', $data);
 
 	}
 

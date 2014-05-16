@@ -31,6 +31,9 @@ class user extends CI_Controller {
 
         	$this->load->model('users/process_baseline');
         	$this->load->model('users/user_info');
+        	$this->load->model('users/session_planning');
+        	$this->load->model('users/session_planning');
+
         	$this->user_details = $this->ion_auth->user()->row();
     		$this->user_id = $this->user_details->user_id;
     		$this->baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
@@ -73,8 +76,31 @@ class user extends CI_Controller {
 
 			//once a user completes the baseline survey, they can schedule their sessions 
 			if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
+					
+				//details about the most recent entry for a user in their schedule
+				$current_session = $this->session_planning->current_session( $this->user_id ); 
+
+				if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
+
+					$data['schedule_sessions'] = '/user/schedule/';
+
+				} else if( $user_progress->group_condition == 1 ) {
+
+					// if the user is of the delayed condition -- 
+					$end_baseline = strtotime($user_progress->baseline_completed);
+					$able_to_start_session = strtotime("+3 months", $end_baseline);
+
+					if( $able_to_start_session < strtotime("now") ) {
+
+						$data['schedule_sessions'] = '/user/schedule/';
+
+					} else { 
+
+						$data['not_ready'] = "no action..";
+
+					}
 				
-				$data['schedule_sessions'] = '/user/schedule/';
+				}
 
 			} else {
 
@@ -195,13 +221,15 @@ class user extends CI_Controller {
 				//force a redirect if wrong link or user breaks flow
 				//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
 				if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
-					$force_redirect = '/user/baseline/'.$raw_next_int;
+					$force_redirect = '/user/baseline/' . $raw_next_int;
 					redirect($force_redirect,'redirect');
-				} 
+				}
 
 				if( $currentPage < $baseMax ) {
+
 					$next_page = $raw_next_int + 1;
 					$data['form_direction'] = $page_url.$next_form_page;
+
 				} else { 
 					//final submission case ... /random fallback
 					$data['form_direction'] = $page_url.'1';
@@ -298,15 +326,6 @@ class user extends CI_Controller {
 
 	}
 
-	public function success() {
-
-		//VIEW BEING CALLED HERE
-		$this->load->view('header');
-		$this->load->view('success');
-		$this->load->view('footer');
-
-	}
-
 	public function password() {
 
 		$data['initialize'] = true;
@@ -352,7 +371,6 @@ class user extends CI_Controller {
 				$this->email->message($email_body);	
 
 				$this->email->send();
-				//send_email($email_title, $email_type, $email_body, $forgotten['identity']);
 
 				redirect("user/update/password?status=success", 'redirect');
 
@@ -389,7 +407,51 @@ class user extends CI_Controller {
 
 	public function schedule() {
 
-		$data['initiatilize'] = true;
+		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+
+			$data['initiatilize'] = true;
+
+			$this->load->helper('schedule_options');
+
+			$max_sessions = $this->config->item('total_sessions');
+
+			$most_recent = $this->session_planning->most_recent_session_completed( $this->user_details->user_id );
+
+			$data['next_registered'] = $this->session_planning->scheduled_session( $this->user_details->user_id );
+			
+			//most recent completed // most of the logic is here for whether a user can register
+			if( ( ( $most_recent->session_number + 1 ) <= $max_sessions ) && ( $most_recent->completed == 1 ) ) {
+
+				//print_r($most_recent);
+
+				$next_session = $most_recent->session_number + 1;
+
+				// make sure next session is set, variable created above
+				if( $this->input->post('baseline_time') && isset( $next_session ) ) {
+
+					$baseline_time = $this->input->post('baseline_time'); 
+					$this->session_planning->schedule_session( $this->user_details->user_id, $next_session, $this->input->post('baseline_time'), 0 );
+					
+					redirect('/user/', 'redirect');
+				}
+
+				// next session available 
+				$data['next_options'] = next_available( $most_recent );
+				
+				//
+
+			} else {
+
+				redirect('/user/', 'redirect');
+				// no session available to plan... 
+
+			}
+
+		} else {
+
+			//redirect('','');
+
+		}
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
@@ -398,6 +460,15 @@ class user extends CI_Controller {
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
 
+
+	}
+
+	public function success() {
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+		$this->load->view('success');
+		$this->load->view('footer');
 
 	}
 
