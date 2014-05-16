@@ -53,6 +53,7 @@ class session_planning extends CI_Model
 
 	}
 
+
 	function schedule_session( $uid, $session, $session_time, $completed ) {
 
 		//check to find out if entry already exists. 
@@ -70,6 +71,38 @@ class session_planning extends CI_Model
 
 			$this->db->insert('scheduled_sessions', $data);
 		}
+
+	}
+
+	function live_session( $uid ) {
+
+		$sql = "SELECT * FROM scheduled_sessions WHERE uid = '$uid' AND completed = 0 ORDER BY session_number DESC";
+
+		$sqlResult = $this->db->query( $sql );
+
+		$cleanResult = $sqlResult->result();
+
+		if( is_array($cleanResult) && count($cleanResult) > 0 ) {
+			return $cleanResult[0];
+		}
+
+		return 0;
+
+	}
+
+	function session_status($uid, $session) {
+
+		$sql = "SELECT * FROM scheduled_sessions WHERE uid = '$uid' AND session_number = '$session' ORDER BY session_number DESC";
+
+		$sqlResult = $this->db->query( $sql );
+
+		$cleanResult = $sqlResult->result();
+
+		if( is_array($cleanResult) && count($cleanResult) > 0 ) {
+			return $cleanResult[0]->completed;
+		}
+
+		return NULL;
 
 	}
 

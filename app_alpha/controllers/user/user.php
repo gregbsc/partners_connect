@@ -32,12 +32,12 @@ class user extends CI_Controller {
         	$this->load->model('users/process_baseline');
         	$this->load->model('users/user_info');
         	$this->load->model('users/session_planning');
-        	$this->load->model('users/session_planning');
 
         	$this->user_details = $this->ion_auth->user()->row();
     		$this->user_id = $this->user_details->user_id;
     		$this->baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
     		$this->active_baseline = $this->config->item('baseline_max_v1');
+    		
     	}
 
     }
@@ -79,6 +79,13 @@ class user extends CI_Controller {
 					
 				//details about the most recent entry for a user in their schedule
 				$current_session = $this->session_planning->current_session( $this->user_id ); 
+
+				if($current_session->completed == 0) {
+
+					$session_number  = $current_session->session_number;
+					$data['start_session'] = "/user/session/{$session_number}/";
+
+				}
 
 				if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
 
@@ -198,8 +205,10 @@ class user extends CI_Controller {
 			//update user status to baseline completed AND redirect to user login page when completed
 			if( $baseline_status == $this->active_baseline ) {
 
+				//mark baseline_completed
 				$this->process_baseline->complete_baseline( $this->user_id );
-				//$this->process_baseline->random_condtion( $this->user_id );
+				//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
+				$this->session_planning->schedule_session( $this->user_id, 0, $session_time, 1 );
 				redirect('/user/','redirect');
 
 			}
@@ -223,7 +232,7 @@ class user extends CI_Controller {
 				if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
 					$force_redirect = '/user/baseline/' . $raw_next_int;
 					redirect($force_redirect,'redirect');
-				}
+				}  
 
 				if( $currentPage < $baseMax ) {
 
@@ -366,7 +375,7 @@ class user extends CI_Controller {
 				$email_body = "To reset your email address go to the following link ".$reset_link;
 
 				$this->email->from($this->config->item('rand_email'), 'Partners Connect');
-				$this->email->to( $forgotten['identity'] ); 
+				$this->email->to( $forgotten['identity'] );
 				$this->email->subject($email_title);
 				$this->email->message($email_body);	
 

@@ -45,7 +45,7 @@ class process_baseline extends CI_Model
 
 		}
 
-	} // end of process(); 
+	} // end of process();
 
 
 	function baseline_progress( $uid ) {

@@ -89,6 +89,10 @@ $route['user/lost'] = "lost";
 $route['user/success'] = "user/user/success";
 $route['user/update/password'] = "user/user/password";
 $route['user/schedule'] = 'user/user/schedule';
+
+//session routes
+$route['user/session/:num'] = "user/session";
+$route['user/session/:num/:num'] = "user/session";
 //end of user routes
 
 /* End of file routes.php */
