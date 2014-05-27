@@ -103,13 +103,13 @@ class user_info extends CI_Model
 
 	} // end details
 
-	function update_consent( $status_consent, $uid ) {
+	function update_consent( $status_consent, $decline_reason, $uid ) {
 		/* 
 		0 == no submission
 		1 == consented
 		2 == did not consent
 		*/
-		$data = array('consent' => $status_consent );           
+		$data = array('consent' => $status_consent, 'decline_notes' => $decline_reason );           
 		$this->db->where('userid', $uid);
 		$this->db->update('registration', $data);
 

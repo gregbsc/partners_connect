@@ -27,11 +27,22 @@ class session extends CI_Controller {
 
         if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
+        	// LOAD MODELS HERE
         	$this->load->model('users/user_info');
         	$this->load->model('users/session_planning');
         	$this->load->model('users/session_content');
+			$this->load->model('users/personality');
 
-        	$this->user_details = $this->ion_auth->user()->row();
+            // 
+        	$this->session_location = $this->uri->segment(3);
+        	$this->page_location = $this->uri->segment(4);
+        	$this->next_page = intval($this->page_location) + 1;
+        	$this->previous_page = intval($this->page_location) - 1;
+
+        	// LOAD HELPERS HERE
+        	$this->load->helper('users/session_content');
+      
+           	$this->user_details = $this->ion_auth->user()->row();
     		$this->uid = $this->user_details->user_id;
 
     		$live_session = $this->session_planning->live_session( $this->uid );
@@ -44,11 +55,9 @@ class session extends CI_Controller {
     		if( isset($live_session->session_number) && ( $this->uri->segment(3) == $live_session->session_number ) || isset($session_status) && $session_status == 1 ) {
 
     			if(!$this->uri->segment(4)) {
-
 					//need to update this logic
 					redirect("/user/session/{$live_session->session_number}/1",'redirect');
-
-    			} 
+    			}
 
     		} else {
     			redirect("/user/session/{$live_session->session_number}",'redirect');
@@ -67,16 +76,49 @@ class session extends CI_Controller {
 	//this is currently set the default -- this is what the user see's when they first login
 	public function index()
 	{			
-			$this->load->helper('users/view_crutch');
 
-			$session_content = $this->session_content->body($this->uri->segment(3), $this->uri->segment(4));
+		$session_content = $this->session_content->body($this->uri->segment(3), $this->uri->segment(4));
+        $video_content = $this->session_content->videos($this->uri->segment(3), $this->uri->segment(4));
+        
+        //this pulls in the users core personality / traits 
+        $user_personality = $this->personality->core($this->uid);
 
-			$view_to_load = view_name( $session_content->template );
+		$data['session'] = $this->uri->segment(3);
 
-			//VIEWS BEING CALLED HERE
-			$this->load->view('header');
-			$this->load->view( $view_to_load );
-			$this->load->view('footer');
+		if( isset($session_content->audio) ) { 
+			$data['audio_file'] = $session_content->audio;
+		}
+
+		if( isset($session_content->video) ) {
+            
+            if($user_personality->children == 0) {
+
+                $data['video_file'] = $video_content[ $user_personality->character ]->vimeo_id;
+                          
+            } else {
+            //condition for child
+
+                if(!empty($video_content[ $user_personality->character ]->child_vimeo)) {   
+                    //if child version of video exists show that video
+                    $data['video_file'] = $video_content[ $user_personality->character ]->child_vimeo;
+                } else {
+                    //if 
+                    $data['video_file'] = $video_content[ $user_personality->character ]->vimeo_id;
+                }
+
+            }
+
+		}
+
+		$data['page_data'] = $session_content;
+
+    	$data['links']['previous_link'] = "/user/session/{$this->session_location}/{$this->previous_page}";
+    	$data['links']['next_link'] = "/user/session/{$this->session_location}/{$this->next_page}";
+ 		
+		//VIEWS BEING CALLED HERE
+		$this->load->view('header');
+		$this->load->view($session_content->template, $data);
+		$this->load->view('footer');
 
 	}
 

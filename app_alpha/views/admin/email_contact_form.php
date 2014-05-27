@@ -20,7 +20,7 @@
 
 		<?php echo form_open( $uid_string ); ?>
 
-			<p class="form-element"> TItle </p>
+			<p class="form-element"> Subject </p>
 			<p><input type="text" name="email_title"/></p>
 			
 			<p class="form-element">Contact Type</p>

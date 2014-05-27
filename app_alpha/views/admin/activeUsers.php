@@ -5,7 +5,7 @@
 
 		<tr style="margin-bottom:20px"> 
 
-			<td>User Id</td> <td> Phone </td> <td>Password Sent</td> <td>Consent</td> <td>Baseline</td> <td>Last Login</td> <td>Condition</td> <td>U1</td> <td>U2</td> <td>U3</td> <td>U4</td>
+			<td>ID</td> <td> Phone </td> <td>PW Sent</td> <td>Informed Consent</td> <td>BL Completed</td> <td>Last Login</td> <td>Condition</td> <td>U1</td> <td>U2</td> <td>U3</td> <td>U4</td>
 
 		</tr>
 
@@ -14,7 +14,6 @@
 			<tr style="font-size:14px">
 
 				<?php // more logic than should be put in view but I did not see a better solution given time and framework // ?>
-
 				<td> <a href="/admin/user/details/?uid=<?php echo $user->user_id; ?>&type=all"><?php echo $user->user_id; ?> </a> </td> 
 				<td> <?php echo (isset($user->phone) ? $user->phone : "" ) ?> </td> 
 				<td> <?php echo ( isset( $user->initial_contact) && $user->initial_contact == 0 ? "<span class='urgent'>No</span>" : "Yes" ) ; ?>
@@ -26,8 +25,6 @@
 				<td> </td>
 				<td> </td>
 				<td> </td>
-
-				<!-- <td><a href="/admin/user/details/?uid=<?php // echo $user->user_id; ?>&type=all">Details</a></td> -->
 
 			</tr>
 		

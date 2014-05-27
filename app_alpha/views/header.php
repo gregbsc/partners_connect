@@ -16,7 +16,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         
-    <!-- <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/knockout-3.1.0.js'></script> -->
+    <!-- <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.min.js'></script> -->
 
 
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -34,10 +34,12 @@
 
         <div class="container">
 
-        <div class="custom-tab-header">
-            <div class="custom-tab"> <a href="/resources/">Resources</a> </div>
-        </div>
+            <div class="custom-tab-header">
+                <div class="custom-tab"> <a href="/resources/">Resources</a> </div>
+            </div>
+
             <p> <img id="logo" src="/assets/img/logo.png" />
+
         </div>
 
     </div>

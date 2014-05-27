@@ -4,7 +4,8 @@
 
 		<div class="container mtop40">
 
-			Partners Connect Written Informed Consent Form (Phase 1)
+			<h4 class="tcenter">Partners Connect Written Informed Consent Form</p> 
+			<p class="tcenter">(Phase 1)</p>
 
 			<h4 class="h4">I. What is this about? </h4>
 			RAND is developing a program to help support military partners concerned about their service member’s alcohol use. The program’s goals are to help partners take care of their own needs and communicate with their loved ones in a positive manner that might help them reduce their drinking and seek help if needed. Your participation will help us adapt the program to make it more helpful. RAND is a non-profit organization that does research and this project is funded by the National Institutes of Health. 

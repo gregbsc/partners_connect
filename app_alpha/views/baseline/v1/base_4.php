@@ -28,31 +28,31 @@
 
 			<tr> 
 				<td>Monday</td> 
-				<td> <input type="number" name="PPD1" min="0" required /> </td> 
+				<td> <input type="number" name="PPD1" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Tuesday</td> 
-				<td> <input type="number" name="PPD2" min="0" required /> </td> 
+				<td> <input type="number" name="PPD2" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Wednesday</td> 
-				<td> <input type="number" name="PPD3" min="0" required /> </td> 
+				<td> <input type="number" name="PPD3" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Thursday</td> 
-				<td> <input type="number" name="PPD4" min="0" required /> </td> 
+				<td> <input type="number" name="PPD4" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Friday</td> 
-				<td> <input type="number" name="PPD5" min="0" required /> </td> 
+				<td> <input type="number" name="PPD5" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Saturday</td> 
-				<td> <input type="number" name="PPD6" min="0" required /> </td> 
+				<td> <input type="number" name="PPD6" min="0" /> </td> 
 			</tr>
 			<tr> 
 				<td>Sunday</td> 
-				<td> <input type="number" name="PPD7" min="0" required /> </td> 
+				<td> <input type="number" name="PPD7" min="0" /> </td> 
 			</tr>
 
 		</table>

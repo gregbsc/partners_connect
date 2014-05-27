@@ -170,8 +170,8 @@ class user extends CI_Controller {
 
 	}
 
+	//When you are viewing /admin/user/details?uid=## you are viewing this controller
 	public function details() {
-
 		
 		$this->load->model('admin/user_details');
 
@@ -183,6 +183,7 @@ class user extends CI_Controller {
 				$all_notes = $this->user_details->all_notes( $this->input->get('uid') );
 				$data['note_history'] = $all_notes;
 
+				//subid is a method that returns all of the users registration information
 				$sub_id =  $this->user_details->subid( $this->input->get('uid') );
 				$user_details = $this->ion_auth->user( $this->input->get('uid') )->row();
 

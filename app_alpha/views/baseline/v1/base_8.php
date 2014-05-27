@@ -15,15 +15,15 @@
 		<p>This section asks you some general background questions about yourself.</p>
 
 		<p class="mtop40"> 28. What is your gender? </p>
-		<input type="radio" name="GEN" value="1" required /> Male </br>
-		<input type="radio" name="GEN" value="0" required /> Female </br>
-		<input type="radio" name="GEN" value="2" required /> Prefer not to answer </br>
+		<input type="radio" name="GEN" value="1" /> Male </br>
+		<input type="radio" name="GEN" value="0" /> Female </br>
+		<input type="radio" name="GEN" value="2" /> Prefer not to answer </br>
 
 		<p class="mtop40"> 29. What is your age? (In years) </p>
-		<input type="number" name="AGE" min="16" required /> </br>
+		<input type="number" name="AGE" min="16" /> </br>
 
 		<p class="mtop40"> 30. Are you Hispanic/Latino(a) or of Spanish origin?</p>
-		<input type="radio" name="HISP" value="1" required /> Yes </br>
+		<input type="radio" name="HISP" value="1" /> Yes </br>
 		<input type="radio" name="HISP" value="0" /> No </br>
 
 		<p class="mtop40">31. Which race/group best describes you? (Please mark all that apply.) </p>
@@ -56,7 +56,7 @@
 
 		<p class="radio-buttons">
 
-			<input type="radio" name="REL1" value="1" required onclick="$('#married').show()"/> Married</br>
+			<input type="radio" name="REL1" value="1" onclick="$('#married').show()"/> Married</br>
 			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').show()"/> Living With Partner</br>
 			<input type="radio" name="REL1" value="3" /> Widowed</br>
 			<input type="radio" name="REL1" value="4" /> Divorced</br>
@@ -82,7 +82,7 @@
 		<p class="mtop40">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
 			
 			<p class="radio-buttons">
-				<input type="radio" name="KID1" value="1" onclick="$('#35a').show()" required /> Yes </br>
+				<input type="radio" name="KID1" value="1" onclick="$('#35a').show()" /> Yes </br>
 				<input type="radio" name="KID1" value="0" /> No </br>
 			</p>
 
@@ -107,7 +107,7 @@
 			<p class="mtop40">37. Are you a U.S. veteran? </p>
 
 				<p class="radio-buttons">
-					<input type="radio" name="VET1" value="0" required /> No</br>
+					<input type="radio" name="VET1" value="0" /> No</br>
 					<input type="radio" name="VET1" value="1" onclick="$('#37subs').show()"/> Yes, I am a discharged veteran </br>
 					<input type="radio" name="VET1" value="2" onclick="$('#37subs').show()"/> Yes, I am a retired veteran </br>
 				</p>

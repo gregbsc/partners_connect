@@ -24,7 +24,7 @@
 			<tr> <th> </th> <th>Not at all</th> <th>Several Days</th> <th>More than half days</th> <th>Nearly everyday</th> </tr>
 
 			<tr> <td>Little interest or pleasure in doing things? </td> 
-				<td> <input type="radio" name="DEP1" value="0" required="" /> </td> 
+				<td> <input type="radio" name="DEP1" value="0" /> </td> 
 				<td> <input type="radio" name="DEP1" value="1" /></td> 
 				<td> <input type="radio" name="DEP1" value="2"/>
 				</td> <td> <input type="radio" name="DEP1" value="3"/></td> 
@@ -32,7 +32,7 @@
 
 			<tr> 
 				<td>Feeling down, depressed, or hopeless? </td> 
-				<td><input type="radio" name="DEP2" value="0" required="" /> </td> 
+				<td><input type="radio" name="DEP2" value="0" /> </td> 
 				<td><input type="radio" name="DEP2" value="1"/>  </td> 
 				<td><input type="radio" name="DEP2" value="2"/>  </td> 
 				<td><input type="radio" name="DEP2" value="3"/>  </td> 
@@ -40,7 +40,7 @@
 
 			<tr> 
 				<td>Trouble falling or staying asleep, or sleeping too much? </td> 
-				<td> <input type="radio" name="DEP3" value="0" required=""/> </td> 
+				<td> <input type="radio" name="DEP3" value="0" /> </td> 
 				<td> <input type="radio" name="DEP3" value="1"/> </td> 
 				<td><input type="radio" name="DEP3" value="2"/> </td>  
 				<td> <input type="radio" name="DEP3" value="3"/> </td> 
@@ -48,7 +48,7 @@
 
 			<tr> 
 				<td>Feeling tired or having little energy? </td> 
-				<td> <input type="radio" name="DEP4" value="0" required=""/> </td> 
+				<td> <input type="radio" name="DEP4" value="0" /> </td> 
 				<td><input type="radio" name="DEP4" value="1" /> </td> 
 				<td><input type="radio" name="DEP4" value="2"/> </td> 
 				<td><input type="radio" name="DEP4" value="3"/> </td> 
@@ -56,15 +56,15 @@
 
 			<tr> 
 				<td>Poor appetite or overeating? </td> 
-				<td> <input type="radio" name="DEP5" value="0" required=""/> </td> 
-				<td> <input type="radio" name="DEP5" value="1" required=""/> </td> 
+				<td> <input type="radio" name="DEP5" value="0" /> </td> 
+				<td> <input type="radio" name="DEP5" value="1" /> </td> 
 				<td> <input type="radio" name="DEP5" value="2"/> </td> 
 				<td> <input type="radio" name="DEP5" value="3"/>  </td> 
 			</tr>
 
 			<tr> 
 				<td>Feeling bad about yourself, or that you are a failure, or have let yourself or your family down? </td> 
-				<td> <input type="radio" name="DEP6" value="0" required=""/> </td> 
+				<td> <input type="radio" name="DEP6" value="0" /> </td> 
 				<td> <input type="radio" name="DEP6" value="1"/>  </td> 
 				<td> <input type="radio" name="DEP6" value="2"/>  </td> 
 				<td> <input type="radio" name="DEP6" value="3"/>  </td>
@@ -72,7 +72,7 @@
 
 			<tr> 
 				<td>Trouble concentdating on things, such as reading the newspaper or watching television? </td> 
-				<td> <input type="radio" name="DEP7" value="0" required=""/> </td> 
+				<td> <input type="radio" name="DEP7" value="0" /> </td> 
 				<td> <input type="radio" name="DEP7" value="1"/> </td> 
 				<td><input type="radio" name="DEP7" value="2"/> </td> 
 				<td><input type="radio" name="DEP7" value="3"/> </td>
@@ -95,14 +95,14 @@
 			</tr>
 
 			<tr> <td>Feeling nervous, anxious, or on edge</td> 
-				<td> <input type="radio" value="0" name="ANX1" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX1" /> </td> 
 				<td> <input type="radio" value="1" name="ANX1"/> </td> 
 				<td> <input type="radio" value="2" name="ANX1"/> </td> 
 				<td> <input type="radio" value="3" name="ANX1"/> </td> 
 			</tr>
 
 			<tr> <td>Not being able to stop or control worrying </td> 
-				<td> <input type="radio" value="0" name="ANX2" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX2"/> </td> 
 				<td> <input type="radio" value="1" name="ANX2"/> </td> 
 				<td> <input type="radio" value="2" name="ANX2"/> </td> 
 				<td> <input type="radio" value="3" name="ANX2"/> </td> 
@@ -110,7 +110,7 @@
 
 			<tr> 
 				<td>Worrying too much about different things </td> 
-				<td> <input type="radio" value="0" name="ANX3" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX3"/> </td> 
 				<td> <input type="radio" value="1" name="ANX3"/> </td> 
 				<td> <input type="radio" value="2" name="ANX3"/> </td> 
 				<td> <input type="radio" value="3" name="ANX3"/> </td> 
@@ -118,7 +118,7 @@
 
 			<tr> 
 				<td>Trouble relaxing </td> 
-				<td> <input type="radio" value="0" name="ANX4" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX4"/> </td> 
 				<td> <input type="radio" value="1" name="ANX4"/> </td> 
 				<td> <input type="radio" value="2" name="ANX4"/> </td> 
 				<td> <input type="radio" value="3" name="ANX4"/> </td> 
@@ -126,7 +126,7 @@
 
 			<tr> 
 				<td>Being so restless that it's hard to sit still </td> 
-				<td> <input type="radio" value="0" name="ANX5" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX5"/> </td> 
 				<td> <input type="radio" value="1" name="ANX5"/> </td> 
 				<td> <input type="radio" value="2" name="ANX5"/> </td> 
 				<td> <input type="radio" value="3" name="ANX5"/> </td> 
@@ -134,7 +134,7 @@
 
 			<tr> 
 				<td>Becoming easily annoyed or irritable </td>
-				<td> <input type="radio" value="0" name="ANX6" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX6"/> </td> 
 				<td> <input type="radio" value="1" name="ANX6"/> </td> 
 				<td> <input type="radio" value="2" name="ANX6"/> </td> 
 				<td> <input type="radio" value="3" name="ANX6"/> </td> 
@@ -142,7 +142,7 @@
 
 			<tr> 
 				<td>Feeling afraid as if something awful might happen </td> 
-				<td> <input type="radio" value="0" name="ANX7" required=""/> </td> 
+				<td> <input type="radio" value="0" name="ANX7"/> </td> 
 				<td> <input type="radio" value="1" name="ANX7"/> </td> 
 				<td> <input type="radio" value="2" name="ANX7"/> </td> 
 				<td> <input type="radio" value="3" name="ANX7"/> </td> 
@@ -153,7 +153,7 @@
 
 		<p>3. Do you regularly take any prescribed medication for any psychological issues? </p>
 
-		<select name="MHHELP1" required class="mbot40">
+		<select name="MHHELP1" class="mbot40">
 			<option selected="selected" disabled="disabled">Select One</option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
@@ -161,7 +161,7 @@
 
 		<p>4. In the past year, did you receive mental health counseling or therapy for personal or emotional issues? </p>
 
-		<select name="MHHELP2" required class="mbot40">
+		<select name="MHHELP2" class="mbot40">
 			<option selected="selected" disabled="disabled">Select One</option>
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
@@ -197,6 +197,7 @@
 	</div>
 
 </div>
+
 
 
 <script src="/assets/js/baseline.js" type="text/javascript" />

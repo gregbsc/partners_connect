@@ -14,24 +14,24 @@
 
 					<?php // print_r($user_details);?>
 					<li> <?php echo ( isset( $user_details->email ) ) ? $user_details->email : "No recorded email"; ?> </li>
-					<li> <?php echo ( isset( $user_details->created_on ) ) ? "Created on " . date('D-M-y',$user_details->created_on) : "No record of when created"; ?> </li>
+					<li> <?php echo ( isset( $user_details->created_on ) ) ? "Completed screener on " . date('D-M-y',$user_details->created_on) : "No record of when created"; ?> </li>
 					<li> <?php echo ( isset( $user_details->phone ) ) ? $user_details->phone : "No record of a phone number"; ?> </li>
 				
 				</ul>
 
 			<?php endif; ?>
 
+			<?php //this was name incorrectly, this is actually screener // ?>
 			<?php if(isset($baseline_results)) : ?>
-				<p> <a href='/admin/baseline-view/?uid=<?php echo $user_details->user_id; ?>'>Click here to see baseline results</a> </p>
-				<?php //print_r($baseline_results); ?>
+
+				<!-- <p> <a href='/admin/baseline-view/?uid=<?php // echo $user_details->user_id; ?>'>Click here to see baseline results</a> </p> -->
+				
 				<h4 class="h4">Screener Survey <span class="medtext"> - Submitted : <?php echo  ( isset($baseline_results[0]->submission_time) ? $baseline_results[0]->submission_time : " "); ?></span> </h4>
 
 				<ul style="padding-left:10px;list-style:none;">
 
 					<?php foreach( $baseline_results as $question ) : ?>
-
 						<li> <?php echo $question->question_name; ?> : <?php echo $question->question_response; ?> </pre> </li>
-
 					<?php endforeach; ?>
 
 				</ul>
@@ -60,7 +60,7 @@
 		
 			<div class="col-md-4">
 
-				<p><span class="h4">User Notes</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/notes/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to add notes</a></p>
+				<p><span class="h4">RAND Notes</span> - <a href="<?php echo ( $this->input->get('uid') ) ? "/admin/user/notes/?uid=".$this->input->get('uid') : "/admin/users/" ; ?>">Click here to add notes</a></p>
 
 				<ul class="emailul specialul">
 
@@ -71,6 +71,12 @@
 			</div>
 
 		<?php endif; ?>
+
+		<div class="col-md-4">
+
+			<h4 class="h4">U1 - U4 : In progress</h4>
+
+		</div>
 
 
 	</div>

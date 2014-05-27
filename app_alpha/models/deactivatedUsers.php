@@ -30,6 +30,8 @@ class deactivatedUsers extends CI_Model
 		return $clean_result;
 
 	}
+
+	//users who did not opt in but were qualified
 	function getNotOptIn() {
 
 		$sql = "SELECT * FROM registration WHERE qualified = 1 AND declined = 1";

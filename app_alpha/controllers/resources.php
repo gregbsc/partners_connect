@@ -74,6 +74,15 @@ class Resources extends CI_Controller {
 		
 	}
 
+	public function success() {
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+		$this->load->view('success');
+		$this->load->view('footer');
+
+	}
+
 }
 
 /* End of file welcome.php */

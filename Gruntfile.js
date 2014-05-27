@@ -6,12 +6,6 @@ module.exports = (grunt) ->
     # Initialize the configuration.
     grunt.initConfig
         pkg: grunt.file.readJSON "package.json"
-        //font:
-            //build1:
-                //src: [__dirname + "/assets/css/glyph/*.svg"]
-                //destCss: __dirname + "/wp-content/themes/bfwebsite/less/glyph.less"
-                //destFonts: __dirname + "/wp-content/themes/bfwebsite/font/icons.{svg,woff,eot,ttf}"
-               // cssFormat: "less"
         spritesheet:
             build1:
                 sprites:

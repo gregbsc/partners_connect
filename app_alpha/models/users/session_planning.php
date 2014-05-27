@@ -21,6 +21,19 @@ class session_planning extends CI_Model
 
 	}
 
+	function all_sessions( $uid ) {
+
+		$this->db->select('*');
+		$this->db->from('scheduled_sessions');
+		$this->db->where('uid', $uid);
+		$this->db->where('session_number >', 0);
+		$this->db->order_by('session_number', 'DESC');
+		$query = $this->db->get();
+		$cleanResult = $query->result();
+
+		return $cleanResult;	
+	}
+
 	function most_recent_session_completed( $uid ) {
 
 		$sql = "SELECT * FROM scheduled_sessions WHERE uid = '$uid' AND completed = 1 ORDER BY session_number DESC";

@@ -17,9 +17,22 @@ class session_content extends CI_Model
 			return $cleanResult[0];
 		}
 
-		return NULL; 
+		return NULL;
 
 	}
 
+	function videos($session_number, $page_number) {
+
+		$this->db->select('*');
+		$this->db->from('video_ids');
+		$this->db->where('session_number', $session_number);
+		$this->db->where('page_number', $page_number);
+	
+		$query = $this->db->get();
+		$cleanResult = $query->result();
+
+		return $cleanResult;
+
+	}
 
 }

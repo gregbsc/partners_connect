@@ -24,7 +24,7 @@
 
 			<p class="radio-buttons">
 
-				<input type="radio" name="ADP1" value="0" required/> Never </br>
+				<input type="radio" name="ADP1" value="0" /> Never </br>
 				<input type="radio" name="ADP1" value="1" /> Less than once per year </br>
 				<input type="radio" name="ADP1" value="2" /> About once per year </br>
 				<input type="radio" name="ADP1" value="3" /> Two to three times per year </br>
@@ -43,7 +43,7 @@
 		
 		<p class="radio-buttons">
 
-			<input type="radio" name="TPD1" value="0" required onclick="$('#19a').hide()" /> Never </br>
+			<input type="radio" name="TPD1" value="0" onclick="$('#19a').hide()" /> Never </br>
 			<input type="radio" name="TPD1" value="1" onclick="$('#19a').show()"/> Once</br>
 			<input type="radio" name="TPD1" value="2" onclick="$('#19a').show()"/> Two or three times </br>
 			<input type="radio" name="TPD1" value="3" onclick="$('#19a').show()"/> Four or five times </br>
@@ -55,50 +55,56 @@
 
 		<div class="cover" id="19a">
 
-				<p class="mtop40">19a. How satisfied were you with how these discussions went?</p>
+			<p class="mtop40">19a. How satisfied were you with how these discussions went?</p>
 
-				<p class="radio-buttons">
-					<input type="radio" name="TPD2" value="0" required/> Not at all satisfied </br>
-					<input type="radio" name="TPD2" value="1" /> Somewhat satisfied </br>
-					<input type="radio" name="TPD2" value="2" /> Very satisfied </br>
-					<input type="radio" name="TPD2" value="3" /> Extremely satisfied </br>
-				</p>
+			<p class="radio-buttons">
+				<input type="radio" name="TPD2" value="0" /> Not at all satisfied </br>
+				<input type="radio" name="TPD2" value="1" /> Somewhat satisfied </br>
+				<input type="radio" name="TPD2" value="2" /> Very satisfied </br>
+				<input type="radio" name="TPD2" value="3" /> Extremely satisfied </br>
+			</p>
 
-				<p class="mtop40">19b. What influence do you think the conversation(s) has had on your partner’s drinking?</p>
+			<p class="mtop40">19b. What influence do you think the conversation(s) has had on your partner’s drinking?</p>
 
-				<p class="radio-buttons">
-					<input type="radio" name="TPD3" value="0" /> He/she is drinking more </br>
-					<input type="radio" name="TPD3" value="1" /> No influence </br>
-					<input type="radio" name="TPD3" value="2" /> He/she is thinking of drinking less or none at all </br>
-					<input type="radio" name="TPD3" value="3" /> He/she is preparing to drink less or none at all </br>
-					<input type="radio" name="TPD3" value="4" /> He/she has started to drink less or none at all </br>
-					<input type="radio" name="TPD3" value="5" /> He/she has already made a change by drinking less and is sticking with it </br>
-				</p>
+			<p class="radio-buttons">
+				<input type="radio" name="TPD3" value="0" /> He/she is drinking more </br>
+				<input type="radio" name="TPD3" value="1" /> No influence </br>
+				<input type="radio" name="TPD3" value="2" /> He/she is thinking of drinking less or none at all </br>
+				<input type="radio" name="TPD3" value="3" /> He/she is preparing to drink less or none at all </br>
+				<input type="radio" name="TPD3" value="4" /> He/she has started to drink less or none at all </br>
+				<input type="radio" name="TPD3" value="5" /> He/she has already made a change by drinking less and is sticking with it </br>
+			</p>
 
 		</div>
 
 		<p>On the ruler below, please indicate the number that best describes how you think your partner feels right now:</p>
 
-		<p class="mtop40">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </br>
+		<p class="mtop20">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </p> </br>
+		
+		<ul>
+			<li>0 = Has not done anything to change his/her drinking 
+			
+			<li>2= Has talked about changing, but has no plans to do so yet</li> 
+		
+			<li>5 = Has a plan for changing</li> 
+		
+			<li>7 = Just started to change</li> 
+			
+			<li>10= Has started to change and plans to continue </li> 
+		</ul>
 
 		<table class="top-number-radio">
-			
-			<tr> 
-				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
-			</tr>
-
+		
 			<tr> 
 				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
 			</tr>
 
 		</table>
-
 	
 		<input type="hidden" name="section" value="5" />
 		<input type="submit" value="submit" class="mtop40 mbot40" />
 
 		</form>
-
 
 	</div>
 

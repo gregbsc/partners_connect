@@ -60,7 +60,7 @@
 		<p class="mtop40">25. Taking things altogether, how satisfied are you with your relationship right now?</p>
 		
 		<p class="radio-buttons">
-			<input type="radio" name="RQUAL7" value="5" required/> Very satisfied </br>
+			<input type="radio" name="RQUAL7" value="5"/> Very satisfied </br>
 			<input type="radio" name="RQUAL7" value="4"/> Somewhat satisfied </br>
 			<input type="radio" name="RQUAL7" value="3"/> Neutral </br>
 			<input type="radio" name="RQUAL7" value="2"/> Somewhat dissatisfied </br>
@@ -174,7 +174,7 @@
 			<p class="mtop40"> 28. Have you and/or your partner received couples counseling in the past 90 days or do you intend to do so in the next 60 days?</p>
 			
 			<p class="radio-buttons">
-				<input type="radio" name="COUNS" value="1" required /> Yes </br>
+				<input type="radio" name="COUNS" value="1" /> Yes </br>
 				<input type="radio" name="COUNS" value="0"/> No </br>
 				<input type="hidden" name="section" value="7" />
 				<input type="submit" value="submit" class="mtop40 mbot40" />

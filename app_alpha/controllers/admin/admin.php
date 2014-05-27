@@ -35,9 +35,9 @@ class Admin extends CI_Controller {
 
 
         } else {
-
+        	
         	$data['noinfo'] = true;
-
+        	redirect("admin/login", 'redirect');
     	}
 
     }
@@ -275,6 +275,8 @@ class Admin extends CI_Controller {
 		} 
 
 	}
+
+	//opted out users
 	public function opted_out() {
 
 		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {

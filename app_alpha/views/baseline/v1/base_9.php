@@ -17,7 +17,7 @@
 			<p class="mtop40">38. Which branch of military service is your partner a part of? </p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PMIL1" value="1" required/> Army </br>
+				<input type="radio" name="PMIL1" value="1" /> Army </br>
 				<input type="radio" name="PMIL1" value="2" /> Army Reserve</br>
 				<input type="radio" name="PMIL1" value="3" /> Army National Guard</br>
 				<input type="radio" name="PMIL1" value="4" /> Air Force</br>
@@ -33,12 +33,12 @@
 
 			<p class="mtop40">39. How many years has your partner been in the military? </p>
 				
-				<input type="number" name="PMIL2" required /> years </br>
+				<input type="number" name="PMIL2" /> years </br>
 
 			<p class="mtop40">40. What is your partner’s current pay grade? </p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PMIL3" value="1" required/> E-1 [code 1-20]</br>
+				<input type="radio" name="PMIL3" value="1" /> E-1 [code 1-20]</br>
 				<input type="radio" name="PMIL3" value="2" /> E-2</br>
 				<input type="radio" name="PMIL3" value="3" /> E-3</br>
 				<input type="radio" name="PMIL3" value="4" /> E-4</br>
@@ -63,7 +63,7 @@
 			<p class="mtop40">41. Which of the following best describes your partner’s status with respect to deployment? </p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PMIL4" value="1" required/> Not deployed and has no deployment currently scheduled </br>
+				<input type="radio" name="PMIL4" value="1" /> Not deployed and has no deployment currently scheduled </br>
 				<input type="radio" name="PMIL4" value="0"/> Not deployed but preparing for a scheduled deployment </br>
 				<input type="radio" name="PMIL4" value="0"/> Currently deployed [2]</br>
 				<input type="radio" name="PMIL4" value="0"/> Home on block leave (R&R) but will return to deployment soon </br>
@@ -74,19 +74,19 @@
 			<p class="mtop40"> 42. What is your partner’s gender? </p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PGEN" value="1" required/> Male </br>
+				<input type="radio" name="PGEN" value="1" /> Male </br>
 				<input type="radio" name="PGEN" value="0"/> Female </br>
 				<input type="radio" name="PGEN" value="2"/> Prefer not to answer </br>
 			</p>
 
 			<p class="mtop40">43. What is your partner’s age? </p>
 
-				<input type="number" name="PAGE" required /> years old</br>
+				<input type="number" name="PAGE" /> years old</br>
 
 			<p class="mtop40">44. Is your partner Hispanic/Latino(a) or of Spanish origin? </p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PHISP" value="1" required/> Yes </br>
+				<input type="radio" name="PHISP" value="1" /> Yes </br>
 				<input type="radio" name="PHISP" value="0" /> No </br>
 			</p>
 
@@ -102,7 +102,7 @@
 			<p class="mtop40">46. What is the highest grade or year of school that your partner has finished?</p>
 
 			<p class="radio-buttons">
-				<input type="radio" name="PDEUC" value="0" required/> Less than high school diploma</br>
+				<input type="radio" name="PDEUC" value="0"/> Less than high school diploma</br>
 				<input type="radio" name="PDEUC" value="1"/> High school graduate or diploma</br>
 				<input type="radio" name="PDEUC" value="2"/> Some college but no degree</br>
 				<input type="radio" name="PDEUC" value="3"/> Technical or vocational school</br>

@@ -27,7 +27,7 @@ class user extends CI_Controller {
 
         $this->site_url = $this->config->item('base_url');
 
-        if( $this->ion_auth->logged_in() ) {
+        if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
         	$this->load->model('users/process_baseline');
         	$this->load->model('users/user_info');
@@ -38,6 +38,11 @@ class user extends CI_Controller {
     		$this->baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
     		$this->active_baseline = $this->config->item('baseline_max_v1');
     		
+    	} else {
+
+    		//redirect 
+    		redirect('/user/login', 'redirect');
+
     	}
 
     }
@@ -49,84 +54,79 @@ class user extends CI_Controller {
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+		//current baseline status
+		$baseline_status = $this->baseline_status;
+		$raw_next_int =  $baseline_status + 1;
+		$base_prefix = "/user/baseline/";
 
-			//current baseline status
-			$baseline_status = $this->baseline_status;
-			$raw_next_int =  $baseline_status + 1;
-			$base_prefix = "/user/baseline/";
+		if( $baseline_status == 0 || $baseline_status == 1 ) {
+			$return_base = $base_prefix.'1';
+		} else if( $baseline_status <= $this->active_baseline ) {
+			$next_int = $raw_next_int;
+			$return_base = $base_prefix.$next_int;
+		} else {
+			$return_base = $base_prefix;
+		}
 
-			if( $baseline_status == 0 || $baseline_status == 1 ) {
-				$return_base = $base_prefix.'1';
-			} else if( $baseline_status <= $this->active_baseline ) {
-				$next_int = $raw_next_int;
-				$return_base = $base_prefix.$next_int;
-			} else {
-				$return_base = $base_prefix;
+		$data['return_base'] = $return_base;
+
+		//boolean check if completed 
+		$consent = $this->user_info->consent_status( $this->user_id );
+		$data['consent'] = $consent;
+		$data['user_info'] = $this->user_details;
+
+		$user_progress = $this->user_info->details( $this->user_id );
+
+		//once a user completes the baseline survey, they can schedule their sessions 
+		if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
+				
+			//details about the most recent entry for a user in their schedule
+			$current_session = $this->session_planning->current_session( $this->user_id ); 
+			$data['all_sessions'] = $this->session_planning->all_sessions( $this->user_id );
+
+			if($current_session->completed == 0) {
+
+				$session_number  = $current_session->session_number;
+				$data['start_session'] = "/user/session/{$session_number}/";
+
 			}
 
-			$data['return_base'] = $return_base;
+			if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
 
-			//boolean check if completed 
-			$consent = $this->user_info->consent_status( $this->user_id );
-			$data['consent'] = $consent;
-			$data['user_info'] = $this->user_details;
+				$data['schedule_sessions'] = '/user/schedule/';
 
-			$user_progress = $this->user_info->details( $this->user_id );
+			} else if( $user_progress->group_condition == 1 ) {
 
-			//once a user completes the baseline survey, they can schedule their sessions 
-			if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
-					
-				//details about the most recent entry for a user in their schedule
-				$current_session = $this->session_planning->current_session( $this->user_id ); 
+				// if the user is of the delayed condition -- 
+				$end_baseline = strtotime($user_progress->baseline_completed);
+				$able_to_start_session = strtotime("+3 months", $end_baseline);
 
-				if($current_session->completed == 0) {
-
-					$session_number  = $current_session->session_number;
-					$data['start_session'] = "/user/session/{$session_number}/";
-
-				}
-
-				if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
+				if( $able_to_start_session < strtotime("now") ) {
 
 					$data['schedule_sessions'] = '/user/schedule/';
 
-				} else if( $user_progress->group_condition == 1 ) {
+				} else { 
 
-					// if the user is of the delayed condition -- 
-					$end_baseline = strtotime($user_progress->baseline_completed);
-					$able_to_start_session = strtotime("+3 months", $end_baseline);
+					$data['not_ready'] = "no action..";
 
-					if( $able_to_start_session < strtotime("now") ) {
-
-						$data['schedule_sessions'] = '/user/schedule/';
-
-					} else { 
-
-						$data['not_ready'] = "no action..";
-
-					}
-				
 				}
-
-			} else {
-
-				if( $user_progress->baseline == 0 ) {
-					//this would be the case for a user whom has not completed 
-					//the baseline survey AND has consented to the study
-					$data['user_progress'] = $user_progress;
-				} else {
-					//this would be a case where an individual has not consented to the study
-				}
-
+			
 			}
 
-			$this->load->view('user/user_body', $data );
-
 		} else {
-			//VIEW BEING CALLED HERE
-			$this->load->view('user/login');
+
+			if( $user_progress->baseline == 0 ) {
+				//this would be the case for a user whom has not completed 
+				//the baseline survey AND has consented to the study
+				$data['user_progress'] = $user_progress;
+			} else {
+				//this would be a case where an individual has not consented to the study
+			}
+
 		}
+
+		$this->load->view('user/user_body', $data );
+
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
@@ -147,12 +147,19 @@ class user extends CI_Controller {
 			//check make sure user id being submitted matches logged in, if not... nothing
 			if( $this->input->post('user_id') && $this->input->post('consent_box') && ( $this->input->post('user_id') == $user_id )) {
 
+				if($this->input->post('decline_reason')) {
+					$decline_reason = $this->input->post('decline_reason');
+				} else {
+					$decline_reason = '';
+				}
+
 				if($this->input->post('consent_box') == 1) {
 					// 1 == consented
-					$this->user_info->update_consent( 1 , $user_id);
+					$this->user_info->update_consent( 1 , $decline_reason, $user_id);
+					//add user initials
 				} else {
 					// 2 == not consented
-					$this->user_info->update_consent( 2 , $user_id);
+					$this->user_info->update_consent( 2 , $decline_reason, $user_id);
 				}
 
 				redirect("user", 'redirect');
@@ -179,159 +186,119 @@ class user extends CI_Controller {
 
 	public function baseline() {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
-			$baseMax = $this->active_baseline;
+		$baseMax = $this->active_baseline;
 
-			//this is where baseline values are sent to db
-			if( $_POST && ( $this->input->post('section') <= $baseMax ) && isset( $this->user_id ) ) { 
+		//this is where baseline values are sent to db
+		if( $_POST && ( $this->input->post('section') <= $baseMax ) && isset( $this->user_id ) ) { 
 
-				$this->process_baseline->process( $baseline = $_POST, $this->user_id );
+			$this->process_baseline->process( $baseline = $_POST, $this->user_id );
 
-			} 
+		} 
 
-			//this is used multiple places, specifically for current page.
-			$form_position = $this->uri->segment(3);
+		//this is used multiple places, specifically for current page.
+		$form_position = $this->uri->segment(3);
 
-			$this->load->helper('form_building_helper');
+		$this->load->helper('form_building_helper');
 
-			//this is the number of the last section submitted
-			$baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
-			//this is the last submission section + 1, which should also be the current page a user would be one
-			$raw_next_int =  $baseline_status + 1;
-			//this would be the current page location based on the url + 1, or the next form location 
-			$next_form_page = $form_position + 1;
+		//this is the number of the last section submitted
+		$baseline_status = $this->process_baseline->baseline_progress( $this->user_id );
+		//this is the last submission section + 1, which should also be the current page a user would be one
+		$raw_next_int =  $baseline_status + 1;
+		//this would be the current page location based on the url + 1, or the next form location 
+		$next_form_page = $form_position + 1;
 
-			//update user status to baseline completed AND redirect to user login page when completed
-			if( $baseline_status == $this->active_baseline ) {
+		//update user status to baseline completed AND redirect to user login page when completed
+		if( $baseline_status == $this->active_baseline ) {
 
-				//mark baseline_completed
-				$this->process_baseline->complete_baseline( $this->user_id );
-				//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
-				$this->session_planning->schedule_session( $this->user_id, 0, $session_time, 1 );
-				redirect('/user/','redirect');
+			//mark baseline_completed
+			$this->process_baseline->complete_baseline( $this->user_id );
+			//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
+			$this->session_planning->schedule_session( $this->user_id, 0, $session_time, 1 );
+			redirect('/user/','redirect');
 
-			}
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('header');
-			$page_url = 'user/baseline/';
-
-			//if baseline page
-			if($this->uri->segment(3)) {
-				
-				$currentPage = $form_position;
-
-				$percentComp = ($currentPage / $baseMax) * 100;
-
-				// eek -- I need to move this to the view before completing.. and remove inline style..
-				$data['percentDone'] = $percentComp;		
-
-				//force a redirect if wrong link or user breaks flow
-				//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
-				if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
-					$force_redirect = '/user/baseline/' . $raw_next_int;
-					redirect($force_redirect,'redirect');
-				}  
-
-				if( $currentPage < $baseMax ) {
-
-					$next_page = $raw_next_int + 1;
-					$data['form_direction'] = $page_url.$next_form_page;
-
-				} else { 
-					//final submission case ... /random fallback
-					$data['form_direction'] = $page_url.'1';
-				}
-
-				$this->load->view('baseline/'.$this->config->item('baseline_version').'/base_'.$currentPage.'', $data);
-
-			} else {
-
-				$percentComp = 1 / $baseMax * 100;
-				$data['form_direction'] = $page_url.'2';
-				$data['percentDone'] = $percentComp;
-
-				//view called here
-				$this->load->view('baseline/base_1', $data);
-
-			}
-			
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
-
-		} else { 
-			redirect('/user/login', 'redirect');
 		}
-
-	}
-
-	public function login() {
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
+		$page_url = 'user/baseline/';
 
-		if( $this->input->post('login-name') && $this->input->post('login-pass') ) {
-			$userID = $this->input->post('login-name');
-			$userPassword = $this->input->post('login-pass');
-			$remember = TRUE;
-			$this->ion_auth->login($userID, $userPassword, $remember);
-		}
+		//if baseline page
+		if($this->uri->segment(3)) {
+			
+			$currentPage = $form_position;
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
+			$percentComp = ($currentPage / $baseMax) * 100;
 
-			redirect("user", 'redirect');
+			// eek -- I need to move this to the view before completing.. and remove inline style..
+			$data['percentDone'] = $percentComp;		
+
+			//force a redirect if wrong link or user breaks flow
+			//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
+			if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
+				$force_redirect = '/user/baseline/' . $raw_next_int;
+				redirect($force_redirect,'redirect');
+			}  
+
+			if( $currentPage < $baseMax ) {
+
+				$next_page = $raw_next_int + 1;
+				$data['form_direction'] = $page_url.$next_form_page;
+
+			} else { 
+				//final submission case ... /random fallback
+				$data['form_direction'] = $page_url.'1';
+			}
+
+			$this->load->view('baseline/'.$this->config->item('baseline_version').'/base_'.$currentPage.'', $data);
 
 		} else {
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('user/login');
+			$percentComp = 1 / $baseMax * 100;
+			$data['form_direction'] = $page_url.'2';
+			$data['percentDone'] = $percentComp;
+
+			//view called here
+			$this->load->view('baseline/base_1', $data);
+
 		}
+		
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
 
 	}
 
 	public function update() {
-		
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
-
-			if($this->input->post('first_name') && $this->input->post('last_name') ) {
-
-				$user = $this->ion_auth->user()->row();
-
-				$update['first_name'] = $this->input->post('first_name');
-				$update['last_name'] = $this->input->post('last_name');
-
-				if( $this->input->post('phone') ) {
-					$update['phone'] = $this->input->post('phone');
-				} //else {
-					//$update['phone'] = ' ';
-				//}
-				
-				if( isset($user->id) ) {
-					$this->ion_auth->update( $user->id, $update);
-				}
-
-				redirect('user/update','refresh');
-
-			}
 			
-			$data['user_info'] = $this->user_details;
+		if($this->input->post('first_name') && $this->input->post('last_name') ) {
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('header');
-			//VIEW BEING CALLED HERE
-			$this->load->view('user/user_details', $data);
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');			
+			$user = $this->ion_auth->user()->row();
 
+			$update['first_name'] = $this->input->post('first_name');
+			$update['last_name'] = $this->input->post('last_name');
 
-		} else {
+			if( $this->input->post('phone') ) {
+				$update['phone'] = $this->input->post('phone');
+			} //else {
+				//$update['phone'] = ' ';
+			//}
+			
+			if( isset($user->id) ) {
+				$this->ion_auth->update( $user->id, $update);
+			}
 
-			redirect("user/login", 'redirect');
+			redirect('user/update','refresh');
 
 		}
+		
+		$data['user_info'] = $this->user_details;
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+		//VIEW BEING CALLED HERE
+		$this->load->view('user/user_details', $data);
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');			
 
 	}
 
@@ -416,7 +383,6 @@ class user extends CI_Controller {
 
 	public function schedule() {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 
 			$data['initiatilize'] = true;
 
@@ -456,12 +422,6 @@ class user extends CI_Controller {
 
 			}
 
-		} else {
-
-			//redirect('','');
-
-		}
-
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
 		//VIEW BEING CALLED HERE
@@ -469,15 +429,6 @@ class user extends CI_Controller {
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
 
-
-	}
-
-	public function success() {
-
-		//VIEW BEING CALLED HERE
-		$this->load->view('header');
-		$this->load->view('success');
-		$this->load->view('footer');
 
 	}
 

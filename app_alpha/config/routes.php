@@ -83,10 +83,10 @@ $route['404_override'] = '';
 $route['user'] = "user/user";
 $route['user/baseline/:num'] = "user/user/baseline";
 $route['user/consent'] ="user/user/consent";
-$route['user/login'] = "user/user/login";
+$route['user/login'] = "user/login";
 $route['user/update'] = "user/user/update";
 $route['user/lost'] = "lost";
-$route['user/success'] = "user/user/success";
+$route['user/success'] = "resources/success";
 $route['user/update/password'] = "user/user/password";
 $route['user/schedule'] = 'user/user/schedule';
 

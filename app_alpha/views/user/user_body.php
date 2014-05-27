@@ -16,11 +16,21 @@
 
             endif; ?>
 
-            <?php if( isset($start_session) ) : ?>
+            <?php if(isset($all_sessions)) : ?>
 
-                 <a href='<?php echo $start_session ?>'> Start Session </a>
-            
+                <?php foreach($all_sessions as $session): ?>
+
+                    <?php // print_r($session); ?>
+                    
+                    <p> <a href="<?php echo "/user/session/{$session->session_number}"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
+
+                <?php endforeach; ?>
+
             <?php endif; ?>
+
+            <?php // if( isset($start_session) ) : ?>
+                 <!-- <a href='<?php echo $start_session ?>'> Start Session </a> -->
+            <?php // endif; ?>
 
             <p class="details nomargin">Last login : <?php echo date("d, M Y", $user_info->last_login); ?> </p>
 

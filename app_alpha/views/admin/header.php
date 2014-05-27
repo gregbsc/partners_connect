@@ -54,16 +54,16 @@
                         <span class="dropdown-arrow"> </span>
 
                             <ul class="dropdown-menu">
-                                <li><a href="/admin/users">Eligible Participants</a></li>
+                                <li><a href="/admin/users">Eligible Users</a></li>
+                                <li><a href="/admin/not-opt-in">Eligibile and Declined</a></li>
                                 <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
-                                <li><a href="/admin/not-opt-in">Participants who didnt opt in</a></li>
-                                <li><a href="/admin/not-eligible">Not Eligible Participants</a></li>
+                                <li><a href="/admin/not-eligible">Ineligible Participants</a></li>
                                 <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
                                 <li class="divider"></li> 
                                 <li><a href="/admin/create">Create User</a></li>
                                 <li><a href="/admin?delall=true">Remove Non Successful Attempts</a></li>
                                 <li><a href="/admin/opt-out-user">Opt Out User From Study</a></li>
-                                <li><a href="/admin/deactivated/">Delete Opted Out Users Data</a></li>
+                                <li><a href="/admin/deactivated/">Opted Out Users</a></li>
                             </ul>
 
                     </li>
@@ -81,7 +81,7 @@
 
                     </li>
 
-                    <li><a href="/admin/resources">Useful Info</a></li>
+                    <li><a href="/admin/resources">Study Notes</a></li>
                     <li><a href="/logout">Logout</a></li>
 
                 </ul>
