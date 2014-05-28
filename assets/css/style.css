@@ -1,7 +1,7 @@
 body, html, .container { min-width:800px; }
 
 .max-cont { max-width:1000px; }
-
+.underline { text-decoration:underline; }
 #logo { margin-top:40px; height:30px; }
 .strong-tittle { font-size:24px; }
 .page-title { margin-top:0; }
@@ -13,6 +13,7 @@ p { font-size:14px; }
 .h4 { font-size:18px; }
 .cust-grey { background-color:#D8D8D8; padding:5px; margin-top:30px; margin-bottom:30px; }
 .login-screen { background:none; width:500px; padding:0 !important; margin:0 auto; margin-top:100px;}
+.question-title { text-transform:uppercase; font-weight:800; font-size:16px; }
 #required-message { text-align:center; color:#C80000; padding-top:15px; }
 .wfont { color:#fff; }
 .fright { float:right; }
@@ -49,6 +50,7 @@ p { font-size:14px; }
 .med-width { max-width:400px; }
 .mauto { margin:0 auto; display:block; }
 .tcenter { text-align:center; }
+.tcenter th { text-align:center; }
 .mright10 { margin-right:10px !important; }
 .form-element { padding-bottom:0;margin-bottom:0;}
 .baseline-table tr:nth-child(even) { background-color:#E8E8E8; }

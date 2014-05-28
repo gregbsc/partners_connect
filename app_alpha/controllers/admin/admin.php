@@ -35,9 +35,9 @@ class Admin extends CI_Controller {
 
 
         } else {
-        	
+
         	$data['noinfo'] = true;
-        	redirect("admin/login", 'redirect');
+        	//redirect("admin/login", 'redirect');
     	}
 
     }

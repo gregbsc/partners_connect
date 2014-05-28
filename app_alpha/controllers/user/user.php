@@ -228,7 +228,13 @@ class user extends CI_Controller {
 			
 			$currentPage = $form_position;
 
-			$percentComp = ($currentPage / $baseMax) * 100;
+			if($currentPage == 1) {
+				$percentComp = 0;
+			} else if($currentPage == $baseMax) {
+				$percentComp = 95;
+			} else {	
+				$percentComp = round( ($currentPage / $baseMax) * 100, -1 );
+			}
 
 			// eek -- I need to move this to the view before completing.. and remove inline style..
 			$data['percentDone'] = $percentComp;		
@@ -237,7 +243,14 @@ class user extends CI_Controller {
 			//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
 			if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
 				$force_redirect = '/user/baseline/' . $raw_next_int;
-				redirect($force_redirect,'redirect');
+
+
+
+				// ADD THIS BACK 
+				//redirect($force_redirect,'redirect');
+
+
+
 			}  
 
 			if( $currentPage < $baseMax ) {

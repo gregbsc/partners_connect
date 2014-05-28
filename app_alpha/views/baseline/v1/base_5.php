@@ -14,13 +14,13 @@
 		<table class="baseline-table mtop40"> 
 
 			<tr> <th></th><th>Not at all</th><th></th><th></th><th></th><th></th><th></th> <th>Very much</th> </tr>
-			<tr> <td>17. To what extent do you think your partner has an alcohol problem?1</td> 
+			<tr> <td class="question-title">17. To what extent do you think your partner has an alcohol problem?</td> 
 				<?php table_row( 1, 7, '', 'CPD26' ); ?>
 			</tr>
 
 		</table>
 
-		<p class="mtop40">18. How often do you and your partner argue about your partner’s drinking?</p>
+		<p class="mtop40 question-title">18. How often do you and your partner argue about your partner’s drinking?</p>
 
 			<p class="radio-buttons">
 
@@ -39,7 +39,7 @@
 
 			</p>
 
-		<p class="mtop40">19. How often in the last month have you told your partner your concerns about his/her drinking?</p>
+		<p class="mtop40 question-title question-title">19. How often in the last month have you told your partner your concerns about his/her drinking?</p>
 		
 		<p class="radio-buttons">
 
@@ -55,7 +55,7 @@
 
 		<div class="cover" id="19a">
 
-			<p class="mtop40">19a. How satisfied were you with how these discussions went?</p>
+			<p class="mtop40 question-title">19a. How satisfied were you with how these discussions went?</p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="TPD2" value="0" /> Not at all satisfied </br>
@@ -64,7 +64,7 @@
 				<input type="radio" name="TPD2" value="3" /> Extremely satisfied </br>
 			</p>
 
-			<p class="mtop40">19b. What influence do you think the conversation(s) has had on your partner’s drinking?</p>
+			<p class="mtop40 question-title">19b. What influence do you think the conversation(s) has had on your partner’s drinking?</p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="TPD3" value="0" /> He/she is drinking more </br>
@@ -77,22 +77,17 @@
 
 		</div>
 
-		<p>On the ruler below, please indicate the number that best describes how you think your partner feels right now:</p>
-
-		<p class="mtop20">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </p> </br>
-		
+		<p class="directions mtop30">On the ruler below, please indicate the number that best describes how you think your partner feels right now:</p>
 		<ul>
 			<li>0 = Has not done anything to change his/her drinking 
-			
-			<li>2= Has talked about changing, but has no plans to do so yet</li> 
-		
+			<li>2= Has talked about changing, but has no plans to do so yet</li>
 			<li>5 = Has a plan for changing</li> 
-		
 			<li>7 = Just started to change</li> 
-			
-			<li>10= Has started to change and plans to continue </li> 
+			<li>10= Has started to change and plans to continue </li>
 		</ul>
 
+		<p class="mtop20 question-title">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </p> </br>
+		
 		<table class="top-number-radio">
 		
 			<tr> 
@@ -101,6 +96,20 @@
 
 		</table>
 	
+
+		<p class="mtop40 question-title">21. On a scale from 0 to 10, how ready do you think your partner feels about seek help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
+		
+		<table class="top-number-radio">
+			
+ 			<!--<tr> 
+				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
+			</tr> -->
+
+			<tr> 
+				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
+			</tr>
+
+		</table>
 		<input type="hidden" name="section" value="5" />
 		<input type="submit" value="submit" class="mtop40 mbot40" />
 

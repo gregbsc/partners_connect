@@ -20,7 +20,7 @@
 								<input type="radio" name="reason_select" value="no-disc-alc"/> Do not want to discuss alcohol </br>
 								<input type="radio" name="reason_select" value="not-financial"/> Not enough financial incentive</br>
 
-								<p>“Other (Please type here):</p>
+								<p>Other (Please type here):</p>
 								<textarea name="reason" class="special" required></textarea> </br>
 								<input type="hidden" name="subid" />
 								<input class="mtop20" type="submit" value="submit" />

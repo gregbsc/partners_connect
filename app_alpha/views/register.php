@@ -21,7 +21,7 @@
         <p>Email address</p>
         <input type="email" name="username" placeholder="email address" required="" />
 
-        <p>Phone Number ( 555-555-5555 ) </p>
+        <p>Phone Number </p>
         <input type="tel" name="phone" placeholder="" required="" /> </br>
 
         <p>Best time to contact</p>

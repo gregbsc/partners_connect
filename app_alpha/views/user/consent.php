@@ -150,8 +150,8 @@
 
             <div>
 
-              <input type="radio" name="consent_box"> I consent </br>
-              <input type="radio" name="consent_box" id="do_not"> I do not consent </br>
+              <input type="radio" name="consent_box" value="1"> I consent </br>
+              <input type="radio" name="consent_box" value="2" id="do_not"> I do not consent </br>
               <input type="text" name="person_name" placeholder="Initials Here" class="mtop20" required=""/> </br>
 
               <div class="decline-reason mtop40">

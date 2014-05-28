@@ -14,19 +14,19 @@
 		
 		<p>This section asks you some general background questions about yourself.</p>
 
-		<p class="mtop40"> 28. What is your gender? </p>
+		<p class="mtop40 question-title"> 28. What is your gender? </p>
 		<input type="radio" name="GEN" value="1" /> Male </br>
 		<input type="radio" name="GEN" value="0" /> Female </br>
 		<input type="radio" name="GEN" value="2" /> Prefer not to answer </br>
 
-		<p class="mtop40"> 29. What is your age? (In years) </p>
+		<p class="mtop40 question-title"> 29. What is your age? (In years) </p>
 		<input type="number" name="AGE" min="16" /> </br>
 
-		<p class="mtop40"> 30. Are you Hispanic/Latino(a) or of Spanish origin?</p>
+		<p class="mtop40 question-title"> 30. Are you Hispanic/Latino(a) or of Spanish origin?</p>
 		<input type="radio" name="HISP" value="1" /> Yes </br>
 		<input type="radio" name="HISP" value="0" /> No </br>
 
-		<p class="mtop40">31. Which race/group best describes you? (Please mark all that apply.) </p>
+		<p class="mtop40 question-title">31. Which race/group best describes you? (Please mark all that apply.) </p>
 		
 		<p class="left-checkbox">
 
@@ -39,25 +39,25 @@
 
 		</p>
 
-		<p class="mtop40">33. What is the highest grade or year of school that you have finished?</p>
+		<p class="mtop40 question-title">33. What is the highest grade or year of school that you have finished?</p>
 
 		<p class="left-checkbox">
 
-			<input type="checkbox" name="EDUC[]" value="0"/> Less than high school diploma </br>
-			<input type="checkbox" name="EDUC[]" value="1"/> High school graduate or diploma </br>
-			<input type="checkbox" name="EDUC[]" value="2"/> Some college but no degree </br>
-			<input type="checkbox" name="EDUC[]" value="3"/> Technical or vocational school </br>
-			<input type="checkbox" name="EDUC[]" value="4"/> Bachelor’s degree </br>
-			<input type="checkbox" name="EDUC[]" value="5"/> Master’s, professional, or doctorate degree </br>
+			<input type="radio" name="EDUC" value="0"/> Less than high school diploma </br>
+			<input type="radio" name="EDUC" value="1"/> High school graduate or diploma </br>
+			<input type="radio" name="EDUC" value="2"/> Some college but no degree </br>
+			<input type="radio" name="EDUC" value="3"/> Technical or vocational school </br>
+			<input type="radio" name="EDUC" value="4"/> Bachelor’s degree </br>
+			<input type="radio" name="EDUC" value="5"/> Master’s, professional, or doctorate degree </br>
 
 		</p>
 
-		<p class="mtop40">34. What is your current relationship status?</p>
+		<p class="mtop40 question-title">34. What is your current relationship status?</p>
 
 		<p class="radio-buttons">
 
 			<input type="radio" name="REL1" value="1" onclick="$('#married').show()"/> Married</br>
-			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').show()"/> Living With Partner</br>
+			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').show()"/> Living With partner</br>
 			<input type="radio" name="REL1" value="3" /> Widowed</br>
 			<input type="radio" name="REL1" value="4" /> Divorced</br>
 			<input type="radio" name="REL1" value="5" /> Separated</br>
@@ -68,7 +68,7 @@
 			<!-- [If Question 34 = “Married,” then ask:] </br> -->
 
 			<div class="cover" id="married">
-				<p class="mtop40"> 34a. How many years have you been married to your spouse? </p>
+				<p class="mtop40 question-title"> 34a. How many years have you been married to your spouse? </p>
 				<input type="number" name="REL2" /> years </br>
 			</div>
 
@@ -79,7 +79,7 @@
 				<input type="number" name="REL3" /> years </br>
 			</div>
 
-		<p class="mtop40">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
+		<p class="mtop40 question-title">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
 			
 			<p class="radio-buttons">
 				<input type="radio" name="KID1" value="1" onclick="$('#35a').show()" /> Yes </br>
@@ -88,7 +88,7 @@
 
 			<div class="cover" id="35a">
 
-				<p class="mtop40"> 35a. How old are the children who live with you?  Mark the number of children you have in each category.</p>
+				<p class="mtop40 question-title"> 35a. How old are the children who live with you?  Mark the number of children you have in each category.</p>
 
 				<p class="left-checkbox">
 					<input type="checkbox" name="KID2[]" value="1"/> 0-5 </br>
@@ -100,11 +100,11 @@
 
 			</div>
 
-			<p class="mtop40">36. Which U.S. state or territory do you currently live in? </p>
+			<p class="mtop40 question-title">36. Which U.S. state or territory do you currently live in? </p>
 			<?php echo state_list_dropwdown( 'STATE' ); ?> </br>
 
 
-			<p class="mtop40">37. Are you a U.S. veteran? </p>
+			<p class="mtop40 question-title">37. Are you a U.S. veteran? </p>
 
 				<p class="radio-buttons">
 					<input type="radio" name="VET1" value="0" /> No</br>
@@ -116,7 +116,7 @@
 
 			<div class="cover" id="37subs">
 
-				<p class="mtop40">37a. Which branch of military service were you a part of?</p>
+				<p class="mtop40 question-title">37a. Which branch of military service were you a part of?</p>
 
 				<p class="radio-buttons">
 					<input type="radio" name="VET2" value="1" /> Army </br>
@@ -133,11 +133,11 @@
 					<input type="radio" name="VET2" value="12" /> Navy Reserve </br>
 				</p>
 
-				<p class="mtop40">37b. How many years did you serve in the military?</p>
+				<p class="mtop40 question-title">37b. How many years did you serve in the military?</p>
 					
 					<input type="number" name="VET3" /> years </br>
 
-				<p class="mtop40">37c. What was your current pay grade at discharge?</p>
+				<p class="mtop40 question-title">37c. What was your current pay grade at discharge?</p>
 
 				<p class="radio-buttons">
 					<input type="radio" name="VET4" value="1" /> E-1 </br>

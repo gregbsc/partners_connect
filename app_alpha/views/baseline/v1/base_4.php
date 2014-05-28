@@ -10,19 +10,20 @@
 		
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 		
-		<h4 class="h4 mtop50">YOUR PARTNER</h4>
+		<h4 class="h4 mtop50">YOUR PARTNER’S DRINKING</h4>
 
-		<p>The next set of questions asks about your perceptions about your partner’s drinking. When we say “partner” we are referring to your spouse or partner with whom you live with. You may not know some of this information and that’s okay, please make your best guess. </p>
+		<p>The next set of questions asks about your perceptions about <span class="underline">your partner’s drinking</span>. When we say “partner” we are referring we are referring to your spouse or partner you live with. You may not know some of this information and that’s okay, please make your best guess. </p>
 		<p>For all questions related to alcohol use below, please use the following definitions of standard drinks:</p>
 
 		<p class="mtop40"> <img src="<?php echo base_url(); ?>assets/img/drinks.png" class="img-responsive" /> </p>
 
-		<p class="mtop40">15. The following question asks you about your views of your partner’s drinking behavior. We are not asking you to report on their specific level of drinking (that is, you do not need to ask them how much they drink); rather, we are interested in how much you think they drink.</p>
+		<p class="mtop40 question-title">15. The following question asks you about your views of your partner’s drinking behavior. We are not asking you to report on their specific level of drinking (that is, you do not need to ask them how much they drink); rather, we are interested in how much you think they drink.</p>
+		<p class="directions mtop20">Consider a typical week during the <strong>past month (30 days)</strong>.</p>
 
 		<table class="baseline-table">
 
 			<tr> 
-				<th>Consider a typical week during the past month (30 days). How much alcohol, on average, (measured in number of drinks), do you think your partner had on each day of a typical week?</th> 
+				<th>How much alcohol, on average, (measured in number of drinks), <span class="underline">do you think your partner</span> had on each day of <span class="underline">a typical week?</span> </th> 
 				<th> Number of Drinks </th>
 			</tr>
 
@@ -57,7 +58,7 @@
 
 		</table>
 
-		<p class="mtop40">16. The following statements refer to your thoughts and feelings about your partner's drinking. Please indicate how much you agree or disagree with the following statements.</p>
+		<p class="mtop40 question-title">16. The following statements refer to your thoughts and feelings about your partner's drinking. Please indicate how much you agree or disagree with the following statements.</p>
 
 		<table class="baseline-table">
 			<tr> 

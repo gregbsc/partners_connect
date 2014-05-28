@@ -10,8 +10,9 @@
 		
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 		
+		<p>Please read each question carefully and indicate your best answer.  You should answer the questions in your own way.  There are no right or wrong answers.</p>
 
-		<p class="mtop40">5. Here are some questions about your health and feelings.  Please read each question carefully and indicate your best answer.  You should answer the questions in your own way.  There are no right or write answers.</p>
+		<p class="mtop40 question-title">5. Here are some statements about your health and feelings.</p>
 		
 		<table class="baseline-table">
 
@@ -70,7 +71,8 @@
 			
 		</table>
 
-		<p class="mtop40">6. Today would you have any physical trouble or difficulty:</p>
+		<p class="instruction">TODAY, would you have any physical trouble or difficulty:</p>
+		<p class="mtop40 question-title">6.</p>
 		
 		<table class="baseline-table">
 
@@ -92,9 +94,10 @@
 
 		</table>
 
-		<p class="mtop40">7. During the past week, how much trouble have you had with:</p>
+		<p class="mtop40 question-title">7. During the <span class="underline">PAST WEEK</span>, how much trouble have you had with:</p>
 
 		<table class="baseline-table">
+			
 			<tr> <th> </th> <th>None</th> <th>Some</th> <th>A Lot</th> </tr>
 
 			<tr> 
@@ -127,9 +130,10 @@
 				<td> <input type="radio" name="HF14" value="1"/> </td> 
 				<td> <input type="radio" name="HF14" value="2"/> </td>  
 			</tr>
+
 		</table>
 
-		<p class="mtop40">8. During the past week, how often did you:</p>
+		<p class="mtop40 question-title">8. During the past week, how often did you:</p>
 
 		<table class="baseline-table">
 			<tr> <th> </th> <th>None</th> <th>Some</th> <th>A Lot</th> </tr>
@@ -142,14 +146,14 @@
 			</tr>
 
 			<tr> 
-				<td>Take part in social, religious, or recreation activities (meetings, church, movies, sports, parties)</td> 
+				<td>Take part in social, religious, or recreational activities (meetings, church, movies, sports, parties)</td> 
 				<td> <input type="radio" name="HF16" value="0" /> </td> 
 				<td> <input type="radio" name="HF16" value="1" /> </td> 
 				<td> <input type="radio" name="HF16" value="2" /> </td> 
 			</tr>
 		</table>
 
-		<p class="mtop40">9. During the past week, how often did you:</p>
+		<p class="mtop40 question-title">9. During the past week, how often did you:</p>
 
 		<table class="baseline-table">
 

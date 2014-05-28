@@ -10,24 +10,11 @@
 		
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
-		<p class="mtop40">21. On a scale from 0 to 10, how ready do you think your partner feels about seeking help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
-		
-		<table class="top-number-radio">
-			
-			<tr> 
-				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
-			</tr>
 
-			<tr> 
-				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
-			</tr>
-
-		</table>
-
-		<p class="mtop40">22. In the past three months, how often did you…</p>
+		<p class="mtop40 question-title">22. In the past three months, how often did you…</p>
 
 		<table class="baseline-table">
-			<tr> <th>Never or only once</th><th>Sometimes</th><th>Frequently</th><th>Frequently</th><th>Always or almost always</th> </tr>
+			<tr> <th></th> <th>Never or only once</th><th>Sometimes</th><th>Frequently</th><th>Always or almost always</th> </tr>
 
 			<tr> 
 				<td>Try to stop your partner's drinking by getting angry?</td>
@@ -91,7 +78,7 @@
 				<?php table_row( 1, 4, '', 'INT16' ); ?>
 			</tr>
 			<tr> 
-				<td>Refuse be home with your partner when he/she was drinking?</td>
+				<td>Refuse be at home with your partner when he/she was drinking?</td>
 				<?php table_row( 1, 4, '', 'INT17' ); ?>
 			</tr>
 			<tr> 

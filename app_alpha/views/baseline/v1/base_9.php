@@ -14,7 +14,7 @@
 
 			<p>Now we would like to ask you some general questions about your partner.  When we say “partner” we are referring to your spouse or partner with whom you live with.</p>
 
-			<p class="mtop40">38. Which branch of military service is your partner a part of? </p>
+			<p class="mtop40 question-title">38. Which branch of military service is your partner a part of? </p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PMIL1" value="1" /> Army </br>
@@ -31,11 +31,11 @@
 				<input type="radio" name="PMIL1" value="12" /> Navy Reserve</br>
 			</p>
 
-			<p class="mtop40">39. How many years has your partner been in the military? </p>
+			<p class="mtop40 question-title">39. How many years has your partner been in the military? </p>
 				
 				<input type="number" name="PMIL2" /> years </br>
 
-			<p class="mtop40">40. What is your partner’s current pay grade? </p>
+			<p class="mtop40 question-title">40. What is your partner’s current pay grade? </p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PMIL3" value="1" /> E-1 [code 1-20]</br>
@@ -60,7 +60,7 @@
 				<input type="radio" name="PMIL3" value="20" /> O-6 or above</br> 
 			</p>
 
-			<p class="mtop40">41. Which of the following best describes your partner’s status with respect to deployment? </p>
+			<p class="mtop40 question-title">41. Which of the following best describes your partner’s status with respect to deployment? </p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PMIL4" value="1" /> Not deployed and has no deployment currently scheduled </br>
@@ -71,7 +71,7 @@
 				<input type="radio" name="PMIL4" value="0"/> Returned from a deployment within the last year </br>
 			</p>
 
-			<p class="mtop40"> 42. What is your partner’s gender? </p>
+			<p class="mtop40 question-title"> 42. What is your partner’s gender? </p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PGEN" value="1" /> Male </br>
@@ -79,18 +79,18 @@
 				<input type="radio" name="PGEN" value="2"/> Prefer not to answer </br>
 			</p>
 
-			<p class="mtop40">43. What is your partner’s age? </p>
+			<p class="mtop40 question-title">43. What is your partner’s age? </p>
 
 				<input type="number" name="PAGE" /> years old</br>
 
-			<p class="mtop40">44. Is your partner Hispanic/Latino(a) or of Spanish origin? </p>
+			<p class="mtop40 question-title">44. Is your partner Hispanic/Latino(a) or of Spanish origin? </p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PHISP" value="1" /> Yes </br>
 				<input type="radio" name="PHISP" value="0" /> No </br>
 			</p>
 
-			<p class="mtop40">45. Which race/group best describes your partner? (Please mark all that apply.)</p>
+			<p class="mtop40 question-title">45. Which race/group best describes your partner? (Please mark all that apply.)</p>
 
 				<input type="checkbox" name="PRACE" value="1"> American Indian or Alaska Native </br>
 				<input type="checkbox" name="PRACE" value="2"> Asian (for example, Asian Indian, Chinese, Filipino, Japanese, Korean, Vietnamese) </br>
@@ -99,7 +99,7 @@
 				<input type="checkbox" name="PRACE" value="5"> White </br>
 				Some other race (please specify): <input type="text" name="PRACE-OTHER"> </br>
 
-			<p class="mtop40">46. What is the highest grade or year of school that your partner has finished?</p>
+			<p class="mtop40 question-title">46. What is the highest grade or year of school that your partner has finished?</p>
 
 			<p class="radio-buttons">
 				<input type="radio" name="PDEUC" value="0"/> Less than high school diploma</br>

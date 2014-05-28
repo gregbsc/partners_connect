@@ -10,18 +10,20 @@
 
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
-		<p class="h4 mtop40">YOUR PARTNER</p>
+		<p class="h4 mtop40">YOUR DRINKING</p>
 		
 		<p class="">The next set of questions asks about your drinking.  For all questions related to alcohol use below, please use the following definitions of standard drinks:</p>
 
 		<p class="mtop50"> <img src="<?php echo base_url(); ?>assets/img/drinks.png" class="img-responsive" /> </p>
 
-		<p class="mtop20">The first set of questions asks you about your own drinking. </p>
+		<!-- <p class="mtop20">The first set of questions asks you about your own drinking. </p> -->
 
-		<table class="baseline-table">
+
+
+		<table class="baseline-table mtop40">
 
 			<tr> 
-				<th>10. Consider a typical week during the past month (30 days). How much alcohol, on average, (measured in number of drinks), did YOU drink on each day of a typical week?</th> 
+				<th class="question-title">10. Consider a typical week during the past month (30 days). How much alcohol, on average (measured in number of drinks), did YOU drink on each day of a typical week?</th> 
 				<th> Number of Drinks </th>
 			</tr>
 
@@ -56,11 +58,11 @@
 
 		</table>
 
-		<p class="mtop40">11. Think specifically about the past 30 days, up to and including today. During the past 30 days, on how many days did you drink one or more drinks of an alcoholic beverage?</p>
-			<input type="number" name="30D" min="0" max="30" /> </br>
-			<p class="mtop20"> I don't know <input type="checkbox" name="30Db" /> </span> </p>
+		<p class="mtop40 question-title">11. Think specifically about the past 30 days, up to and including today. During the <span class="underline">past 30 days</span>, on how many days did you drink one or more drinks of an alcoholic beverage?</p>
+			<input type="number" name="30D" min="0" max="31" /> </br>
+			<!-- <p class="mtop20"> I don't know <input type="checkbox" name="30Db" /> </span> </p> -->
 
-		<p class="mtop40">12. How often do you have a drink containing alcohol?</p>
+		<p class="mtop40 question-title">12. How often do you have a drink containing alcohol?</p>
 
 		<p class="radio-buttons">
 			<input type="radio" name="AUD1" value="0"/> Never </br>						
@@ -70,12 +72,11 @@
 			<input type="radio" name="AUD1" value="4"/> 4 or more times a week </br>
 		</p>
 
-		<p class="mtop40">13. How many standard drinks containing alcohol do you have on a typical day?</p>
+		<p class="mtop40 question-title">13. How many standard drinks containing alcohol do you have on a typical day?</p>
 			<input type="number" name="AUD2" min="0" max="90" /> </br>
-			<p class="mtop20"> I don't know <input type="checkbox" name="AUD2CheckBox" /> </span> </p>
+			<!-- <p class="mtop20"> I don't know <input type="checkbox" name="AUD2CheckBox" /> </span> </p> -->
 
-
-		<p class="mtop40">14. How often do you have six or more drinks on one occasion?</p>
+		<p class="mtop40 question-title">14. How often do you have six or more drinks on one occasion?</p>
 
 		<p class="radio-buttons">
 			<input type="radio" name="AUD3" value="0" /> Never</br> 						
