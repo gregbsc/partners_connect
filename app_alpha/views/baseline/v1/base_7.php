@@ -181,8 +181,6 @@
 			<p class="radio-buttons">
 				<input type="radio" name="COUNS" value="1" /> Yes </br>
 				<input type="radio" name="COUNS" value="0"/> No </br>
-				<input type="hidden" name="section" value="7" />
-				<input type="submit" value="submit" class="mtop40 mbot40" />
 			</p>
 
 			<p class="mtop40 question-title"> 29. Have you and/or your partner received couples counseling in the past 90 days or do you intend to do so in the next 60 days?</p>
@@ -190,9 +188,12 @@
 			<p class="radio-buttons">
 				<input type="radio" name="COUNS" value="1" /> Yes </br>
 				<input type="radio" name="COUNS" value="0"/> No </br>
-				<input type="hidden" name="section" value="7" />
-				<input type="submit" value="submit" class="mtop40 mbot40" />
+
 			</p>
+
+			<input type="hidden" name="section" value="7" />
+			<input type="submit" value="submit" class="mtop40 mbot40" />
+			
 		</form>
 
 

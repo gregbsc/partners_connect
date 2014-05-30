@@ -10,7 +10,9 @@
 
 		<?php echo ( isset( $percentDone ) ? form_progress($percentDone) : "" ); ?>
 
-			<h4 class="h4">FINAL QUESTIONS ABOUT YOUR PARTNER</h4>
+			<div class="special-message">This is your last page of the survey. We would like to ask you some final questions about your partner. When we say “partner”, we are referring to your spouse or partner you live with. </div>
+
+			<h4 class="h4 mtop40">FINAL QUESTIONS ABOUT YOUR PARTNER</h4>
 
 			<p>Now we would like to ask you some general questions about your partner.  When we say “partner” we are referring to your spouse or partner with whom you live with.</p>
 

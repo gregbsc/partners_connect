@@ -14,19 +14,22 @@
 		
 		<p>This section asks you some general background questions about yourself.</p>
 
-		<p class="mtop40 question-title"> 28. What is your gender? </p>
-		<input type="radio" name="GEN" value="1" /> Male </br>
-		<input type="radio" name="GEN" value="0" /> Female </br>
-		<input type="radio" name="GEN" value="2" /> Prefer not to answer </br>
+		<p class="mtop40 question-title"> 30. What is your gender? </p>
 
-		<p class="mtop40 question-title"> 29. What is your age? (In years) </p>
+		<p class="radio-buttons">
+			<input type="radio" name="GEN" value="1" /> Male </br>
+			<input type="radio" name="GEN" value="0" /> Female </br>
+			<input type="radio" name="GEN" value="2" /> Prefer not to answer </br>
+		</p>
+
+		<p class="mtop40 question-title"> 31. What is your age? (In years) </p>
 		<input type="number" name="AGE" min="16" /> </br>
 
-		<p class="mtop40 question-title"> 30. Are you Hispanic/Latino(a) or of Spanish origin?</p>
+		<p class="mtop40 question-title"> 32. Are you Hispanic/Latino(a) or of Spanish origin?</p>
 		<input type="radio" name="HISP" value="1" /> Yes </br>
 		<input type="radio" name="HISP" value="0" /> No </br>
 
-		<p class="mtop40 question-title">31. Which race/group best describes you? (Please mark all that apply.) </p>
+		<p class="mtop40 question-title">33. Which race/group best describes you? (Please mark all that apply.) </p>
 		
 		<p class="left-checkbox">
 
@@ -39,7 +42,7 @@
 
 		</p>
 
-		<p class="mtop40 question-title">33. What is the highest grade or year of school that you have finished?</p>
+		<p class="mtop40 question-title">34. What is the highest grade or year of school that you have finished?</p>
 
 		<p class="left-checkbox">
 
@@ -52,35 +55,35 @@
 
 		</p>
 
-		<p class="mtop40 question-title">34. What is your current relationship status?</p>
+		<p class="mtop40 question-title">35. What is your current relationship status?</p>
 
 		<p class="radio-buttons">
 
-			<input type="radio" name="REL1" value="1" onclick="$('#married').show()"/> Married</br>
-			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').show()"/> Living With partner</br>
-			<input type="radio" name="REL1" value="3" /> Widowed</br>
-			<input type="radio" name="REL1" value="4" /> Divorced</br>
-			<input type="radio" name="REL1" value="5" /> Separated</br>
-			<input type="radio" name="REL1" value="6" /> Never married/single</br>
+			<input type="radio" name="REL1" value="1" onclick="$('#married').show()"/> Married </br>
+			<input type="radio" name="REL1" value="2" onclick="$('#living-partner').hide()" /> Living With partner </br>
+			<input type="radio" name="REL1" value="3" onclick="$('#living-partner').hide()" /> Widowed </br>
+			<input type="radio" name="REL1" value="4" onclick="$('#living-partner').hide()" /> Divorced </br>
+			<input type="radio" name="REL1" value="5" onclick="$('#living-partner').hide()" /> Separated </br>
+			<input type="radio" name="REL1" value="6" onclick="$('#living-partner').hide()" /> Never married/single </br>
 
 		</p>
 
 			<!-- [If Question 34 = “Married,” then ask:] </br> -->
 
 			<div class="cover" id="married">
-				<p class="mtop40 question-title"> 34a. How many years have you been married to your spouse? </p>
+				<p class="mtop40 question-title"> 35a. How many years have you been married to your spouse? </p>
 				<input type="number" name="REL2" /> years </br>
 			</div>
 
 			<!-- If Question 34 = “Living with partner,” then ask:] </br> -->
 
 			<div class="cover" id="living-partner">
-				<p class="mtop40">34b. How many years have you been living with your partner?</p>
+				<p class="mtop40">35b. How many years have you been living with your partner?</p>
 				<input type="number" name="REL3" /> years </br>
 			</div>
 
-		<p class="mtop40 question-title">35. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
-			
+			<p class="mtop40 question-title">36. Do you have any children, including step-children and/or foster children, who live with you at least half of the time?</p>
+				
 			<p class="radio-buttons">
 				<input type="radio" name="KID1" value="1" onclick="$('#35a').show()" /> Yes </br>
 				<input type="radio" name="KID1" value="0" /> No </br>

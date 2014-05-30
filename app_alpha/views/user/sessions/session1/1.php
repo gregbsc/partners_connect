@@ -26,24 +26,12 @@
 		<div class="col-md-7">
 
 			<?php if(isset($video_file)): ?>
-
+				<iframe src="//player.vimeo.com/video/<?php echo $video_file; ?>" width="WIDTH" height="HEIGHT" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 				<div id="wistia_g5pnf59ala" class="wistia_embed" style="width:640px;height:360px;">&nbsp;</div>
-				
-				<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
-					
-					<script> 
-
-						wistiaEmbed = Wistia.embed('<?php echo $video_file; ?>', {
-						    autoPlay: false,
-						    playerColor: '#585858'
-						}); 
-
-					</script>
-
 			<?php endif; ?>
 
 			<div class="main-content">
-
+ 
 
 			</div>
 			

@@ -86,7 +86,7 @@
 			<li>10= Has started to change and plans to continue </li>
 		</ul>
 
-		<p class="mtop20 question-title">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </p> </br>
+		<p class="mtop40 question-title mbot0">20. On a scale from 0 to 10, how ready do you feel your partner is to change his/her drinking? </p> </br>
 		
 		<table class="top-number-radio">
 		
@@ -100,16 +100,15 @@
 		<p class="mtop40 question-title">21. On a scale from 0 to 10, how ready do you think your partner feels about seek help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
 		
 		<table class="top-number-radio">
-			
  			<!--<tr> 
 				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
 			</tr> -->
-
 			<tr> 
 				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
 			</tr>
 
 		</table>
+
 		<input type="hidden" name="section" value="5" />
 		<input type="submit" value="submit" class="mtop40 mbot40" />
 

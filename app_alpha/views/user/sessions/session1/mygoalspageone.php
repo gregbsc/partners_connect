@@ -25,25 +25,12 @@
 
 		<div class="col-md-7">
 
-			<?php if(isset($video_file)): ?>
-
-				<div id="wistia_g5pnf59ala" class="wistia_embed" style="width:640px;height:360px;">&nbsp;</div>
-				
-				<script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js"></script>
-					
-					<script> 
-
-						wistiaEmbed = Wistia.embed('<?php echo $video_file; ?>', {
-						    autoPlay: false,
-						    playerColor: '#585858'
-						}); 
-
-					</script>
-
+			<?php if(isset($custom_form)): ?>
+				<?php $this->load->view($custom_form); ?>
 			<?php endif; ?>
 
 			<div class="main-content">
-
+ 
 
 			</div>
 			

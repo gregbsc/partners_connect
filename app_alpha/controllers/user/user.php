@@ -23,7 +23,7 @@ class user extends CI_Controller {
     function __construct()
     {
 
-        parent::__construct();   
+        parent::__construct();
 
         $this->site_url = $this->config->item('base_url');
 
@@ -247,7 +247,7 @@ class user extends CI_Controller {
 
 
 				// ADD THIS BACK 
-				//redirect($force_redirect,'redirect');
+				redirect($force_redirect,'redirect');
 
 
 

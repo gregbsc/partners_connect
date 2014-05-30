@@ -96,3 +96,19 @@ textarea.special { width: 400px; font-size:14px;}
 .notice { font-size:20px; font-weight:800; }
 .select-option { font-size:18px; }
 .asgnostic-message { width:80%; margin:0 auto; text-align:center; }
+
+
+/* session styles */
+
+.char-container p { 
+	width: 48%;
+	display:inline-block;
+	vertical-align:top;
+}
+.char-container img { 
+	max-width:95%;
+	cursor:auto;
+	cursor:pointer;
+}
+
+/* end of session styles */
