@@ -3,7 +3,7 @@
 class session_tracking extends CI_Model
 {
 	
-	function status( $uid, $session, $page ) {
+	function status( $uid, $session, $page, $required ) {
 
 		$this->db->select('*');
 		$this->db->from('user_progress');
@@ -11,20 +11,27 @@ class session_tracking extends CI_Model
 		$this->db->where('session', $session);
 		$this->db->where('page', $page);
 		$query = $this->db->get();
-		$cleanResult = $query->num_rows();
-
-		if($cleanResult < 1) {
+		$cleancount = $query->num_rows();
+		
+		if($cleancount < 1) {
+			
+			if( $required == 1 ) {
+				$completed = 0;
+			} else {
+				$completed = 1;
+			}
 
 			$data = array(
 			   'uid' =>  $uid,
 			   'session' =>  $session,
 			   'page' => $page,
-			   'completed' => 0
+			   'completed' => $completed
 			);
 
 			$this->db->insert('user_progress', $data); 
 
 			return 0;
+			
 		}
 		
 		$result_status = $query->result();

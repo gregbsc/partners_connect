@@ -111,4 +111,12 @@ textarea.special { width: 400px; font-size:14px;}
 	cursor:pointer;
 }
 
+.char-portal p {
+	width:33%;
+	vertical-align:top;
+	display:inline-block;
+}
+.require-action { 
+	display:none;
+}
 /* end of session styles */

@@ -35,4 +35,29 @@ class session_content extends CI_Model
 
 	}
 
+	function status($uid, $session, $page, $required) {
+
+		$this->db->select('uid, session, page, completed');
+		$this->db->from('user_progress');
+		$this->db->where('uid', $uid);
+		$this->db->where('page', $page);
+		$this->db->where('session', $session);
+
+		$query = $this->db->get();
+		$cleanResult = $query->result();
+		
+		if(isset($cleanResult[0])) {
+
+			$status = $cleanResult[0]->completed;
+			return $status;
+
+		} else {
+
+			return 0;
+
+		}
+	
+	}
+
+
 }

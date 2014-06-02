@@ -25,7 +25,7 @@
 
 		<div class="col-md-7">
 
-			<?php if(isset($custom_form)): ?>
+			<?php if(isset($custom_form) && !empty($custom_form)): ?>
 				<?php $this->load->view($custom_form); ?>
 			<?php endif; ?>
 

@@ -34,34 +34,43 @@ class session extends CI_Controller {
 			$this->load->model('users/personality');
             $this->load->model('/users/session_tracking');
 
+            
+
             //page location information
         	$this->session_location = $this->uri->segment(3);
         	$this->page_location = $this->uri->segment(4);
         	$this->next_page = intval($this->page_location) + 1;
         	$this->previous_page = intval($this->page_location) - 1;
+            //user info
+            $this->user_details = $this->ion_auth->user()->row();
+            $this->uid = $this->user_details->user_id;
+
+            $session_status = $this->session_planning->session_status($this->uid, $this->session_location);
 
         	// LOAD HELPERS HERE
         	$this->load->helper('users/session_content');
         
-            //user info
-           	$this->user_details = $this->ion_auth->user()->row();
-    		$this->uid = $this->user_details->user_id;
+            //session content
+            $this->page_content = $this->session_content->body($this->session_location, $this->page_location);
 
             //session status
     		$live_session = $this->session_planning->live_session( $this->uid );
-    		$session_status = $this->session_planning->session_status($this->uid, $this->uri->segment(3));
+    		//$session_status = $this->session_planning->session_status($this->uid, $this->session_location);
+
    		
     		// ******************************* ******************************* *******************************
     		// start of logic to redirect users to correct page -- assuming they try to be tricky!
     		// ******************************* ******************************* *******************************
 
-    		if( isset($live_session->session_number) && ( $this->uri->segment(3) == $live_session->session_number ) || isset($session_status) && $session_status == 1 ) {
+            
 
-                $this->recent_complete = $this->session_tracking->recent( $this->uid, $this->uri->segment(3) );
+    		if( isset($live_session->session_number) && ( $this->session_location == $live_session->session_number ) || isset($session_status) && $session_status == 1 ) {
 
-                if($this->uri->segment(4)) {
+                $this->recent_complete = $this->session_tracking->recent( $this->uid, $this->session_location );
 
-                    $this->page_status = $this->session_tracking->status( $this->uid, $this->uri->segment(3), $this->uri->segment(4) );
+                if($this->uri->segment(4) && isset($this->page_content->required)) {
+
+                    $this->page_status = $this->session_tracking->status( $this->uid, $this->session_location, $this->page_location, $this->page_content->required );
 
                 } else {
 
@@ -69,11 +78,10 @@ class session extends CI_Controller {
 
                 }
 
-    			if(!$this->uri->segment(4) || ( $this->uri->segment(4) != ( $this->recent_complete + 1) ) ) {
+    			if(!$this->uri->segment(4) || ( $this->page_location != ( $this->recent_complete + 1) ) ) {
 
                     $next_page = $this->recent_complete + 1;
-                    echo $next_page . " " . $this->recent_complete;
-					//redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
+					redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
 
     			}
 
@@ -86,7 +94,7 @@ class session extends CI_Controller {
     		// ******************************* ******************************* *******************************
 
     	} else {
-    		//redirect('/user/login/','redirect'); // redirect if not logged in
+    		redirect('/user/login/','redirect'); // redirect if not logged in
     	}
 
     }
@@ -94,23 +102,43 @@ class session extends CI_Controller {
 	//this is currently set the default -- this is what the user see's when they first login
 	public function index()
 	{			
-        //session related content
-		$session_content = $this->session_content->body($this->uri->segment(3), $this->uri->segment(4));
-        $video_content = $this->session_content->videos($this->uri->segment(3), $this->uri->segment(4));
+        
+        // ***************
+        // Session related content
+        // This is where the core of the page is built
+        // ***************
+
+        $session_content = $this->page_content;
+        $video_content = $this->session_content->videos($this->session_location, $this->page_location);
+
+        $progress = $this->session_content->status($this->uid, $this->session_location, $this->page_location, $this->page_content->required);
+
+        // ***************
+        // ***************
 
         //this pulls in the users core personality / traits 
         $user_personality = $this->personality->core($this->uid);
 
-  		$data['session'] = $this->uri->segment(3);
+        // ***************
+        // pass session number and page to view
+  		$data['session'] = $this->session_location;
+        $data['page'] = $this->page_location;
+        $data['status'] = $progress;
+        // ***************
 
+
+        //***************
+        // AUDIO FILE 
 		if( isset($session_content->audio) ) { 
 			$data['audio_file'] = $session_content->audio;
 		}
+        // END OF AUDIO FILE 
+        // ***************
 
         //custom model logic .. load model if needed
         if(isset($session_content->dynamic_model) && !empty($session_content->dynamic_model)) {
 
-            $model_function = $session_content->dynamic_model; 
+            $model_function = $session_content->dynamic_model;
             $data['custom_content'] = $this->personality->$model_function( $this->uid );
 
         }
@@ -120,7 +148,10 @@ class session extends CI_Controller {
             $data['custom_form'] = $session_content->form;
         }
 
-        //video logic
+        // *****************
+        // START video logic
+        // *****************
+
 		if( isset( $session_content->video ) ) {
 
             $data['default_char'] = $user_personality->character;
@@ -129,7 +160,6 @@ class session extends CI_Controller {
 
                 //$data['video_file'] = $video_content[ $user_personality->character ]->vimeo_id;
                 $data['video_content'] = $video_content;
-                //print_r($video_content);
                 
             } else {
 
@@ -149,8 +179,27 @@ class session extends CI_Controller {
 
 		}
 
-		$data['page_data'] = $session_content;
+        // ******************
+        // END OF VIDEO LOGIC 
+        // ******************
 
+
+        // PAGE INFORMATION // 
+		$data['page_data'] = $session_content;
+        // END OF PAGE INFORMATION 
+
+        //required check for page
+        if( $session_content->required == 0 || ( $progress == 1 ) ) {
+            $data['links']['required'] = 'show';
+            $data['completed'] = 'require-action';
+        } else {
+            $data['links']['required'] = 'require-action';
+            $data['completed'] = 'show';
+        }
+        // end of required check for page
+
+        // NAVIGATION PREVIOUS - - NEXT
+        // ********** //
         if($session_content->previous == 0) {
             
         } else {
@@ -162,13 +211,73 @@ class session extends CI_Controller {
         } else {
     	   $data['links']['next_link'] = "/user/session/{$this->session_location}/{$session_content->next}";
  		}
+        // ********** //
+        // END OF NAVIGATION PREVIOUS NEXT
 
-		//VIEWS BEING CALLED HERE
+        // *************** *************** VIEWS CALLED HERE *************** ***************
+		//
+        //
+
 		$this->load->view('header');
         //view for controller is set in database -- table session_content -- field template
 		$this->load->view($session_content->template, $data);
 		$this->load->view('footer');
+        
+        //
+        //
+        // *************** *************** END VIEWS CALLED HERE *************** ***********
 
 	}
+
+    public function update_profile() {
+
+        if($this->input->post('action') && isset($this->uid) ) {
+
+            $action = $this->input->post('action');
+
+            switch($action) {
+
+                case 'personality':   
+                    
+                    if( $this->input->post('character') ) {
+                        //update character id
+                        $this->personality->update_char($this->uid, $this->input->post('character'));
+                        echo "success";
+                    }
+
+                break; 
+
+                case 'session-form':
+
+                    if( $this->input->post('location')) {
+
+                        $this->personality->process_form($this->uid, $_POST, $this->input->post('location'));
+
+                    } else {
+
+                        // ... //
+
+                    }
+
+                break;
+
+                case 'completed':
+
+                    // possible use 
+
+                break;
+
+                default:
+                    echo "failure";
+
+            }
+            
+        } else {
+
+            echo "failure";
+
+        }
+
+    }
 
 }

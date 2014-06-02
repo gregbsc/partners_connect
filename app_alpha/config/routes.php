@@ -89,6 +89,7 @@ $route['user/lost'] = "lost";
 $route['user/success'] = "resources/success";
 $route['user/update/password'] = "user/user/password";
 $route['user/schedule'] = 'user/user/schedule';
+$route['user/session/update'] = "user/session/update_profile";
 
 //session routes
 $route['user/session/:num'] = "user/session";
