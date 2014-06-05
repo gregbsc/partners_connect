@@ -1,5 +1,4 @@
 <?php //display all deactivated users within a row // ?>
-
 <div class="row">
 
 	<div class="container">
@@ -7,9 +6,20 @@
 		<div class="col-md-4">
 
 			<?php if(isset($user_details)) : ?>
-				
-				<h4 class="h4"><?php echo $user_details->first_name . " " . $user_details->last_name; ?></h4>
+					
 
+				<h4 class="h4"><?php echo $user_details->first_name . " " . $user_details->last_name; ?></h4>
+				<?php if(isset($registration->group_condition)) {
+				
+					if($registration->group_condition == 5) {
+						echo "<p>No condition assigned yet</p>";
+					} else if($registration->group_condition == 0) {
+						echo "<p>Condition : WBI</p>";
+					} else if($registration->group_condition == 1) {
+						echo "<p>Condition : Delayed</p>";
+					}
+
+				} ?>	
 				<ul style="padding-left:10px;list-style:none;">
 
 					<?php // print_r($user_details);?>
@@ -25,7 +35,6 @@
 			<?php if(isset($baseline_results)) : ?>
 
 				<!-- <p> <a href='/admin/baseline-view/?uid=<?php // echo $user_details->user_id; ?>'>Click here to see baseline results</a> </p> -->
-				
 				<h4 class="h4">Screener Survey <span class="medtext"> - Submitted : <?php echo  ( isset($baseline_results[0]->submission_time) ? $baseline_results[0]->submission_time : " "); ?></span> </h4>
 
 				<ul style="padding-left:10px;list-style:none;">
@@ -36,6 +45,12 @@
 
 				</ul>
 			
+			<?php endif; ?>
+
+			<?php if(isset($registration->baseline_completed)) : ?>
+				
+				<h4 class="h4">Baseline Completed: <?php echo $registration->baseline_completed; ?> </h4>
+
 			<?php endif; ?>
 
 		</div>
@@ -72,12 +87,12 @@
 
 		<?php endif; ?>
 
+
 		<div class="col-md-4">
 
 			<h4 class="h4">U1 - U4 : In progress</h4>
 
 		</div>
-
 
 	</div>
 

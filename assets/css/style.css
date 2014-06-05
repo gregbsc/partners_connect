@@ -13,7 +13,6 @@ p { font-size:14px; }
 .h4 { font-size:18px; }
 .cust-grey { background-color:#D8D8D8; padding:5px; margin-top:30px; margin-bottom:30px; }
 .login-screen { background:none; width:500px; padding:0 !important; margin:0 auto; margin-top:100px;}
-.question-title { text-transform:uppercase; font-weight:800; font-size:16px; }
 #required-message { text-align:center; color:#C80000; padding-top:15px; }
 .wfont { color:#fff; }
 .fright { float:right; }
@@ -72,18 +71,20 @@ table input[type="radio"]{ margin:0 auto; display:block; }
 .custom-tab-header { width:100%; }
 .custom-tab-header a { color:white; padding-top:2px;}
 textarea.special { width: 400px; font-size:14px;}
+
 .custom-tab {
-	background: url('/assets/img/header-tab.png') no-repeat right center; 
-	width:191px; 
-	height:30px; 
-	margin-top:-3px; 
-	color:#fff; 
-	font-size:14px; 
-	float:right; 
-	text-align:center; 
+	background: url('/assets/img/header-tab.png') no-repeat right center;
+	width:191px;
+	height:30px;
+	margin-top:-3px;
+	color:#fff;
+	font-size:14px;
+	float:right;
+	text-align:center;
 }
+
 .cover {display:none;}
-.red-header { background: url('/assets/img/header.png') repeat-x; /*height:104px;*/}
+.red-header { background: url('/assets/img/header.png') repeat-x; /*height:104px;*/ }
 .register-fields p { margin-top:20px; margin-bottom:0;}
 .hiddenul { display: none; font-size:14px; color:#383838; margin-bottom:20px;}
 .ulspecial { margin-top:20px; width:100%; max-width:800px; }
@@ -97,26 +98,32 @@ textarea.special { width: 400px; font-size:14px;}
 .select-option { font-size:18px; }
 .asgnostic-message { width:80%; margin:0 auto; text-align:center; }
 
+/* Custom styles for baseline */
+
+.question-title { font-weight:800; font-size:16px; }
+.instructions { font-size:16px; }
+.section-header { text-transform:uppercase; font-weight:800; font-size:18px; }
+
+/* End of custom styles for baseline */
 
 /* session styles */
 
-.char-container p { 
+.char-container p {
 	width: 48%;
 	display:inline-block;
 	vertical-align:top;
 }
-.char-container img { 
+.char-container img {
 	max-width:95%;
 	cursor:auto;
 	cursor:pointer;
 }
-
 .char-portal p {
 	width:33%;
 	vertical-align:top;
 	display:inline-block;
 }
-.require-action { 
+.require-action {
 	display:none;
 }
 /* end of session styles */

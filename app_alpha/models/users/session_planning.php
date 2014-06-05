@@ -119,5 +119,13 @@ class session_planning extends CI_Model
 
 	}
 
+	function complete_session($uid, $session) {
+
+		$data = array('completed' => 1);	               
+		$this->db->where('session_number', $session);
+		$this->db->where('uid', $uid);
+		$this->db->update('scheduled_sessions', $data); 
+
+	}
 
 }

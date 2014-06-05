@@ -32,9 +32,14 @@
 
 	$('#submit-form').click( function() {
 		
-		$.post( "/user/session/update", $( "#required" ).serialize());
+		//$.post( "/user/session/update", $( "#required" ).serialize());
+		$.post( "/ajax/update", $( "#required" ).serialize() ).done(function( data ) {
+	    alert( "Data Loaded: " + data );
+	  });
+
 		$('.require-action').show();
-		//$('#submit-form').hide();
+		$('button#submit-form').hide();
+		$('#required').hide();
 
 	});
 

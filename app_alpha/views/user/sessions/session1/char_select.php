@@ -37,8 +37,8 @@
 
 				newId = $(this).attr('id');
 
-				$.post( "/user/session/update", { action: "personality", character: newId }).done(function( data ) {
-					console.log( "Profile Update:" + data );
+				$.post( "user/details/update", { action: "personality", character: newId }).done(function( data ) {
+					alert( "Profile Update:" + data );
 					$('.choose-char').html('Thank you for choosing a character.');
 				});
 

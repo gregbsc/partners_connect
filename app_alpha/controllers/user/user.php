@@ -181,7 +181,6 @@ class user extends CI_Controller {
 
 		}
 
-
 	}
 
 	public function baseline() {
@@ -215,7 +214,9 @@ class user extends CI_Controller {
 			$this->process_baseline->complete_baseline( $this->user_id );
 			//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
 			$this->session_planning->schedule_session( $this->user_id, 0, $session_time, 1 );
-			redirect('/user/','redirect');
+			
+
+			//redirect('/user/','redirect');
 
 		}
 
@@ -419,8 +420,8 @@ class user extends CI_Controller {
 
 					$baseline_time = $this->input->post('baseline_time'); 
 					$this->session_planning->schedule_session( $this->user_details->user_id, $next_session, $this->input->post('baseline_time'), 0 );
-					
 					redirect('/user/', 'redirect');
+					
 				}
 
 				// next session available 

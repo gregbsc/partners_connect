@@ -78,10 +78,10 @@ class session extends CI_Controller {
 
                 }
 
-    			if(!$this->uri->segment(4) || ( $this->page_location != ( $this->recent_complete + 1) ) ) {
-
+    			if(!$this->uri->segment(4) || ( $this->page_location != ( $this->recent_complete + 1) ) || $live_session->completed != 1 ) {
+                    print_r($live_session);
                     $next_page = $this->recent_complete + 1;
-					redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
+					//redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
 
     			}
 
@@ -117,7 +117,7 @@ class session extends CI_Controller {
         // ***************
 
         //this pulls in the users core personality / traits 
-        $user_personality = $this->personality->core($this->uid);
+        $user_personality = $this->personality->core( $this->uid );
 
         // ***************
         // pass session number and page to view
@@ -229,55 +229,5 @@ class session extends CI_Controller {
 
 	}
 
-    public function update_profile() {
-
-        if($this->input->post('action') && isset($this->uid) ) {
-
-            $action = $this->input->post('action');
-
-            switch($action) {
-
-                case 'personality':   
-                    
-                    if( $this->input->post('character') ) {
-                        //update character id
-                        $this->personality->update_char($this->uid, $this->input->post('character'));
-                        echo "success";
-                    }
-
-                break; 
-
-                case 'session-form':
-
-                    if( $this->input->post('location')) {
-
-                        $this->personality->process_form($this->uid, $_POST, $this->input->post('location'));
-
-                    } else {
-
-                        // ... //
-
-                    }
-
-                break;
-
-                case 'completed':
-
-                    // possible use 
-
-                break;
-
-                default:
-                    echo "failure";
-
-            }
-            
-        } else {
-
-            echo "failure";
-
-        }
-
-    }
 
 }

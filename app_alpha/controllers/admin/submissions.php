@@ -19,6 +19,7 @@ class submissions extends CI_Controller {
 	 */
 	public function index()
 	{	
+		
 		$this->load->model('admin/user_details');
 
 		//VIEW BEING CALLED HERE
@@ -37,6 +38,7 @@ class submissions extends CI_Controller {
 		$this->load->view('footer');
 
 	}
+
 }
 
 /* End of file welcome.php */
