@@ -66,7 +66,7 @@ class ajax extends CI_Controller {
                         //update character id
                         $this->personality->update_char($this->uid, $this->input->post('character'));
                     } else {
-                        echo "No character id.";
+                        echo "No character id";
                     }
 
                 break; 
@@ -77,7 +77,7 @@ class ajax extends CI_Controller {
                         //process form
                         $this->personality->process_form($this->uid, $_POST, $this->input->post('location'));
                     } else {
-                        echo "No post location.";
+                        echo "No post location";
                     }
 
                 break;
@@ -88,13 +88,13 @@ class ajax extends CI_Controller {
                         // complete session
                         $this->session_planning->complete_session( $this->uid, $this->input->post('session') );
                     } else {
-                        echo "No post session.";
+                        echo "No post session";
                     }
 
                 break;
 
                 default:
-                    echo "failure";
+                    echo "Default failure";
 
             }
 
