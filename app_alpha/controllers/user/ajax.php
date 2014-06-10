@@ -63,21 +63,57 @@ class ajax extends CI_Controller {
                 case 'personality':   
                     
                     if( $this->input->post('character') ) {
+
+                        if($this->input->post('character') == 10) {
+                            $charid = 0;
+                        } else {
+                            $charid = $this->input->post('character');
+                        }
                         //update character id
-                        $this->personality->update_char($this->uid, $this->input->post('character'));
+                        $attempt = $this->personality->update_char($this->uid, $charid);
+                        echo " Char update : " . $attempt;
+
                     } else {
+
                         echo "No character id";
+
                     }
 
                 break; 
 
+                case 'important-goal':
+
+                    if( $this->input->post('location') &&  $this->input->post('page') && $this->input->post('session') ) {
+                        
+                        //process form
+                        foreach($this->input->post('personality_goals') as $goal ) {
+                            
+                            $this->personality->update_personality_goal( $this->uid, $this->input->post('session'), $goal, 1 );
+                            
+                        }
+
+                        $this->personality->update_progress($this->uid, $this->input->post('session'), $this->input->post('page') );
+
+                    } else {
+                        echo "No post location || page || session";
+                    }
+
+
+                break;
+
                 case 'session-form':
 
-                    if( $this->input->post('location')) {
+                    if( $this->input->post('location') &&  $this->input->post('page') && $this->input->post('session')) {
+                        
                         //process form
-                        $this->personality->process_form($this->uid, $_POST, $this->input->post('location'));
+                        foreach($_POST as $question => $answer) {
+
+                            $this->personality->process_form($this->uid, $question, $answer, $this->input->post('location'), $this->input->post('page'), $this->input->post('session'));
+                        
+                        }
+
                     } else {
-                        echo "No post location";
+                        echo "No post location || page || session";
                     }
 
                 break;

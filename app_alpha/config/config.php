@@ -47,6 +47,7 @@ $config['sessions'] = array('baseline' => 0, 'session1' => 1, 'session2' => 2, '
 $config['session_1'] = 10;
 $config['session_2'] = 10;
 $config['session_3'] = 10;
+$config['session_4'] = 10;
 
 // this is the value used to track the total number of views being loaded for the baseline survey. Max is 9, so on the ninth the survey is complete
 $config['baseline_max_v1'] = 9;

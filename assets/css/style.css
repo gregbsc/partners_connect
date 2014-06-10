@@ -1,4 +1,29 @@
+/* Structure */
+
 body, html, .container { min-width:800px; }
+
+
+/* End of structure */
+
+
+/* Custom positioning quick classes */
+
+.mbot20 { margin-bottom:20px; }
+.mbot40 {margin-bottom:40px;}
+.mtop50 { margin-top: 50px; }
+.mtop10 { margin-top:10px; }
+.mtop40 { margin-top:40px !important; }
+.mtop50 { margin-top:50px !important; }
+.mtop30 { margin-top:30px !important; }
+.mtop20 { margin-top:20px !important; }
+.mtop0 { margin-top:0 !important; }
+.mbot0 { margin-bottom:0 !important; }
+.ptop50 { padding-top:50px; }
+.mright10 { margin-right:10px !important; }
+.sm-txt { font-size:14px;}
+.sm-txt div { padding:0; text-align:center; }
+
+/* end of custom pos.q.clases */
 
 .max-cont { max-width:1000px; }
 .underline { text-decoration:underline; }
@@ -23,23 +48,13 @@ p { font-size:14px; }
 .bottom-nav { display:inline-block; }
 .bottom-nav button { width:200px; }
 .bar-inner{background-color:blue;height:28px;}
-.sm-txt { font-size:14px;}
-.sm-txt div { padding:0; text-align:center; }
-.mbot20 { margin-bottom:20px; }
-.mbot40 {margin-bottom:40px;}
+
+
 .consent li {font-size:14px;}
 .decline-reason { display:none; }
 .nomargin { margin:0; }
 .child-nomargin p { margin:0; padding:0; }
-.mtop50 { margin-top: 50px; }
-.mtop10 { margin-top:10px; }
-.mtop40 { margin-top:40px !important; }
-.mtop50 { margin-top:50px !important; }
-.mtop30 { margin-top:30px !important; }
-.mtop20 { margin-top:20px !important; }
-.mtop0 { margin-top:0 !important; }
-.mbot0 { margin-bottom:0 !important; }
-.ptop50 { padding-top:50px; }
+
 .left-checkbox [type=checkbox] { margin-right:5px; }
 .radio-buttons input[type=radio] { margin-right:5px; }
 .special-tcenter-td { text-align:center; }
@@ -50,7 +65,7 @@ p { font-size:14px; }
 .mauto { margin:0 auto; display:block; }
 .tcenter { text-align:center; }
 .tcenter th { text-align:center; }
-.mright10 { margin-right:10px !important; }
+
 .form-element { padding-bottom:0;margin-bottom:0;}
 .baseline-table tr:nth-child(even) { background-color:#E8E8E8; }
 .baseline-table td, .baseline-table th { max-width: 400px; min-width:100px; font-size:13px; padding:5px 10px; border:1px solid; }
@@ -106,8 +121,13 @@ textarea.special { width: 400px; font-size:14px;}
 
 /* End of custom styles for baseline */
 
+
 /* session styles */
 
+.character {
+	cursor: pointer; 
+	cursor: hand;
+}
 .char-container p {
 	width: 48%;
 	display:inline-block;
@@ -123,7 +143,10 @@ textarea.special { width: 400px; font-size:14px;}
 	vertical-align:top;
 	display:inline-block;
 }
+.goal-confirm input[type="checkbox"] {
+	margin-left:5px;
+}
 .require-action {
 	display:none;
 }
-/* end of session styles */
+/* end of session styles 

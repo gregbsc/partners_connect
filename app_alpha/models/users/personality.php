@@ -38,49 +38,70 @@ class personality extends CI_Model
 	function update_personality( $uid, $data ) {
 
 		// update a piece of users personality 		
-		$this->db->where('id', $uid);
-		$this->db->update('personality', $data); 
+		$this->db->where('uid', $uid);
+		$this->db->update('personality', $data);
 
 	}
 
 	function update_char($uid, $char) {
 
-		$data = array(
-               'character' => $char
-            );
-
+		$data = array('character' => $char );
+            	
 		$this->db->where('uid', $uid);
 
-		$this->db->update('personality', $data); 
+		$result = $this->db->update('personality', $data); 
+
+		return $result;
 
 	}
 
-	function process_form($uid, $postObject, $table) {
+	function process_form($uid, $question, $answer, $table, $page, $session, $important) {
 
 		$check = array('session','page','table','location','action');
 
-		foreach($postObject as $question => $answer) {
+		if( !in_array($question, $check) ) {
 
-			if( !in_array($question, $check) ) {
-				$data = array($question => $answer);     
-				$this->db->where('uid', $uid);
-				$this->db->insert($table, $data);
-				unset($data);
-			}
+			$data = array('uid' => $uid, 
+						'session' => $session,
+						'page' => $page, 
+						'goal' => $question,
+						'answer' => $answer); 
+				
+
+ 			$this->db->insert($table, $data);
 
 		}
 
-		if( isset($postObject['page']) && isset($postObject['session']) ) {
+		if( isset($page) && isset($session) ) {
 
-			$data = array('completed' => 1);
-
+			$datacomplete = array('completed' => 1);
 			$this->db->where('uid', $uid);
-			$this->db->where('page', $postObject['page']);
-			$this->db->where('session', $postObject['session']);
-
-			$this->db->update('user_progress', $data);
+			$this->db->where('page', $page);
+			$this->db->where('session', $session);
+			$this->db->update('user_progress', $datacomplete);
 
 		}
+
+
+	}
+
+
+	function update_personality_goal( $uid, $session, $goal, $important ) {
+
+		
+		if( isset($session) ) {
+
+			$datacomplete = array('important' => intval($important) );
+
+			$this->db->where('uid', intval($uid) );
+			$this->db->where('goal', $goal);
+			$this->db->where('session', $session);
+			$this->db->update('user_goals', $datacomplete);
+
+		} else {
+			return "error";
+		}
+
 
 	}
 
@@ -97,6 +118,20 @@ class personality extends CI_Model
 
 	}
 
+	function session_1_goals( $uid ) {
+
+		$this->db->select('uid,goal,answer,session,page');
+		$this->db->from('user_goals');
+		$this->db->where('uid', $uid);
+		$this->db->where('session', 1);
+		$this->db->where('page', 4);
+		$this->db->order_by('answer', 'DESC');
+		$query = $this->db->get();
+		$cleanResult = $query->result();
+
+		return $cleanResult; 
+
+	}
 
 
 }

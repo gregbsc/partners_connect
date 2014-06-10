@@ -35,7 +35,7 @@
                 questions that you do not wish to answer. Your answers are confidential and will help us 
                 better understand what you think about our online program and how it could be 
                 improved. </p> 
-                 
+                
                 <p> <strong>2. Complete the online program.</strong> RAND will ask you to try out our online program. This 
                 program, Partners Connect, is meant to teach and show you how to reduce the stress 
                 you experience as a result of problems that come up around your partner’s drinking. The 
@@ -57,10 +57,11 @@
               completing the surveys and a bonus of $25 if you complete 3 of the four brief surveys. We will 
               also pay you $25 for completing the phone interview. This would be a total of up to $95.</p>
                
-              <h4 class="h4 mtop40">III. COSTS</h4> 
-              <ul> 
-               <li>There is no financial cost to you for participating.</li>
-              </ul>
+              <h4 class="h4 mtop40">III. COSTS</h4>
+
+                <ul> 
+                 <li>There is no financial cost to you for participating.</li>
+                </ul>
                
               <h4 class="h4 mtop40">IV. BENEFITS </h4>
 
@@ -146,17 +147,18 @@
             
             <h4 class="h4 mtop50">I have read and I understand the information above. I agree to participate.</h4>
 
-            
-
-            <div>
+            <div class="benign-wrapper">
 
               <input type="radio" name="consent_box" value="1"> I consent </br>
               <input type="radio" name="consent_box" value="2" id="do_not"> I do not consent </br>
               <input type="text" name="person_name" placeholder="Initials Here" class="mtop20" required=""/> </br>
 
               <div class="decline-reason mtop40">
+
                 <h4 class="h4"> Reason </h4>
+                
                 <textarea name="decline_reason" id="decline_reason"> </textarea>
+
               </div>
 
             </div>

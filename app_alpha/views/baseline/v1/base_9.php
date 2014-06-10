@@ -112,7 +112,7 @@
 				<input type="radio" name="PDEUC" value="5"/> Master’s, professional, or doctorate degree</br>
 			</p>
 
-			<input type="hidden" name="section" value="9" />
+			<input type="hidden" name="Submit" value="9" />
 			<input type="submit" value="submit" class="mtop40 mbot40" />
 
 		</form>

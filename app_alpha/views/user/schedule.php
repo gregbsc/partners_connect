@@ -16,7 +16,7 @@
         		<option value="default">Choose day below</option>
 
 	        	<?php foreach($next_options as $next) : ?>
-					<option value='<?php echo $next; ?>'> <?php echo date('M d Y',$next); ?></option> 
+					<option value='<?php echo $next; ?>'> <?php echo date('M d',$next); ?></option> 
 				<?php endforeach; ?>
 
         	</select> </br>

@@ -16,11 +16,11 @@
 
 		<p class="instructions">This first section asks you some general health questions about yourself.</p>
 
-		<p class="mtop40 question-title">1. <strong>Over the <span class="underline">last 2 weeks</span> </strong>, how often have you been bothered by any of the following:</p>
+		<p class="mtop40 question-title">1. <strong>Over the <span class="underline" style="text-decoration:underline">last 2 weeks</span> </strong>, how often have you been bothered by any of the following:</p>
 
 		<table class="baseline-table">
 
-			<tr> <th> </th> <th>Not at all</th> <th>Several days</th> <th>More than half days</th> <th>Nearly everyday</th> </tr>
+			<tr> <th> </th> <th>Not at all</th> <th>Several days</th> <th>More than half the days</th> <th>Nearly everyday</th> </tr>
 
 			<tr> <td>Little interest or pleasure in doing things</td> 
 				<td> <input type="radio" name="DEP1" value="0" /> </td> 
@@ -70,7 +70,7 @@
 			</tr>
 
 			<tr> 
-				<td>Trouble concentdating on things, such as reading the newspaper or watching television</td> 
+				<td>Trouble concentrating on things, such as reading the newspaper or watching television</td> 
 				<td> <input type="radio" name="DEP7" value="0" /> </td> 
 				<td> <input type="radio" name="DEP7" value="1"/> </td> 
 				<td><input type="radio" name="DEP7" value="2"/> </td> 
@@ -90,7 +90,7 @@
 		<table class="baseline-table">
 
 			<tr>
-				<th> </th> <th>Not at all</th> <th>Several Days</th> <th>More than half days</th> <th>Nearly everyday</th> 
+				<th> </th> <th>Not at all</th> <th>Several Days</th> <th>More than half the days</th> <th>Nearly everyday</th> 
 			</tr>
 
 			<tr> <td>Feeling nervous, anxious, or on edge</td> 
@@ -157,7 +157,7 @@
 		<input type="radio" name="MHHELP1" value="0"> No </br>
 		
 
-		<p class="question-title mtop40">4. In the past year, did you receive mental health counseling or therapy for personal or emotional issues? </p>
+		<p class="question-title mtop40">4. In the <span style="text-decoration:underline"> past year </span>, did you receive mental health counseling or therapy for personal or emotional issues? </p>
 
 		<input type="radio" name="MHHELP2" value="1" onclick="$('#4a').show()"> Yes </br>
 		<input type="radio" name="MHHELP2" value="0" onclick="$('#4a').hide()"> No </br>
@@ -170,14 +170,14 @@
 
 			<p class="checkboxes">
 
-				<input type="checkbox" name="MHHELP3[]" value="1" /> From a mental health professional at a Military Facility 	 						 </br>
-				<input type="checkbox" name="MHHELP3[]" value="2" /> From a general medical doctor at a Military Facility 	 							 </br>
-				<input type="checkbox" name="MHHELP3[]" value="3" /> From a Military Chaplain 	 														 </br>
+				<input type="checkbox" name="MHHELP3[]" value="1" /> From a mental health professional at a military facility 	 						 </br>
+				<input type="checkbox" name="MHHELP3[]" value="2" /> From a general medical doctor at a military facility 	 							 </br>
+				<input type="checkbox" name="MHHELP3[]" value="3" /> From a military chaplain 	 														 </br>
 				<input type="checkbox" name="MHHELP3[]" value="4" /> From a mental health professional at a civilian facility 	 						 </br>
 				<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
 				<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
 				<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
-				<span id='other' class='cover'>From some other source: <input type="text" value="" placeholder="Please Specify" name="8"/> <strong> </span> </strong>	</br>
+				<span id='other' class='cover'> Other (Please specify): <input type="text" value="" placeholder="Please Specify" name="MHHELP3[]"/> <strong> </span> </strong>	</br>
 
 			</p>
 
@@ -185,7 +185,7 @@
 
 		<input type="hidden" name="section" value="1" />
 
-		<input type="submit" value="submit" class="mtop20 mbot40" />
+		<input type="submit" value="Next" class="mtop20 mbot40" />
 
 		</form>
 

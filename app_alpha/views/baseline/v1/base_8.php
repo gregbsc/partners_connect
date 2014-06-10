@@ -168,7 +168,7 @@
 			</div>
 			<!-- end of hidden by default for sub 37 -->
 
-			<input type="hidden" name="section" value="8" />
+			<input type="hidden" name="Next" value="8" />
 			<input type="submit" value="submit" class="mtop40 mbot40" />
 
 		</form>

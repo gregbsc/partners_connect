@@ -192,7 +192,7 @@
 
 			</p>
 
-			<input type="hidden" name="section" value="7" />
+			<input type="hidden" name="Next" value="7" />
 			<input type="submit" value="submit" class="mtop40 mbot40" />
 			
 		</form>

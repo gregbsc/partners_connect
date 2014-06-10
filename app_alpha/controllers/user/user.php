@@ -91,7 +91,8 @@ class user extends CI_Controller {
 
 			}
 
-			if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
+
+			if( $user_progress->group_condition == 0 && $current_session->session_number <= $this->config->item('total_sessions') && $current_session->completed == 1 )  {
 
 				$data['schedule_sessions'] = '/user/schedule/';
 
@@ -99,7 +100,9 @@ class user extends CI_Controller {
 
 				// if the user is of the delayed condition -- 
 				$end_baseline = strtotime($user_progress->baseline_completed);
-				$able_to_start_session = strtotime("+3 months", $end_baseline);
+				$able_to_start_session = strtotime("+6 months", $end_baseline);
+
+				//echo date('m-d-y',$end_baseline);
 
 				if( $able_to_start_session < strtotime("now") ) {
 
@@ -107,7 +110,7 @@ class user extends CI_Controller {
 
 				} else { 
 
-					$data['not_ready'] = "no action..";
+					$data['not_ready'] = "no action.";
 
 				}
 			
@@ -424,10 +427,15 @@ class user extends CI_Controller {
 					
 				}
 
-				// next session available 
-				$data['next_options'] = next_available( $most_recent );
-				
-				//
+
+				// THIS IS WHERE DATES FOR SCHEDULING ARE CREATED
+				if( $most_recent->date_completed < strtotime('+3 days', strtotime('now')) ) {
+					$data['next_options'] = time_past( strtotime('now') );
+				} else {
+					$data['next_options'] = next_available( $schedule_time );
+					
+				}
+
 
 			} else {
 

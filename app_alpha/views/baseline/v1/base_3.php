@@ -87,7 +87,7 @@
 
 				
 		<input type="hidden" name="section" value="3" />
-		<input type="submit" value="submit" class="mtop40 mbot40" />
+		<input type="submit" value="Next" class="mtop40 mbot40" />
 
 		</form>
 

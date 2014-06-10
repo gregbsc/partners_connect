@@ -54,16 +54,19 @@
                         <span class="dropdown-arrow"> </span>
 
                             <ul class="dropdown-menu">
+
                                 <li><a href="/admin/users">Eligible Users</a></li>
-                                <li><a href="/admin/not-opt-in">Eligibile and Declined</a></li>
-                                <li><a href="/admin/opted-out">Participants Who Opted Out</a></li>
-                                <li><a href="/admin/not-eligible">Ineligible</a></li>
-                                <!-- <li><a href="/admin/submissions">New Submissions</a></li> -->
-                                <li class="divider"></li> 
-                                <li><a href="/admin/create">Create User</a></li>
-                                <li><a href="/admin?delall=true">Remove Non Successful Attempts</a></li>
-                                <li><a href="/admin/opt-out-user">Opt Out User From Study</a></li>
-                                <li><a href="/admin/deactivated/">Opted Out Users</a></li>
+                                <li><a href="/admin/not-opt-in">Eligible and Declined</a></li>
+                                <li><a href="/admin/opted-out"> Participants Who Opted Out</a></li>
+                                <li><a href="/admin/not-eligible"> Ineligible Users </a></li>
+ 
+                                 <li class="divider"></li> 
+
+                                <li><a href="/admin/create">Create Participant</a></li>
+                                <li><a href="/admin?delall=true">Remove Incomplete Screeners</a></li>
+                                <li><a href="/admin/opt-out-user">Opt Out Participant</a></li>
+                                <li><a href="/admin/deactivated/">Delete Opted Out Participant</a></li>
+                                
                             </ul>
 
                     </li>

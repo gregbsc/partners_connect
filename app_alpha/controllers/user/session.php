@@ -34,21 +34,23 @@ class session extends CI_Controller {
 			$this->load->model('users/personality');
             $this->load->model('/users/session_tracking');
 
-            
-
             //page location information
         	$this->session_location = $this->uri->segment(3);
         	$this->page_location = $this->uri->segment(4);
         	$this->next_page = intval($this->page_location) + 1;
         	$this->previous_page = intval($this->page_location) - 1;
-            //user info
+
+            //user info -- user cred information
             $this->user_details = $this->ion_auth->user()->row();
             $this->uid = $this->user_details->user_id;
 
+            //session status
             $session_status = $this->session_planning->session_status($this->uid, $this->session_location);
 
         	// LOAD HELPERS HERE
         	$this->load->helper('users/session_content');
+            $this->load->helper('form_building_helper');
+            $this->load->helper('session_1');
         
             //session content
             $this->page_content = $this->session_content->body($this->session_location, $this->page_location);
@@ -79,9 +81,9 @@ class session extends CI_Controller {
                 }
 
     			if(!$this->uri->segment(4) || ( $this->page_location != ( $this->recent_complete + 1) ) || $live_session->completed != 1 ) {
-                    print_r($live_session);
+                    
                     $next_page = $this->recent_complete + 1;
-					//redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
+					redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
 
     			}
 
@@ -139,6 +141,7 @@ class session extends CI_Controller {
         if(isset($session_content->dynamic_model) && !empty($session_content->dynamic_model)) {
 
             $model_function = $session_content->dynamic_model;
+
             $data['custom_content'] = $this->personality->$model_function( $this->uid );
 
         }
@@ -206,6 +209,7 @@ class session extends CI_Controller {
     	   $data['links']['previous_link'] = "/user/session/{$this->session_location}/{$session_content->previous}";
         }
 
+        // 100 value is being used for end of session
         if($session_content->next == 100) {
             $data['links']['next_link'] = "/user";
         } else {
@@ -214,15 +218,16 @@ class session extends CI_Controller {
         // ********** //
         // END OF NAVIGATION PREVIOUS NEXT
 
+
+
+
         // *************** *************** VIEWS CALLED HERE *************** ***************
 		//
         //
-
 		$this->load->view('header');
         //view for controller is set in database -- table session_content -- field template
 		$this->load->view($session_content->template, $data);
-		$this->load->view('footer');
-        
+		$this->load->view('footer'); 
         //
         //
         // *************** *************** END VIEWS CALLED HERE *************** ***********

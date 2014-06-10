@@ -35,7 +35,7 @@
 			</tr>
 
 			<tr> 
-				<td>Trouble falling or staying asleep, or sleeping too much? </td> 
+				<td>I am basically a healthy person</td> 
 				<td> <input type="radio" value="2" name="HF3"/> </td> 
 				<td> <input type="radio" value="1" name="HF3"/> </td> 
 				<td> <input type="radio" value="0" name="HF3"/> </td> 
@@ -169,7 +169,7 @@
 
 		<input type="hidden" name="section" value="2" />
 
-		<input type="submit" value="submit" class="mtop50 mbot40"/>
+		<input type="submit" value="Next" class="mtop50 mbot40"/>
 
 	</form>
 
