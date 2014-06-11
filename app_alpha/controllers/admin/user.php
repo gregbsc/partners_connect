@@ -38,12 +38,9 @@ class user extends CI_Controller {
 
 		$data['noinfo'] = '';
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
 			if( $this->input->get('uid') ) {
-
-				
-
+				// nada				
 			} else {
 				redirect("admin", 'redirect');
 			}
@@ -53,13 +50,6 @@ class user extends CI_Controller {
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
-
-		} else {
-
-			//VIEW BEING CALLED HERE
-			redirect("admin/login", 'redirect');
-
-		}
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/footer');
@@ -73,83 +63,74 @@ class user extends CI_Controller {
 		$this->load->helper('email_helper');
 		$this->load->model('admin/user_details');
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+		if( $this->input->get('uid') ) {
 
+			$uid = $this->input->get('uid');
+			$userLookup = $this->ion_auth->user($uid)->row();
 
-			if( $this->input->get('uid') ) {
+			$data['uid'] = $uid;
+			$data['initial_link'] = "admin/user/contact/?uid=".$uid."&email_action=initial_contact";
 
-				$uid = $this->input->get('uid');
-				$userLookup = $this->ion_auth->user($uid)->row();
+			$redirecturl = "admin/user/contact/?uid=".$uid;
 
-				$data['uid'] = $uid;
-				$data['initial_link'] = "admin/user/contact/?uid=".$uid."&email_action=initial_contact";
+			if( $this->input->post('email_type') == 'Initial Contact') {
 
-				$redirecturl = "admin/user/contact/?uid=".$uid;
+				//this is to track the first email where we presume the user will get their password.
+				$this->user_details->update_initial_contact( $uid, 1 );
+			}
 
-				if( $this->input->post('email_type') == 'Initial Contact') {
+			if ( $this->input->get('email_action') == 'initial_contact' ) {
 
-					//this is to track the first email where we presume the user will get their password.
-					$this->user_details->update_initial_contact( $uid, 1 );
-				}
+				$email_title = "Test title for initial contact";
+				$email_type = "Initial Email";
+				$site_url = '';
+				$email_body = "Hi, Name Here. Login using the following URL, <a href='http://pconnect.linuxblu.com/user/'>http://pconnect.linuxblu.com/user/</a> ";
 
-				if ( $this->input->get('email_action') == 'initial_contact' ) {
+				//send email
+				send_email( $email_title, $email_type, $email_body, $userLookup->email );
 
-					$email_title = "Test title for initial contact";
-					$email_type = "Initial Email";
-					$site_url = '';
-					$email_body = "Hi, Name Here. Login using the following URL, <a href='http://pconnect.linuxblu.com/user/'>http://pconnect.linuxblu.com/user/</a> ";
+				$this->email_functionality->record_email( $email_title, $email_type, $email_body, $userLookup->email, $userLookup->id );
 
-					//send email
-					send_email( $email_title, $email_type, $email_body, $userLookup->email );
+				//update user contact
+				$this->user_details->update_initial_contact( $uid, 1 );
 
-					$this->email_functionality->record_email( $email_title, $email_type, $email_body, $userLookup->email, $userLookup->id );
-
-					//update user contact
-					$this->user_details->update_initial_contact( $uid, 1 );
-
-					//redirect
-					redirect($redirecturl, 'refresh');
-
-				}
-
-				if( isset( $userLookup ) ) {
-
-					$data['user_phone'] = $userLookup->phone;
-					$data['user_name'] = $userLookup->first_name . " " . $userLookup->last_name;
-					$data['user_email'] = $userLookup->email;
-
-				}
-
-				// send custom email
-				if( $this->input->post('email_title') && $this->input->post('email_type') && $this->input->post('email_body')) {
-
-					$email_title = $this->input->post('email_title');
-					$email_type = $this->input->post('email_type');
-					$email_body = $this->input->post('email_body');
-
-					//custom check email check based on uid.
-					$user_email = $this->email_functionality->user_email( $this->input->get('uid') );
-					
-					if( count($user_email) > 0 && isset( $user_email[0]->email ) ) {
-
-						//helper function -- email helper
-						//need to include email api
-						send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
-						//records mail for admin interface use
-						$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
-
-					}
-
-				}
-				
-				//get email history last
-				$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
-
-			} else {
-
-				redirect("admin", 'redirect');
+				//redirect
+				redirect($redirecturl, 'refresh');
 
 			}
+
+			if( isset( $userLookup ) ) {
+
+				$data['user_phone'] = $userLookup->phone;
+				$data['user_name'] = $userLookup->first_name . " " . $userLookup->last_name;
+				$data['user_email'] = $userLookup->email;
+
+			}
+
+			// send custom email
+			if( $this->input->post('email_title') && $this->input->post('email_type') && $this->input->post('email_body')) {
+
+				$email_title = $this->input->post('email_title');
+				$email_type = $this->input->post('email_type');
+				$email_body = $this->input->post('email_body');
+
+				//custom check email check based on uid.
+				$user_email = $this->email_functionality->user_email( $this->input->get('uid') );
+				
+				if( count($user_email) > 0 && isset( $user_email[0]->email ) ) {
+
+					//helper function -- email helper
+					//need to include email api
+					send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
+					//records mail for admin interface use
+					$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
+
+				}
+
+			}
+			
+			//get email history last
+			$data['email_history'] = $this->email_functionality->history( $this->input->get('uid') );
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
@@ -174,8 +155,6 @@ class user extends CI_Controller {
 	public function details() {
 		
 		$this->load->model('admin/user_details');
-
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
 			if( $this->input->get('uid') ) {
 
@@ -213,13 +192,6 @@ class user extends CI_Controller {
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/details', $data);
-
-		} else {
-
-			//VIEW BEING CALLED HERE
-			redirect("admin/login", 'redirect');
-
-		}
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/footer');

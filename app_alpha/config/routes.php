@@ -38,7 +38,6 @@
 |
 */
 
-
 // The plan is to explicity declare the controllers being used, then to find a generic rewrite for each case that works. 
 
 $route['default_controller'] = "resources/welcome";
@@ -46,9 +45,14 @@ $route['default_controller'] = "resources/welcome";
 //auth lbrary 
 //$route['auth/(.+)$'] = "auth/$1";
 
+/* 
+	- Custom routes for specific functionality.
+	- Sloppy routes file at the expense of cramming methods into controller classes
+*/
+
 //admin routes
 $route['admin'] = "admin/admin/users";
-$route['admin/login'] = "admin/admin/login";
+$route['admin/login'] = "admin/login";
 $route['admin/users'] = "admin/admin/users";
 $route['admin/create'] = "admin/admin/create";
 $route['admin/opt-out-user'] = "admin/admin/remove";
@@ -68,14 +72,9 @@ $route['admin/baseline-view'] = "admin/admin/user_baseline";
 
 //single instances
 $route['screen'] = "screener";
-
 $route['resources'] = 'resources';
-
 $route['contact'] = "resources/contact";
-
 $route['no-thank-you'] = "resources/nothankyou";
-
-
 $route['404_override'] = '';
 //end of single instances
 

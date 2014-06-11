@@ -140,49 +140,38 @@ class user extends CI_Controller {
 		
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');
-
-		if( $this->ion_auth->logged_in() && $this->ion_auth->in_group("members") ) {
 			
-			$user_details = $this->ion_auth->user()->row();
-			$this->load->model('users/user_info');
-			$user_id = $user_details->user_id;
+		$user_details = $this->ion_auth->user()->row();
+		$this->load->model('users/user_info');
+		$user_id = $user_details->user_id;
 
-			//check make sure user id being submitted matches logged in, if not... nothing
-			if( $this->input->post('user_id') && $this->input->post('consent_box') && ( $this->input->post('user_id') == $user_id )) {
+		//check make sure user id being submitted matches logged in, if not... nothing
+		if( $this->input->post('user_id') && $this->input->post('consent_box') && ( $this->input->post('user_id') == $user_id )) {
 
-				if($this->input->post('decline_reason')) {
-					$decline_reason = $this->input->post('decline_reason');
-				} else {
-					$decline_reason = '';
-				}
-
-				if($this->input->post('consent_box') == 1) {
-					// 1 == consented
-					$this->user_info->update_consent( 1 , $decline_reason, $user_id);
-					//add user initials
-				} else {
-					// 2 == not consented
-					$this->user_info->update_consent( 2 , $decline_reason, $user_id);
-				}
-
-				redirect("user", 'redirect');
-
+			if($this->input->post('decline_reason')) {
+				$decline_reason = $this->input->post('decline_reason');
+			} else {
+				$decline_reason = '';
 			}
 
-			$data['user_id'] = $user_id;
-			$this->load->view('user/consent', $data );
+			if($this->input->post('consent_box') == 1) {
+				// 1 == consented
+				$this->user_info->update_consent( 1 , $decline_reason, $user_id);
+				//add user initials
+			} else {
+				// 2 == not consented
+				$this->user_info->update_consent( 2 , $decline_reason, $user_id);
+			}
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
-
-		} else {
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('user/login');
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
+			redirect("user", 'redirect');
 
 		}
+
+		$data['user_id'] = $user_id;
+		$this->load->view('user/consent', $data );
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
@@ -248,12 +237,8 @@ class user extends CI_Controller {
 			if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
 				$force_redirect = '/user/baseline/' . $raw_next_int;
 
-
-
 				// ADD THIS BACK 
 				redirect($force_redirect,'redirect');
-
-
 
 			}  
 

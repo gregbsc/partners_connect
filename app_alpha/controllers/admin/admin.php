@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 
         parent::__construct();
 		   
-       	if( $this->ion_auth->is_admin() ) {
+       	if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 
 			$this->currentUser = $this->ion_auth->user()->row();
 			$data['userName'] = $this->currentUser->email;
@@ -37,7 +37,7 @@ class Admin extends CI_Controller {
         } else {
 
         	$data['noinfo'] = true;
-        	//redirect("admin/login", 'redirect');
+        	redirect("admin/login", 'redirect');
     	}
 
     }
@@ -57,7 +57,6 @@ class Admin extends CI_Controller {
 		//bind navigation date to data array -- pass to view
 
 		//this is now only used to remove 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 
 			if($this->input->get('delall')) {
 
@@ -76,112 +75,48 @@ class Admin extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/admin', $data);
 
-		} else {
-			
-			redirect("admin/login", 'redirect');
-			//VIEW BEING CALLED HERE
-			$this->load->view('header', $data);
-			
-
-		}
-
 		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
-
-	}
-
-	public function login() {
-
-		//VIEW BEING CALLED HERE
-		$this->load->view('header');
-
-		if( $_POST ) {
-
-			$userID = $this->input->post('login-name');
-			$userPassword = $this->input->post('login-pass');
-			$remember = TRUE;
-			$this->ion_auth->login($userID, $userPassword, $remember);
-
-		}
-
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
-
-			redirect("admin", 'redirect');
-
-		} else {
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/login');
-
-		}
-
-		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
-
-	}
-
-	public function logout() {
-
-		//logout function 
-		if( $this->ion_auth->logged_in()) {
-			//logout function
-			$this->ion_auth->logout();
-			redirect("admin/login", 'redirect');
-		} else {
-			// if they want to log out and are not logged in...
-			redirect("admin/login", 'redirect');
-		}
 
 	}
 
 	public function users() {
 
+		//remove users who did not qualify -- mostly for testing
+		if($this->input->get('delall')) {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+			if($this->input->get('delall') == "true") {
 
-			//remove users who did not qualify -- mostly for testing
-			if($this->input->get('delall')) {
+				$this->load->model('remove_registered');
+			    $this->remove_registered->all();
 
-				if($this->input->get('delall') == "true") {
+			}
 
-					$this->load->model('remove_registered');
-				    $this->remove_registered->all();
+		} //end of remove users
 
-				}
+		$data['userName'] = $this->currentUser->email;
+		//$data['navigation']  = $this->menuData;
+		$data['activeUsers'] = $this->activeUsersList;
 
-			} //end of remove users
+		//$data['userDetails'] = $this
 
-			$data['userName'] = $this->currentUser->email;
-			//$data['navigation']  = $this->menuData;
-			$data['activeUsers'] = $this->activeUsersList;
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header', $data);
+		
+		//VIEW BEING CALLED HERE
+		//users view is called within the admin/admin view
+		$this->load->view('admin/admin', $data);
 
-			//$data['userDetails'] = $this
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/header', $data);
-			
-			//VIEW BEING CALLED HERE
-			//users view is called within the admin/admin view
-			$this->load->view('admin/admin', $data);
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
-
-		} else { 
-			redirect("admin/login", 'redirect');
-		} // end of is logged in as admin
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
 
 	public function create() {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 
 			$this->load->model('admin/user_details');
-			//$data['userName'] = $this->currentUser->email;
-			//$data['navigation']  = $this->menuData;
-			//$data['activeUsers']  = $this->activeUsersList ;
 
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header');
@@ -196,7 +131,7 @@ class Admin extends CI_Controller {
 				$password = $this->input->post('password');
 
 				if (!$this->ion_auth->username_check( $username )) {
-
+					// group name 2 == user
 					$group_name = array('2');
 					$email = $username;
 
@@ -217,32 +152,19 @@ class Admin extends CI_Controller {
 
 			}
 
-		} else { 
-
-			redirect("admin/login", 'redirect');
-
-		} 
-
 	}
 
 
 	public function not_qualified() {
-
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 			
-			$this->load->model('deactivatedUsers');
+		$this->load->model('deactivatedUsers');
 
-			$data['notqlist'] = $this->deactivatedUsers->getNotElig();
+		$data['notqlist'] = $this->deactivatedUsers->getNotElig();
 
-			if( $this->input->get('note_id') ) {
-				$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
-			}
+		if( $this->input->get('note_id') ) {
+			$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
+		}
 
-		} else { 
-
-			redirect("admin/login", 'redirect');
-
-		} 
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/header', $data);
@@ -252,52 +174,41 @@ class Admin extends CI_Controller {
 	}
 	
 	public function not_opt_in() {
-
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
 			
-			$this->load->model('deactivatedUsers');
+		$this->load->model('deactivatedUsers');
 
-			$data['notqlist'] = $this->deactivatedUsers->getNotOptIn();
+		$data['notqlist'] = $this->deactivatedUsers->getNotOptIn();
 
-			if( $this->input->get('note_id') ) {
- 
-				$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
+		if( $this->input->get('note_id') ) {
 
-			}
+			$data['user_notes'] = $this->deactivatedUsers->notEligScreener( $this->input->get('note_id') );
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/header', $data);
-			$this->load->view('admin/notoptin', $data);
-			$this->load->view('footer');
+		}
 
-		} else { 
-			redirect("admin/login", 'redirect');
-		} 
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header', $data);
+		$this->load->view('admin/notoptin', $data);
+		$this->load->view('footer');
+
 
 	}
 
 	//opted out users
 	public function opted_out() {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
+		$data['userName'] = $this->currentUser->email;
+		//$data['navigation']  = $this->menuData;
+		$data['activeUsers']  = $this->opt_out_users;
 
-			$data['userName'] = $this->currentUser->email;
-			//$data['navigation']  = $this->menuData;
-			$data['activeUsers']  = $this->opt_out_users;
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header', $data);
+		
+		//VIEW BEING CALLED HERE
+		//users view is called within the admin/admin view
+		$this->load->view('admin/admin', $data);
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/header', $data);
-			
-			//VIEW BEING CALLED HERE
-			//users view is called within the admin/admin view
-			$this->load->view('admin/admin', $data);
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
-
-		} else { 
-			redirect("admin/login", 'redirect');
-		} // end of is logged in as admin
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
@@ -307,33 +218,28 @@ class Admin extends CI_Controller {
 		$this->load->model('activeUsers');
 		$this->load->model('admin/user_details');
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin()) {
 			
-			if( $this->input->get('remid') ) {
+		if( $this->input->get('remid') ) {
 
-				//deactivate user
-				$id = $this->input->get('remid');
-				$dataRemove = array( 'active' => 0 );
-				$this->ion_auth->update( $id, $dataRemove );
-				//update status to opted out
-				$this->user_details->update_status ($id, 3);
+			//deactivate user
+			$id = $this->input->get('remid');
+			$dataRemove = array( 'active' => 0 );
+			$this->ion_auth->update( $id, $dataRemove );
+			//update status to opted out
+			$this->user_details->update_status ($id, 3);
 
-			} //end of delete user
+		} //end of delete user
 
-			$data['userName'] = $this->currentUser->email;
-			//$data['activeUsers']  = $this->activeUsers;
-			$data['removeUsersList'] = $this->activeUsers->getActiveUsers();
+		$data['userName'] = $this->currentUser->email;
+		//$data['activeUsers']  = $this->activeUsers;
+		$data['removeUsersList'] = $this->activeUsers->getActiveUsers();
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/header');
-			$this->load->view('admin/remove', $data);
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header');
+		$this->load->view('admin/remove', $data);
 
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
-
-		} else { 
-			redirect("admin/login", 'redirect');
-		} 
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
@@ -344,45 +250,39 @@ class Admin extends CI_Controller {
 		$this->load->model('deactivatedUsers');
 		$deleteHashValue = md5('deletehash');
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+		//remove this user FOREVER...
+		if( $this->input->get('delid') && $this->input->get('dcheck') ) {
 
-			//remove this user FOREVER...
-			if( $this->input->get('delid') && $this->input->get('dcheck') ) {
+			if($this->input->get('dcheck') == $deleteHashValue ) {
 
-				if($this->input->get('dcheck') == $deleteHashValue ) {
-
-					$del_id = $this->input->get('delid');
-					$this->deactivatedUsers->perm_delete($del_id);
-					$ion_delete = $this->ion_auth->delete_user($del_id);				
-					redirect("admin/deactivated", 'refresh');
-
-				}
+				$del_id = $this->input->get('delid');
+				$this->deactivatedUsers->perm_delete($del_id);
+				$ion_delete = $this->ion_auth->delete_user($del_id);				
+				redirect("admin/deactivated", 'refresh');
 
 			}
 
-			//re-activated this user... 
-			if( $this->input->get('activateid') ) {
-				
-				//deactivate user
-				$act_id = $this->input->get('activateid');
-				$dataAdd = array( 'active' => 1 );
-				$this->ion_auth->update($act_id, $dataAdd);
-				$this->user_details->update_status($act_id, 1);
-			}
+		}
 
-			//$data['userName'] = $this->currentUser->email;
-			$data['removeUsersList'] = $this->deactivatedUsers->getDeactivated();
-
-			//VIEW BEING CALLED HERE
-			$this->load->view('admin/header');
-			$this->load->view('admin/deactivatedUsers', $data);
+		//re-activated this user... 
+		if( $this->input->get('activateid') ) {
 			
-			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
+			//deactivate user
+			$act_id = $this->input->get('activateid');
+			$dataAdd = array( 'active' => 1 );
+			$this->ion_auth->update($act_id, $dataAdd);
+			$this->user_details->update_status($act_id, 1);
+		}
 
-		} else { 
-			redirect("admin/login", 'redirect');
-		} 
+		//$data['userName'] = $this->currentUser->email;
+		$data['removeUsersList'] = $this->deactivatedUsers->getDeactivated();
+
+		//VIEW BEING CALLED HERE
+		$this->load->view('admin/header');
+		$this->load->view('admin/deactivatedUsers', $data);
+		
+		//VIEW BEING CALLED HERE
+		$this->load->view('footer');
 
 	}
 
@@ -396,23 +296,15 @@ class Admin extends CI_Controller {
 
 	public function user_baseline() {
 
-		if( $this->ion_auth->logged_in() && $this->ion_auth->is_admin() ) {
+		$this->load->model('admin/user_details');
+		$data['empty'] = '';
 
-			$this->load->model('admin/user_details');
-			$data['empty'] = '';
+		if( $this->input->get('uid') ) {
+			$user_baseline = $this->user_details->user_baseline( $this->input->get('uid') );
 
-			if( $this->input->get('uid') ) {
-				$user_baseline = $this->user_details->user_baseline( $this->input->get('uid') );
-
-				if(isset($user_baseline)) {
-					$data['user_baseline'] = $user_baseline;
-				} 
-
-			}
-
-		} else {
-
-			redirect("admin/login", 'redirect');
+			if(isset($user_baseline)) {
+				$data['user_baseline'] = $user_baseline;
+			} 
 
 		}
 
