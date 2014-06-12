@@ -1,6 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-
 class session extends CI_Controller {
 
 	/**
@@ -18,7 +17,6 @@ class session extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-
 
     function __construct()
     {
@@ -83,7 +81,7 @@ class session extends CI_Controller {
     			if(!$this->uri->segment(4) || ( $this->page_location != ( $this->recent_complete + 1) ) || $live_session->completed != 1 ) {
                     
                     $next_page = $this->recent_complete + 1;
-					redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
+					//redirect("/user/session/{$live_session->session_number}/{$next_page}", 'redirect');
 
     			}
 
@@ -110,9 +108,15 @@ class session extends CI_Controller {
         // This is where the core of the page is built
         // ***************
 
+        //assign session content to local variable
         $session_content = $this->page_content;
-        $video_content = $this->session_content->videos($this->session_location, $this->page_location);
 
+        //same for video content
+        $video_content = $this->session_content->videos($this->session_location, $this->page_location);
+        //$video_content = $this->session_content->videosById( $this->page_content->video );
+    
+
+        //progress indicator
         $progress = $this->session_content->status($this->uid, $this->session_location, $this->page_location, $this->page_content->required);
 
         // ***************
@@ -217,9 +221,6 @@ class session extends CI_Controller {
  		}
         // ********** //
         // END OF NAVIGATION PREVIOUS NEXT
-
-
-
 
         // *************** *************** VIEWS CALLED HERE *************** ***************
 		//

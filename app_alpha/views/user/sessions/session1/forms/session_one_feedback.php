@@ -38,14 +38,13 @@
 
 </div>
 
-
 <script>
 
 	$('#submit-form').click( function() {
 		
 		//$.post( "/user/session/update", $( "#required" ).serialize());
 		$.post( "/ajax/update", $( "#required-completion" ).serialize() ).done(function( data ) {
-	    	alert( "Data Loaded: " + data );
+	    	console.log( "Data Loaded: " + data );
 	  	});
 
 	});

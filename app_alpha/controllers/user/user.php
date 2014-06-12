@@ -51,9 +51,6 @@ class user extends CI_Controller {
 	public function index()
 	{	
 
-		//VIEW BEING CALLED HERE
-		$this->load->view('header');
-
 		//current baseline status
 		$baseline_status = $this->baseline_status;
 		$raw_next_int =  $baseline_status + 1;
@@ -75,64 +72,78 @@ class user extends CI_Controller {
 		$data['consent'] = $consent;
 		$data['user_info'] = $this->user_details;
 
-		$user_progress = $this->user_info->details( $this->user_id );
-
-		//once a user completes the baseline survey, they can schedule their sessions 
-		if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
-				
-			//details about the most recent entry for a user in their schedule
-			$current_session = $this->session_planning->current_session( $this->user_id ); 
-			$data['all_sessions'] = $this->session_planning->all_sessions( $this->user_id );
-
-			if($current_session->completed == 0) {
-
-				$session_number  = $current_session->session_number;
-				$data['start_session'] = "/user/session/{$session_number}/";
-
-			}
+		$user_progress = $this->user_info->details( $this->user_id ); 
+		//this is the user details from the the register table
+		$data['user_progress'] = $user_progress;
 
 
-			if( $user_progress->group_condition == 0 && $current_session->session_number <= $this->config->item('total_sessions') && $current_session->completed == 1 )  {
+		//OVERSIZED IMBEDDED IF LOGIC STARTS HERE -- If user has finished baseline AND consented
 
-				$data['schedule_sessions'] = '/user/schedule/';
+		//*****
 
-			} else if( $user_progress->group_condition == 1 ) {
+			//once a user completes the baseline survey, they can schedule their sessions 
+			if( isset( $user_progress->baseline ) && $user_progress->baseline == 1  && $consent == true) {
+					
+				//details about the most recent entry for a user in their schedule
+				$current_session = $this->session_planning->current_session( $this->user_id ); 
+				$data['all_sessions'] = $this->session_planning->all_sessions( $this->user_id );
 
-				// if the user is of the delayed condition -- 
-				$end_baseline = strtotime($user_progress->baseline_completed);
-				$able_to_start_session = strtotime("+6 months", $end_baseline);
+				if($current_session->completed == 0) {
 
-				//echo date('m-d-y',$end_baseline);
+					$session_number  = $current_session->session_number;
+					$data['start_session'] = "/user/session/{$session_number}/";
 
-				if( $able_to_start_session < strtotime("now") ) {
+				}
+
+				if( $user_progress->group_condition == 0 && $current_session->session_number <= $this->config->item('total_sessions') && $current_session->completed == 1 )  {
 
 					$data['schedule_sessions'] = '/user/schedule/';
 
-				} else { 
+				} else if( $user_progress->group_condition == 1 ) {
 
-					$data['not_ready'] = "no action.";
+					// if the user is of the delayed condition -- 
+					$end_baseline = strtotime($user_progress->baseline_completed);
+					$able_to_start_session = strtotime("+6 months", $end_baseline);
 
+					if( $able_to_start_session < strtotime("now") ) {
+
+						$data['schedule_sessions'] = '/user/schedule/';
+
+					} else { 
+
+						$data['not_ready'] = "no action.";
+
+					}
+				
 				}
-			
+
+				// ** //
+
+			} else { 
+
+				// ** //
+
+				if( $user_progress->baseline == 0 ) {
+					//this would be the case for a user whom has not completed 
+					//the baseline survey AND has consented to the study
+					$data['user_progress'] = $user_progress;
+				} else {
+					//this would be a case where an individual has not consented to the study
+				}
+
 			}
 
-		} else {
+		//*****
 
-			if( $user_progress->baseline == 0 ) {
-				//this would be the case for a user whom has not completed 
-				//the baseline survey AND has consented to the study
-				$data['user_progress'] = $user_progress;
-			} else {
-				//this would be a case where an individual has not consented to the study
-			}
-
-		}
-
-		$this->load->view('user/user_body', $data );
+		//OVERSIZED IMBEDDED IF LOGIC ENDS HERE -- If user has finished baseline AND consented
 
 
 		//VIEW BEING CALLED HERE
+		$this->load->view('header');
+		$this->load->view('user/user_body', $data );
+		//VIEW BEING CALLED HERE
 		$this->load->view('footer');
+		
 
 	}
 

@@ -35,6 +35,19 @@ class session_content extends CI_Model
 
 	}
 
+	function videoById( $videoId ) {
+
+		$this->db->select('*');
+		$this->db->from('video_ids');
+		$this->db->where('video_id', $videoId);
+	
+		$query = $this->db->get();
+		$cleanResult = $query->result();
+
+		return $cleanResult;
+
+	}
+
 	function status($uid, $session, $page, $required) {
 
 		$this->db->select('uid, session, page, completed');
