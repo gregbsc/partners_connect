@@ -15,9 +15,9 @@
 			<div class="char-portal">	
 
 				<h4 class="h4 choose-char"> Choose your character </h4>
-				<p class="char-unit"> <img src="http://placehold.it/200x200" class="character" id="10" /> </p>
-				<p class="char-unit"> <img src="http://placehold.it/200x201" class="character" id="1" /> </p>
-				<p class="char-unit"> <img src="http://placehold.it/200x202" class="character" id="2" /> </p>
+				<p class="char-unit"> <img src="/assets/img/char/Christina_burgandy_shirt.jpg" class="character img-responsive" id="10" /> </p>
+				<p class="char-unit"> <img src="/assets/img/char/Jessica_light_blue_shirt.jpg" class="character img-responsive" id="1" /> </p>
+				<p class="char-unit"> <img src="/assets/img/char/Michelle_burgandy_shirt.jpg" class="character img-responsive" id="2" /> </p>
 
 			</div>
 			
