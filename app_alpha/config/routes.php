@@ -88,6 +88,8 @@ $route['user/lost'] = "lost";
 $route['user/success'] = "resources/success";
 $route['user/update/password'] = "user/user/password";
 $route['user/schedule'] = 'user/user/schedule';
+
+// ajax update
 $route['ajax/update'] = "user/ajax";
 
 //session routes

@@ -144,8 +144,11 @@ class session extends CI_Controller {
         //custom model logic .. load model if needed
         if(isset($session_content->dynamic_model) && !empty($session_content->dynamic_model)) {
 
+            // GET MODEL NAME
             $model_function = $session_content->dynamic_model;
 
+            //MODEL ASSOCIATED WITH VIEW
+            $session_number = "session_".$this->session_location;
             $data['custom_content'] = $this->personality->$model_function( $this->uid );
 
         }
