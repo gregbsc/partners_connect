@@ -18,7 +18,7 @@ class schedule_tasks extends CI_Model
 
 	function schedule_a_session( $uid, $date, $session ) {
 
-		
+		//
 
 	}
 
@@ -39,6 +39,12 @@ class schedule_tasks extends CI_Model
 					   'path' => $path );
 
 		$this->db->insert('scheduled_tasks', $data);
+
+	}
+
+	function upcoming() {
+
+		$test = array('test'=>'tester');
 
 	}
 

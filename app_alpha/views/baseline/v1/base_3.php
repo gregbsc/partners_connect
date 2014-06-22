@@ -18,41 +18,41 @@
 
 		<p class="mtop50 mbot40"> <img src="<?php echo base_url(); ?>assets/img/drinks.png" class="img-responsive" /> </p>
 
-
+		<p class="mtop40 question-title"> 10. Consider a typical week during the past month (30 days). How much alcohol, on average (measured in number of drinks), did YOU drink on each day of a typical week? </p>
+		
 		<table class="baseline-table mtop40">
 
 			<tr> 
-				<th class="question-title">10. Consider a typical week during the past month (30 days). How much alcohol, on average (measured in number of drinks), did YOU drink on each day of a typical week?</th> 
 				<th> Number of Drinks </th>
 			</tr>
 
 			<tr> 
 				<td>Monday</td> 
-				<td> <input type="number" name="DD1" min="0" /> </td> 
+				<td> <input type="number" name="DD1" min="0" max="90"/> </td> 
 			</tr>
 			<tr>
 				<td>Tuesday</td> 
-				<td> <input type="number" name="DD2" min="0" /> </td> 
+				<td> <input type="number" name="DD2" min="0" max="90"/> </td> 
 			</tr>
 			<tr> 
 				<td>Wednesday</td> 
-				<td> <input type="number" name="DD3" min="0" /> </td> 
+				<td> <input type="number" name="DD3" min="0" max="90"/> </td> 
 			</tr>
 			<tr> 
 				<td>Thursday</td> 
-				<td> <input type="number" name="DD4" min="0" /> </td> 
+				<td> <input type="number" name="DD4" min="0" max="90"/> </td> 
 			</tr>
 			<tr> 
 				<td>Friday</td> 
-				<td> <input type="number" name="DD5" min="0" /> </td> 
+				<td> <input type="number" name="DD5" min="0" max="90"/> </td> 
 			</tr>
 			<tr> 
 				<td>Saturday</td> 
-				<td> <input type="number" name="DD6" min="0" /> </td> 
+				<td> <input type="number" name="DD6" min="0" max="90"/> </td> 
 			</tr>
 			<tr> 
 				<td>Sunday</td> 
-				<td> <input type="number" name="DD7" min="0" /> </td> 
+				<td> <input type="number" name="DD7" min="0" max="90"/> </td> 
 			</tr>
 
 		</table>

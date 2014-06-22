@@ -14,7 +14,7 @@ class activeUsers extends CI_Model
 				ON registration.userid = users.id 
 		WHERE users.active = 1 
 		AND users_groups.group_id = 2
-		AND registration.consent = 1
+		/* AND registration.consent = 1 */
 		AND registration.qualified = 1
 		ORDER BY users.created_on DESC"; 
 

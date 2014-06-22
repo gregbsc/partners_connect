@@ -71,7 +71,7 @@
 			
 		</table>
 
-		<p class="mtop40 question-title">6. TODAY, would you have any physical trouble or difficulty:</p>
+		<p class="mtop40 question-title">6. <span class="underline">TODAY</span>, would you have any physical trouble or difficulty:</p>
 		
 		<table class="baseline-table">
 
@@ -132,7 +132,7 @@
 
 		</table>
 
-		<p class="mtop40 question-title">8. During the past week, how often did you:</p>
+		<p class="mtop40 question-title">8. During the <span class="underline">PAST WEEK</span>, how often did you:</p>
 
 		<table class="baseline-table">
 			<tr> <th> </th> <th>None</th> <th>Some</th> <th>A Lot</th> </tr>
@@ -152,7 +152,7 @@
 			</tr>
 		</table>
 
-		<p class="mtop40 question-title">9. During the past week, how often did you:</p>
+		<p class="mtop40 question-title">9. During the <span class="underline">PAST WEEK</span>, how often did you:</p>
 
 		<table class="baseline-table">
 

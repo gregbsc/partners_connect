@@ -68,6 +68,7 @@ $route['admin/not-opt-in'] = "admin/admin/not_opt_in";
 $route['admin/submissions'] = "admin/submissions";
 $route['admin/resources'] = "admin/admin/resources";
 $route['admin/baseline-view'] = "admin/admin/user_baseline";
+$route['admin/tasks'] = "admin/scheduled/run_pending_tasks";
 //end of admin route
 
 //single instances

@@ -215,11 +215,11 @@ class user extends CI_Controller {
 
 			//mark baseline_completed
 			$this->process_baseline->complete_baseline( $this->user_id );
-			//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
-			$this->session_planning->schedule_session( $this->user_id, 0, $session_time, 1 );
-			
 
-			//redirect('/user/','redirect');
+			//first 0 is the session used for the baseline, 1 is for progress -- to allow for registration session
+			$this->session_planning->schedule_session( $this->user_id, 0, time(), 1 );
+			
+			redirect('/user/','redirect');
 
 		}
 
@@ -240,15 +240,12 @@ class user extends CI_Controller {
 				$percentComp = round( ($currentPage / $baseMax) * 100, -1 );
 			}
 
-			// eek -- I need to move this to the view before completing.. and remove inline style..
 			$data['percentDone'] = $percentComp;		
 
 			//force a redirect if wrong link or user breaks flow
-			//echo intval($currentPage) . " " . ( intval($baseline_status) + 1 );
 			if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
+				
 				$force_redirect = '/user/baseline/' . $raw_next_int;
-
-				// ADD THIS BACK 
 				redirect($force_redirect,'redirect');
 
 			}  
@@ -400,6 +397,8 @@ class user extends CI_Controller {
 			$data['initiatilize'] = true;
 
 			$this->load->helper('schedule_options');
+			$this->load->model('users/schedule_tasks');
+
 
 			$max_sessions = $this->config->item('total_sessions');
 
@@ -419,6 +418,10 @@ class user extends CI_Controller {
 
 					$baseline_time = $this->input->post('baseline_time'); 
 					$this->session_planning->schedule_session( $this->user_details->user_id, $next_session, $this->input->post('baseline_time'), 0 );
+					
+					$upcoming_message = "As a reminder, you have a scheduled session with Partners Connect on the " . $this->input->post('baseline_time'); 
+					$this->schedule_tasks->schedule_reminder($this->user_id, 'email', $this->input->post('baseline_time'), 'Upcoming Session - Partners Connect', $upcoming_message, $this->user_details->email);
+					
 					redirect('/user/', 'redirect');
 					
 				}
@@ -431,7 +434,6 @@ class user extends CI_Controller {
 					$data['next_options'] = next_available( $schedule_time );
 					
 				}
-
 
 			} else {
 

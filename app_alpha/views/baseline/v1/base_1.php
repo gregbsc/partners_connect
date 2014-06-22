@@ -16,13 +16,16 @@
 
 		<p class="instructions">This first section asks you some general health questions about yourself.</p>
 
-		<p class="mtop40 question-title">1. <strong>Over the <span class="underline" style="text-decoration:underline">last 2 weeks</span> </strong>, how often have you been bothered by any of the following:</p>
+		<p class="mtop40 question-title">1. Over the <span class="underline">last 2 weeks</span>, how often have you been bothered by any of the following:</p>
 
 		<table class="baseline-table">
 
-			<tr> <th> </th> <th>Not at all</th> <th>Several days</th> <th>More than half the days</th> <th>Nearly everyday</th> </tr>
+			<tr> 
+				<th> </th> <th>Not at all</th> <th>Several days</th> <th>More than half the days</th> <th>Nearly every day</th> 
+			</tr>
 
-			<tr> <td>Little interest or pleasure in doing things</td> 
+			<tr> 
+				<td>Little interest or pleasure in doing things</td> 
 				<td> <input type="radio" name="DEP1" value="0" /> </td> 
 				<td> <input type="radio" name="DEP1" value="1" /></td> 
 				<td> <input type="radio" name="DEP1" value="2"/>
@@ -85,12 +88,12 @@
 		
 		</table>
 
-		<p class="mtop40 question-title">2. Over the last 2 weeks, how often have you been bothered by the following problems?</p>
+		<p class="mtop40 question-title">2. Over the <span class="underline">last 2 weeks</span>, how often have you been bothered by the following problems?</p>
 		
 		<table class="baseline-table">
 
 			<tr>
-				<th> </th> <th>Not at all</th> <th>Several Days</th> <th>More than half the days</th> <th>Nearly everyday</th> 
+				<th> </th> <th>Not at all</th> <th>Several days</th> <th>More than half the days</th> <th>Nearly every day</th> 
 			</tr>
 
 			<tr> <td>Feeling nervous, anxious, or on edge</td> 
@@ -157,7 +160,7 @@
 		<input type="radio" name="MHHELP1" value="0"> No </br>
 		
 
-		<p class="question-title mtop40">4. In the <span style="text-decoration:underline"> past year </span>, did you receive mental health counseling or therapy for personal or emotional issues? </p>
+		<p class="question-title mtop40">4. In the <span style="text-decoration:underline"> past year</span>, did you receive mental health counseling or therapy for personal or emotional issues? </p>
 
 		<input type="radio" name="MHHELP2" value="1" onclick="$('#4a').show()"> Yes </br>
 		<input type="radio" name="MHHELP2" value="0" onclick="$('#4a').hide()"> No </br>
@@ -177,7 +180,7 @@
 				<input type="checkbox" name="MHHELP3[]" value="5" /> From a general medical doctor at a civilian facility 	 							 </br>
 				<input type="checkbox" name="MHHELP3[]" value="6" /> From a civilian clergy member (for example, from a priest, minister, or rabbi)  	 </br>
 				<input type="checkbox" name="MHHELP3[]" value="7" /> From an adult family member or friend 												 </br>
-				<span id='other' class='cover'> Other (Please specify): <input type="text" value="" placeholder="Please Specify" name="MHHELP3[]"/> <strong> </span> </strong>	</br>
+				<span id='other'> Other (Please specify): <input type="text" value="" placeholder="Please Specify" name="MHHELP3[]"/> <strong> </span> </strong>	</br>
 
 			</p>
 

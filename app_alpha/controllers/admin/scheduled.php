@@ -48,8 +48,10 @@ class scheduled extends CI_Controller {
 
 			$data['upcomingEvents'] = $this->scheduled_tasks->upcomming();
 
+			print_r($data['upcomingEvents']);
+
 			//VIEW BEING CALLED HERE
-			$this->load->view('admin/admin', $data);
+			$this->load->view('admin/upcoming_events', $data);
 
 		} else {
 
@@ -125,8 +127,6 @@ class scheduled extends CI_Controller {
 					// status = 0 
 					$status = 0;
 					// log error
-
-
 
 			}
 

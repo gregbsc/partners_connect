@@ -41,7 +41,7 @@ class screener_model extends CI_Model
 		FROM registration  
 		WHERE submission_id = '$submission_id'";
 
-		//$expCondition = rand(0,1);
+		//using 5 as a unset or not applied value
 		$expCondition = 5;
 
 		$sqlResult = $this->db->query($sql);
@@ -83,6 +83,7 @@ class screener_model extends CI_Model
 
 		 	$sqlClear = $sqlResult->result();
 		 	$sqlClear = $sqlClear[0];
+		 	
 		 	return $sqlClear;
 
 		} else {
