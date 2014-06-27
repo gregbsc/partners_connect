@@ -19,8 +19,12 @@
             <?php if(isset($all_sessions)) : ?>
 
                 <?php foreach($all_sessions as $session): ?>
-                  
-                    <p> <a href="<?php echo "/user/session/{$session->session_number}"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
+
+                    <?php if( strtotime($session->date) < now() || $session->completed == 1) : ?>
+                    
+                        <p> <a href="<?php echo "/user/session/{$session->session_number}"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
+                    
+                    <?php endif; ?>
 
                 <?php endforeach; ?>
 

@@ -438,12 +438,18 @@ class user extends CI_Controller {
 				
 			}
 
+			// *********************************************** 
+			// 
 			// THIS IS WHERE DATES FOR SCHEDULING ARE CREATED
+
 			if( $most_recent->date_completed < strtotime('+3 days', strtotime('now')) ) {
+
 				$data['next_options'] = next_available( strtotime('now') );
 			} else {
 				$data['next_options'] = time_past( strtotime('now') );
 			}
+
+			// *********************************************** 
 
 		} else {
 

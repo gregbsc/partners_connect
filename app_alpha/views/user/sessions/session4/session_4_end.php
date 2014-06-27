@@ -1,79 +1,22 @@
 <div class="row">
 
 	<div class="container">
-		
-		<div class="safe-wrap mtop40">
-			<p class="session-title"> Session <?php echo $session; ?> </p>
-			<h4 class="h4 page-title"> <?php echo $page_data->title; ?> </h4>
-		</div>
 
-		<hr>
+		<h1> Session 4 feedback form </h1>
 
-		<div class="col-md-5 nomargin">
+		<h4 class="h4">Session feedback - Complete Session</h4>
 
-			<?php if(isset($page_data->audio)) : ?>
-				<div class="audio">
-					<p> <?php echo $page_data->audio; ?> </p>
-				</div>
-			<?php endif; ?>
+		<form id="required-completion">
 
-		<?php if(isset($video_content)) : ?>
-			
-			<div class="char-container ">
+			<input type="hidden" name="session" value="<?php echo $session; ?>" />
+			<input type="hidden" name="page" value="<?php echo $page; ?>" />
 
-			<?php $contentCount = 0; ?>
-			<?php foreach($video_content as $content_sesction): ?>
+			<input type="hidden" name="location" value="goals" />
+			<input type="hidden" name="action" value="completed-session" />
 
-				<?php
-				if( $contentCount != $default_char ) {
-					$activeClasses = "possible " . $contentCount;
-				} else {
-					$activeClasses =  "possible " . $contentCount . " hidden";
-				} ?>
-				
-				<p class="<?php echo $activeClasses; ?>"> <img src="http://placehold.it/200x20<?php echo $contentCount; ?>" /> </p>
-				
-				<?php $contentCount++; ?>
-				<?php unset($activeClasses); ?>
+		</form>
 
-			<?php endforeach; ?>
-
-			</div>
-
-		<?php endif; ?>
-
-		</div>
-
-		<div class="col-md-7">
-
-			<div class="main-content show-logic">
-
-			<?php if(isset($video_content)): ?>
-
-				<?php $count = 0; ?>
-				<?php foreach($video_content as $video): ?>
-
-					<?php
-					if( $count == $default_char ) {
-						$activeClasses = "default";
-					} else {
-						$activeClasses = "hidden";
-					} ?>
-					<div class="<?php echo $activeClasses . " " . $count; ?>">
-						<p> <iframe src="//player.vimeo.com/video/<?php echo $video->vimeo_id; ?>?title=0&byline=0&portrait=0" width="610" height="350" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> </p>
-						<div> <?php echo $video->video_content; ?> </div>
-					</div>
-
-					<?php $count++; ?>
-					<?php unset($activeClasses); ?>
-
-				<?php endforeach; ?>
-
-			<?php endif; ?>
-
-			</div>
-			
-		</div>
+		<button id="submit-form" class="mbot40"> Submit </button>
 
 	</div>
 
@@ -81,22 +24,13 @@
 
 <script>
 
-	$('.possible').each( function() {
+	$('#submit-form').click( function() {
 
-		$(this).click( function() { 
-
-			selectedClass = $(this).attr('class').split(' ')[1];
-			$(this).addClass('hidden');
-			$(this).siblings().removeClass('hidden');
-			useCLass = "."+selectedClass;
-	
-			$('.show-logic').children().addClass('hidden');
-			$('.show-logic').children(useCLass).removeClass('hidden');
-			
-		});
+		$.post( "/ajax/update", $( "#required-completion" ).serialize() ).done(function( data ) {
+	    	console.log( "Data Loaded: " + data );
+	    	window.location.replace("/user/");
+	  	});
 
 	});
 
 </script>
-
-<?php $this->load->view('user/sessions/navigation', $links); ?>
