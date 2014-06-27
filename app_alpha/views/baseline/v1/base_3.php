@@ -57,7 +57,7 @@
 
 		</table>
 
-		<p class="mtop40 question-title">11. Think specifically about the past 30 days, up to and including today. During the <span class="underline">past 30 days</span>, on how many days did you drink one or more drinks of an alcoholic beverage?</p>
+		<p class="mtop40 question-title">11. Think specifically about the <span class="underline">past 30 days</span>, up to and including today. How many days did you drink one or more drinks of an alcoholic beverage?</p>
 		<input type="number" name="30D" min="0" max="31" /> </br>
 
 

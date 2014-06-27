@@ -65,6 +65,7 @@ class user extends CI_Controller {
 
 		if( $this->input->get('uid') ) {
 
+
 			$uid = $this->input->get('uid');
 			$userLookup = $this->ion_auth->user($uid)->row();
 
@@ -81,15 +82,25 @@ class user extends CI_Controller {
 
 			if ( $this->input->get('email_action') == 'initial_contact' ) {
 
-				$email_title = "Test title for initial contact";
-				$email_type = "Initial Email";
-				$site_url = '';
-				$email_body = "Hi, Name Here. Login using the following URL, <a href='http://pconnect.linuxblu.com/user/'>http://pconnect.linuxblu.com/user/</a> ";
+				$email_title = "Welcome to Partners Connect";
 
-				//send email
-				send_email( $email_title, $email_type, $email_body, $userLookup->email );
+				$email_body = "<p> Dear {$userLookup->first_name}, </br>
+								Thank you for your interest in the Partners Connect research study. To begin, please click this link (http://pconnect.linuxblu.com/user) and log in with your email and the password we discussed. Remember, the password has no spaces or dashes. 
+								One you’re logged in, please read and initial the consent form. Then, you’ll be able to complete your survey. Please complete the survey within 1 week. It should take about 20-30 minutes to complete.
+								If you would like to change your password, please click on “edit your contact information”. </p>
+								<p> If any questions come up, please feel free to call me at (800) 447-2631 x8224 or email connect@rand.org. </p>
+								<p> Thank you very much, </br>
+								Stefanie </br>
+								Project Coordinator </br>
+								RAND Corporation </br>
+								Santa Monica, CA </p> ";
 
-				$this->email_functionality->record_email( $email_title, $email_type, $email_body, $userLookup->email, $userLookup->id );
+				$this->email->from($this->config->item('rand_email'), 'Partners Connect');
+				$this->email->to( $userLookup->email );
+				$this->email->subject($email_title);
+				$this->email->message($email_body);	
+
+				$this->email_functionality->record_email( $email_title, "Initial Email", $email_body, $userLookup->email, $userLookup->id );
 
 				//update user contact
 				$this->user_details->update_initial_contact( $uid, 1 );
@@ -120,8 +131,12 @@ class user extends CI_Controller {
 				if( count($user_email) > 0 && isset( $user_email[0]->email ) ) {
 
 					//helper function -- email helper
-					//need to include email api
-					send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
+					$this->email->from($this->config->item('rand_email'), 'Partners Connect');
+					$this->email->to( $userLookup->email );
+					$this->email->subject($email_title);
+					$this->email->message($email_body);	
+
+					//send_email( $email_title, $email_type, $email_body, $user_email[0]->email );
 					//records mail for admin interface use
 					$this->email_functionality->record_email( $email_title, $email_type, $email_body, $user_email[0]->email, $user_email[0]->id );
 

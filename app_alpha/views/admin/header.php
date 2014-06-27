@@ -78,14 +78,16 @@
                         <span class="dropdown-arrow"> </span>
 
                         <ul class="dropdown-menu">
-                            <li><a href="/admin/scheduled">Upcoming Actions</a></li>
-                            <li><a href="/admin/scheduled">Completed Actions</a></li>
+                            <li><a href="/admin/scheduled?status=upcoming">Upcoming Actions</a></li>
+                            <li><a href="/admin/scheduled?status=completed">Completed Actions</a></li>
                         </ul>
 
                     </li>
 
                     <li><a href="/admin/resources">Study Notes</a></li>
+                    <li><a href="/admin/ip/">CLear IP</a></li>
                     <li><a href="/logout">Logout</a></li>
+
 
                 </ul>
 

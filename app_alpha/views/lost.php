@@ -2,12 +2,6 @@
 
     <div class="container register-fields">
 
-        <?php //if(isset($lost_message)) : ?>
-
-        <?php //echo "<p>".$lost_message."</p>"; ?> 
-
-    	<?php // endif; ?>
-
         <p>If you have an account an email reset form will be sent to you.</p>
        
         <?php echo form_open('user/lost'); ?>

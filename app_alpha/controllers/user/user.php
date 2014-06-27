@@ -243,8 +243,8 @@ class user extends CI_Controller {
 			$data['percentDone'] = $percentComp;		
 
 			//force a redirect if wrong link or user breaks flow
-			if( ( $currentPage != ( $baseline_status + 1 ) ) && ($currentPage != 1) ) {	
-				
+			if( ( $currentPage != ( $baseline_status + 1 ) ) /* && ($currentPage != 1) */ && $baseline_status >= 2  ) {	
+
 				$force_redirect = '/user/baseline/' . $raw_next_int;
 				redirect($force_redirect,'redirect');
 
@@ -394,53 +394,63 @@ class user extends CI_Controller {
 	public function schedule() {
 
 
-			$data['initiatilize'] = true;
+		$data['initiatilize'] = true;
 
-			$this->load->helper('schedule_options');
-			$this->load->model('users/schedule_tasks');
-
-
-			$max_sessions = $this->config->item('total_sessions');
-
-			$most_recent = $this->session_planning->most_recent_session_completed( $this->user_details->user_id );
-
-			$data['next_registered'] = $this->session_planning->scheduled_session( $this->user_details->user_id );
-			
-			//most recent completed // most of the logic is here for whether a user can register
-			if( ( ( $most_recent->session_number + 1 ) <= $max_sessions ) && ( $most_recent->completed == 1 ) ) {
-
-				//print_r($most_recent);
-
-				$next_session = $most_recent->session_number + 1;
-
-				// make sure next session is set, variable created above
-				if( $this->input->post('baseline_time') && isset( $next_session ) ) {
-
-					$baseline_time = $this->input->post('baseline_time'); 
-					$this->session_planning->schedule_session( $this->user_details->user_id, $next_session, $this->input->post('baseline_time'), 0 );
-					
-					$upcoming_message = "As a reminder, you have a scheduled session with Partners Connect on the " . $this->input->post('baseline_time'); 
-					$this->schedule_tasks->schedule_reminder($this->user_id, 'email', $this->input->post('baseline_time'), 'Upcoming Session - Partners Connect', $upcoming_message, $this->user_details->email);
-					
-					redirect('/user/', 'redirect');
-					
-				}
+		$this->load->helper('schedule_options');
+		$this->load->model('users/schedule_tasks');
 
 
-				// THIS IS WHERE DATES FOR SCHEDULING ARE CREATED
-				if( $most_recent->date_completed < strtotime('+3 days', strtotime('now')) ) {
-					$data['next_options'] = time_past( strtotime('now') );
-				} else {
-					$data['next_options'] = next_available( $schedule_time );
-					
-				}
+		$max_sessions = $this->config->item('total_sessions');
 
-			} else {
+		$most_recent = $this->session_planning->most_recent_session_completed( $this->user_details->user_id );
 
+		$data['next_registered'] = $this->session_planning->scheduled_session( $this->user_details->user_id );
+		
+		//most recent completed // most of the logic is here for whether a user can register
+		if( ( ( $most_recent->session_number + 1 ) <= $max_sessions ) && ( $most_recent->completed == 1 ) ) {
+
+			//print_r($most_recent);
+
+			$next_session = $most_recent->session_number + 1;
+
+			// make sure next session is set, variable created above
+			if( $this->input->post('baseline_time') && isset( $next_session ) ) {
+
+				$baseline_time = $this->input->post('baseline_time'); 
+				$this->session_planning->schedule_session( $this->user_details->user_id, $next_session, $this->input->post('baseline_time'), 0 );
+				
+				//$upcoming_message = "As a reminder, you have a scheduled session with Partners Connect on the " . $this->input->post('baseline_time'); 
+
+				$upcoming_message = "This is a friendly reminder that your next Partners Connect session is scheduled for {$this->input->post('baseline_time')}.  
+				We hope that you have had time to do your practice as you prepare for your next session. If you need more time, no problem, we can change your session by clicking this link [LINK].
+				Thank you for your participation in the Partners Connect research study. If any questions come up, please feel free to call me at (800) 447-2631 x8224 or email connect@rand.org. 
+				
+				Thank you very much,</br>
+				Stefanie</br>
+
+				Project Coordinator</br>
+				RAND Corporation</br>
+				Santa Monica, CA</br>";
+
+				$this->schedule_tasks->schedule_reminder($this->user_id, 'email', $this->input->post('baseline_time'), 'Upcoming Session - Partners Connect', $upcoming_message, $this->user_details->email);
+				
 				redirect('/user/', 'redirect');
-				// no session available to plan... 
-
+				
 			}
+
+			// THIS IS WHERE DATES FOR SCHEDULING ARE CREATED
+			if( $most_recent->date_completed < strtotime('+3 days', strtotime('now')) ) {
+				$data['next_options'] = next_available( strtotime('now') );
+			} else {
+				$data['next_options'] = time_past( strtotime('now') );
+			}
+
+		} else {
+
+			redirect('/user/', 'redirect');
+			// no session available to plan... 
+
+		}
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');

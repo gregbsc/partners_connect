@@ -12,7 +12,7 @@
 		
 		<h4 class="mtop50 section-header">YOUR PARTNER’S DRINKING</h4>
 
-		<p class="instructions">The next set of questions asks about your perceptions about <span class="underline">your partner’s drinking</span>. When we say “partner” we are referring we are referring to your spouse or partner you live with. You may not know some of this information and that’s okay, please make your best guess. </p>
+		<p class="instructions">The next set of questions asks about your perceptions about <span class="underline">your partner’s drinking</span>. When we say “partner” we are referring to your spouse or partner you live with. You may not know some of this information and that’s okay, please make your best guess. </p>
 		
 		<p class="instructions mtop40">For all questions related to alcohol use below, please use the following definitions of standard drinks:</p>
 
@@ -20,13 +20,15 @@
 
 		<p class="mtop40 question-title">15. The following question asks you about your views of your partner’s drinking behavior. We are not asking you to report on their specific level of drinking (that is, you do not need to ask them how much they drink); rather, we are interested in how much you think they drink.</p>
 		
-		<p class="directions mtop40 mbot20">Consider a typical week during the <strong>past month (30 days)</strong>.</p>
+		<p class="directions mtop40 mbot20">Consider a typical week during the <strong>past month (30 days)</strong>. How much alcohol, on average (measured in number of drinks), <span class="underline">do you think your partner</span> had on each day of <span class="underline">a typical week?</span> </p>
 
 		<table class="baseline-table">
 
 			<tr> 
-				<th>How much alcohol, on average, (measured in number of drinks), <span class="underline">do you think your partner</span> had on each day of <span class="underline">a typical week?</span> </th> 
+		 
 				<th> Number of Drinks </th>
+				<th> Day of the week</th>
+
 			</tr>
 
 			<tr> 
@@ -64,7 +66,7 @@
 
 		<table class="baseline-table">
 			<tr> 
-				<td></td><td>Strongly disagree</td><td></td><td></td><td></td><td></td><td></td><td>Strongly Agree</td> 
+				<td></td><td>Strongly disagree</td><td>Disagree</td><td>Sort of disagree</td><td>Neither agree nor disagree</td><td>Sort of agree</td><td>agree</td><td>Strongly Agree</td> 
 			</tr>
 			<tr> 
 				<td>My partner's drinking is a source of strain in our relationship</td>

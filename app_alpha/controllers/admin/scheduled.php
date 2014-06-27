@@ -46,12 +46,21 @@ class scheduled extends CI_Controller {
 			//VIEW BEING CALLED HERE
 			$this->load->view('admin/header', $data);
 
-			$data['upcomingEvents'] = $this->scheduled_tasks->upcomming();
+			if($this->input->get('status')) {
 
-			print_r($data['upcomingEvents']);
+				$action = $this->input->get('status');
+
+				if($action == 'upcoming') {
+					$data['events'] = $this->scheduled_tasks->upcomming();
+				}
+				else if($action == 'completed') {
+					$data['events'] = $this->scheduled_tasks->completed();
+				}
+
+			}
 
 			//VIEW BEING CALLED HERE
-			$this->load->view('admin/upcoming_events', $data);
+			$this->load->view('admin/events', $data);
 
 		} else {
 

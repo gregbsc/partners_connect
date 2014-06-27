@@ -52,6 +52,11 @@ class Resources extends CI_Controller {
 			$data = '';
 		}
 
+		if( $_POST['reason_select'] ) {	
+			$submit_url = site_url();	
+			redirect($submit_url,'redirect');
+		}
+
 		$this->load->view('header');
 		$this->load->view('signup/nothanks', $data);
 		$this->load->view('footer');
@@ -84,6 +89,3 @@ class Resources extends CI_Controller {
 	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

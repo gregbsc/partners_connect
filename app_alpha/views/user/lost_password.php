@@ -5,11 +5,9 @@
         <?php if(!isset($message)) : ?>
 
             <?php echo form_open('/user/lost'); ?>
-
             <p>Enter your address to reset your password.</p>
             <input type="text" name="uemail" placeholder="Email address here." required="" /> </br>
             <input type="submit" value="submit" style="margin-top:20px;" />
-            
             </form>
 
         <?php else: ?>

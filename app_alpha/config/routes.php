@@ -69,6 +69,7 @@ $route['admin/submissions'] = "admin/submissions";
 $route['admin/resources'] = "admin/admin/resources";
 $route['admin/baseline-view'] = "admin/admin/user_baseline";
 $route['admin/tasks'] = "admin/scheduled/run_pending_tasks";
+$route['admin/ip'] = "admin/ip";
 //end of admin route
 
 //single instances
@@ -89,14 +90,14 @@ $route['user/lost'] = "lost";
 $route['user/success'] = "resources/success";
 $route['user/update/password'] = "user/user/password";
 $route['user/schedule'] = 'user/user/schedule';
+$route['user/follow-up-survey'] = "user/follow_up";
 
-// ajax update
+// ajax updates
 $route['ajax/update'] = "user/ajax";
 
 //session routes
 $route['user/session/:num'] = "user/session";
 $route['user/session/:num/:num'] = "user/session";
-//end of user routes
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

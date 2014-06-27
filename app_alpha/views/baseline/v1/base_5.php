@@ -80,7 +80,7 @@
 
 		<p class="instructions mtop30">On the ruler below, please indicate the number that best describes how you think your partner feels right now:</p>
 		
-		<ul>
+		<ul class="strong">
 			<li>0 = Has not done anything to change his/her drinking 
 			<li>2= Has talked about changing, but has no plans to do so yet</li>
 			<li>5 = Has a plan for changing</li> 
@@ -99,14 +99,20 @@
 		</table>
 	
 
-		<p class="mtop40 question-title">21. On a scale from 0 to 10, how ready do you think your partner feels about seek help for their drinking (for example, talking with a counselor or going to AA meetings regularly).  
+		<p class="mtop40 question-title">21. On a scale from 0 to 10, how ready do you think your partner feels about seek help for their drinking (for example, talking with a counselor or going to AA meetings regularly)?  
 		
+		<ul class="strong">
+			<li>0 = Has not done anything to seek help
+			<li>2 = Has talked about changing, but has no plans to do so yet</li>
+			<li>5 = Has a plan for seeking help</li> 
+			<li>7 = Just started to seek help</li> 
+			<li>10= Has started to seek help and plans to continue </li>
+		</ul>
+
 		<table class="top-number-radio">
- 			<!--<tr> 
-				<td>0 = Has not done anything to change his/her drinking</td> <td>1</td> <td>2= Has talked about changing, but has no plans to do so yet</td> <td>3</td> <td>4</td> <td>5 = Has a plan for changing</td> <td>6</td> <td>7 = Just started to change</td> <td>8</td> <td>9</td> <td> <strong>10= Has started to change and plans to continue</strong> </td> 
-			</tr> -->
+
 			<tr> 
-				<?php table_row_top( 0, 10, '', 'CPD2' ); ?>
+				<?php table_row_top( 0, 10, '', 'CPD3' ); ?>
 			</tr>
 
 		</table>
