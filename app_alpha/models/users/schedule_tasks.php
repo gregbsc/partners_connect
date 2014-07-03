@@ -15,19 +15,6 @@ class schedule_tasks extends CI_Model
 
 	}
 
-
-	function schedule_a_session( $uid, $date, $session ) {
-
-		//
-
-	}
-
-	function reschedule_a_session( $uid, $date, $session ) {
-
-		
-
-	}
-
 	function schedule_reminder($uid, $action, $run_time, $title, $message, $path) {
 
 		$data = array( 'uid' => $uid,

@@ -41,8 +41,6 @@ class lost extends CI_Controller {
 			$data['message'] = "Enter your new password below.";
 			$data['password_post_url'] = $this->site_url."/user/update/password/?action=reset&account={$this->input->get('account')}&activecode={$this->input->get('activecode')}";
 
-			//print_r($data['password_post_url']);
-
 			if( $this->input->post('password') ) {
 
 				$password_complete = $this->ion_auth->forgotten_password_complete( $this->input->get('activecode'), $this->input->post('password') );
@@ -56,6 +54,7 @@ class lost extends CI_Controller {
 		}
 
 		if( $this->input->post('uemail') ) {
+			
 
 			$forgotten = $this->ion_auth->forgotten_password( $this->input->post('uemail') );
 
@@ -66,8 +65,8 @@ class lost extends CI_Controller {
 
 				$site_url = base_url();
 				$email_title = "Password Reset for Partners Connect";
-				$reset_link = $site_url."user/lost/?action=reset&account={$forgotten['identity']}&activecode={$forgotten['forgotten_password_code']}";
-				$email_body = "To reset your email address go to the following link ".$reset_link;
+				$data['reset_link'] = $site_url."user/lost/?action=reset&account={$forgotten['identity']}&activecode={$forgotten['forgotten_password_code']}";
+				$email_body = $this->load->view('user/password_reset_email', $data, true);
 
 				$this->email->from($this->config->item('rand_email'), 'Partners Connect');
 				$this->email->to( $forgotten['identity'] );

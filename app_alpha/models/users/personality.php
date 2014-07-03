@@ -31,7 +31,7 @@ class personality extends CI_Model
 
 	function build_personality( ) {
 
-		// find relevant questions and build personality profile
+		// find relevant questions and build personality profile -- if needed 
 
 	}
 

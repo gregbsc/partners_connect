@@ -33,8 +33,8 @@ $config['test_urls'] = array('127.0.0.1');
 
 // leave blank to remove index.php
 $config['index_page'] = '';
-$config['admin_email'] = "greg@bluscs.com";
-$config['rand_email'] = "greg@bluscs.com";
+$config['admin_email'] = "connect@rand.org";
+$config['rand_email'] = "connect@rand.org";
 $config['email_from_name'] = "Partners Connect";
 
 //registration values -- mostly just for information sake
@@ -44,10 +44,11 @@ $config['reg_val'] = array( 'null' => 0, 'qualified' => 1, 'not_qualified' => 2,
 $config['exp_condition'] = array( 'WBI' => 0, 'delayed' => 1 );
 $config['sessions'] = array('baseline' => 0, 'session1' => 1, 'session2' => 2, 'session3' => 3, 'session4' => 4);
 
-$config['session_1'] = 10;
-$config['session_2'] = 10;
-$config['session_3'] = 10;
-$config['session_4'] = 10;
+//no longer needed 
+// $config['session_1'] = 10;
+// $config['session_2'] = 10;
+// $config['session_3'] = 10;
+// $config['session_4'] = 10;
 
 // this is the value used to track the total number of views being loaded for the baseline survey. Max is 9, so on the ninth the survey is complete
 $config['baseline_max_v1'] = 9;

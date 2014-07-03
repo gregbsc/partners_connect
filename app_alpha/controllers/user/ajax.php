@@ -3,21 +3,6 @@
 
 class ajax extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 
 
     function __construct()
@@ -33,6 +18,7 @@ class ajax extends CI_Controller {
         	$this->load->model('users/session_content');
 			$this->load->model('users/personality');
             $this->load->model('/users/session_tracking');
+            $this->load->model('process_post_survey');
 
             //page location information
         	$this->session_location = $this->uri->segment(3);
@@ -58,8 +44,10 @@ class ajax extends CI_Controller {
 
             $action = $this->input->post('action');
 
+            // switch statement for AJAX action 
             switch($action) {
 
+                //case if action type == personality run these actions
                 case 'personality':   
                     
                     if( $this->input->post('character') ) {
@@ -125,6 +113,17 @@ class ajax extends CI_Controller {
                         $this->session_planning->complete_session( $this->uid, $this->input->post('session') );
                     } else {
                         echo "No post session";
+                    }
+
+                break;
+
+                case 'feedback':
+                    
+                    if($this->input->post('session')) {
+
+                        $this->session_planning->complete_session( $this->uid, $this->input->post('session') );
+                        $this->process_post_survey->process_session_feedback($_POST, $this->uid, $this->input->post('session'));
+
                     }
 
                 break;

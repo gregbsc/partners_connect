@@ -8,7 +8,7 @@
             
         	<?php echo ( (isset($user_progress) && $user_progress->baseline == 0) && ($consent == true) )  ? "<a href='{$return_base}' class='btn btn-block btn-lg btn-danger user-button' >Click here to take the baseline survey</a>" : "" ; ?>
         	
-            <?php if( isset( $schedule_sessions ) ) : 
+            <?php if( isset( $schedule_sessions ) && isset($session->session_number) && $session->session_number < 5 ) : 
 
                 echo "<a href='{$schedule_sessions}' class='btn btn-block btn-lg btn-danger user-button'>Schedule Next Session</a>";
 
@@ -22,7 +22,7 @@
 
                 <?php foreach($all_sessions as $session): ?>
 
-                    <?php if( strtotime($session->date) < now() || $session->completed == 1) : ?>
+                    <?php if( strtotime($session->date) < now() || $session->completed == 1 ) : ?>
                     
                         <p> <a href="<?php echo "/user/session/{$session->session_number}/1"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
                     

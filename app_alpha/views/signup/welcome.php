@@ -1,5 +1,7 @@
 <div class="row mtop40">
-	<img class="mauto img-responsive" src="/assets/img/welcome_pc.jpg" />
+	<div class="container">
+		<img class="mauto img-responsive" src="/assets/img/welcome_pc.jpg" />
+	</div>
 </div>
 
 <div class="container mtop40 max-cont">
