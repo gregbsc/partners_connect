@@ -23,7 +23,7 @@ class screener extends CI_Controller {
     {
 
         parent::__construct();
-
+        
     	
     }
 	
@@ -73,7 +73,7 @@ class screener extends CI_Controller {
 			}
 
 			//process post
-			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time, $qualified );
+			$this->screener_model->process_screen( $_POST, $userIP, $submission_id, $submission_time );
 
 		} else {
 

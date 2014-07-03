@@ -108,16 +108,16 @@ class session extends CI_Controller {
         // This is where the core of the page is built
         // ***************
 
-        //assign session content to local variable
-        $session_content = $this->page_content;
+            //assign session content to local variable
+            $session_content = $this->page_content;
 
-        //same for video content
-        $video_content = $this->session_content->videos($this->session_location, $this->page_location);
-        //$video_content = $this->session_content->videosById( $this->page_content->video );
-    
+            //same for video content
+            $video_content = $this->session_content->videos($this->session_location, $this->page_location);
+            //$video_content = $this->session_content->videosById( $this->page_content->video );
+        
 
-        //progress indicator
-        $progress = $this->session_content->status($this->uid, $this->session_location, $this->page_location, $this->page_content->required);
+            //progress indicator
+            $progress = $this->session_content->status($this->uid, $this->session_location, $this->page_location, $this->page_content->required);
 
         // ***************
         // ***************
@@ -142,14 +142,20 @@ class session extends CI_Controller {
         // ***************
 
         //custom model logic .. load model if needed
-        if(isset($session_content->dynamic_model) && !empty($session_content->dynamic_model)) {
+        if( isset($session_content->dynamic_model) && !empty($session_content->dynamic_model) ) {
 
             // GET MODEL NAME
             $model_function = $session_content->dynamic_model;
 
+            //load model for session 
+            $custom_model = "/users/session_{$this->session_location}/custom_session_model_{$this->session_location}";
+            $model_name = "custom_session_model_{$this->session_location}";
+            $this->load->model($custom_model);
+            //end of load custom model
+
             //MODEL ASSOCIATED WITH VIEW
-            $session_number = "session_".$this->session_location;
-            $data['custom_content'] = $this->personality->$model_function( $this->uid );
+            //$data['custom_content'] = $this->personality->$model_function( $this->uid );
+            $data['custom_content'] = $this->$model_name->$model_function( $this->uid );
 
         }
 
@@ -192,7 +198,6 @@ class session extends CI_Controller {
         // ******************
         // END OF VIDEO LOGIC 
         // ******************
-
 
         // PAGE INFORMATION // 
 		$data['page_data'] = $session_content;

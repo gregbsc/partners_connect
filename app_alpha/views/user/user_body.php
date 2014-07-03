@@ -14,7 +14,9 @@
 
             endif; ?>
 
+
             <?php echo ( $user_progress->consent == 2 ) ? "Thank you for your interest in this study. If you decide to participate, please click on the button above. If you do not want to participate in the study, thank you for your time and feel free to check out our resources above." : "" ; ?>
+
 
             <?php if(isset($all_sessions)) : ?>
 
@@ -22,7 +24,7 @@
 
                     <?php if( strtotime($session->date) < now() || $session->completed == 1) : ?>
                     
-                        <p> <a href="<?php echo "/user/session/{$session->session_number}"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
+                        <p> <a href="<?php echo "/user/session/{$session->session_number}/1"; ?>" class="btn btn-block btn-lg btn-inverse button-special" id="start"> <?php echo ( ( isset($session->completed) && $session->completed == 1) ) ? "Click here to review session ".$session->session_number : "Click here to start session ".$session->session_number ?></a> </p>
                     
                     <?php endif; ?>
 
