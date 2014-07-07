@@ -17,6 +17,16 @@
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/admin.js"></script>
 
+    <script>
+
+        jQuery(document).ready(function(){
+            //users datatables
+            jQuery('#users-table').dataTable();
+
+        });
+
+    </script>
+
   </body>
 
 </html>

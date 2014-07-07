@@ -7,16 +7,14 @@
         <main>
             
         	<?php echo ( (isset($user_progress) && $user_progress->baseline == 0) && ($consent == true) )  ? "<a href='{$return_base}' class='btn btn-block btn-lg btn-danger user-button' >Click here to take the baseline survey</a>" : "" ; ?>
-        	
-            <?php if( isset( $schedule_sessions ) && isset($session->session_number) && $session->session_number < 5 ) : 
+        	   
+            <?php if( isset( $schedule_sessions ) ) : 
 
                 echo "<a href='{$schedule_sessions}' class='btn btn-block btn-lg btn-danger user-button'>Schedule Next Session</a>";
 
             endif; ?>
 
-
             <?php echo ( $user_progress->consent == 2 ) ? "Thank you for your interest in this study. If you decide to participate, please click on the button above. If you do not want to participate in the study, thank you for your time and feel free to check out our resources above." : "" ; ?>
-
 
             <?php if(isset($all_sessions)) : ?>
 

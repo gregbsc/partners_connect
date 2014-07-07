@@ -95,8 +95,10 @@ class user extends CI_Controller {
 
 				}
 
-				if( $user_progress->group_condition == 0 && $current_session->session_number <= $this->config->item('total_sessions') && $current_session->completed == 1 )  {
+				if( $user_progress->group_condition == 0 && $current_session->session_number < $this->config->item('total_sessions') && $current_session->completed == 1 )  {
 
+					$session_number  = $current_session->session_number;
+					$data['session_max'] = $this->config->item('total_sessions');
 					$data['schedule_sessions'] = '/user/schedule/';
 
 				} else if( $user_progress->group_condition == 1 ) {
@@ -114,8 +116,7 @@ class user extends CI_Controller {
 						$data['not_ready'] = "no action.";
 
 					}
-					
-				
+
 				}
 
 				// ** //
@@ -135,9 +136,7 @@ class user extends CI_Controller {
 			}
 
 		//*****
-
 		//OVERSIZED IMBEDDED IF LOGIC ENDS HERE -- If user has finished baseline AND consented
-
 
 		//VIEW BEING CALLED HERE
 		$this->load->view('header');

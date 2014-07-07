@@ -16,10 +16,12 @@
     <link href="<?php echo base_url(); ?>assets/flat/css/docs.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css" rel="stylesheet">
 
-    <!-- <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/knockout-3.1.0.js'></script> -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
+
+     <link rel="shortcut icon" href="images/favicon.ico">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
@@ -28,6 +30,7 @@
     <![endif]-->
 
 </head>
+
 <body>
    
 <div class="row red-header">

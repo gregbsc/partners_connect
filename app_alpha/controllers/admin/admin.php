@@ -108,7 +108,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin', $data);
 
 		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 	}
 
@@ -123,7 +123,7 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/createUsers'); 
 
 			//VIEW BEING CALLED HERE
-			$this->load->view('footer');
+			$this->load->view('admin/footer');
 
 			if( $this->input->post('username') && $this->input->post('password') ) {
 				
@@ -169,7 +169,7 @@ class Admin extends CI_Controller {
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/notqualifieduers', $data);
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 	}
 	
@@ -188,7 +188,7 @@ class Admin extends CI_Controller {
 		//VIEW BEING CALLED HERE
 		$this->load->view('admin/header', $data);
 		$this->load->view('admin/notoptin', $data);
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 
 	}
@@ -208,7 +208,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/admin', $data);
 
 		//VIEW BEING CALLED HERE
-		$this->load->view('footer');
+		$this->load->view('admin/footer');
 
 	}
 
